@@ -6,13 +6,10 @@ import { Download } from "lucide-react"
 import { mockAdminPayments } from "@/lib/mock-data"
 import AdminPaymentStats from "./stats-grid"
 import SearchFilter from "./search-filter"
-import TransactionList from "./transactions-list"
+import TransactionList from "./transaction-list"
 import Title from "../title"
 
 export default function AdminPayments() {
-  const totalRevenue = mockAdminPayments.reduce((sum, p) => sum + p.amount, 0)
-  const completedPayments = mockAdminPayments.filter((p) => p.status === "completed")
-  const pendingPayments = mockAdminPayments.filter((p) => p.status === "pending")
 
   return (
     <div className="min-h-screen bg-background">
