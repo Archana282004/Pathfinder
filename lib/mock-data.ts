@@ -1,4 +1,6 @@
+import { ArrowDownRight, ArrowUpRight, Calendar, CheckCircle2, DollarSign, MessageSquare, RefreshCw, TrendingUp, Users, Wallet } from "lucide-react"
 import type { College, Application, StudentProfile, TestScore, Essay, Document, Milestone, FinancialAid } from "./types"
+import { CardContent } from "@/components/ui/card"
 
 export const mockEducators = [
   {
@@ -51,6 +53,7 @@ export const mockEducators = [
   },
 ]
 
+
 export const mockStudents = [
   {
     id: "stu-1",
@@ -85,6 +88,7 @@ export const mockStudents = [
     avatar: "/student-black-boy.jpg",
   },
 ]
+
 
 export const mockSessions = [
   {
@@ -1112,4 +1116,173 @@ export const mockFinancialAid: FinancialAid[] = [
       },
     ],
   },
+]
+
+export const AdminOverviewCards = [
+  {
+    title: "Total Users",
+    mockAnalyticsdata: mockAnalytics.totalUsers,
+    cardcontent: "+18% from last month",
+    icon: Users
+  },
+  {
+    title: "Revenue",
+    mockAnalyticsdata: mockAnalytics.totalRevenue.toLocaleString(),
+    cardcontent: "+20% from last month",
+    icon: DollarSign
+  },
+  {
+    title: "Active Sessions",
+    mockAnalyticsdata: mockAnalytics.activeSessions,
+    cardcontent: "This Month",
+    icon: Calendar
+  },
+  {
+    title: "Growth Rate",
+    mockAnalyticsdata: mockAnalytics.growthRate,
+    cardcontent: "User Growth",
+    icon: TrendingUp
+  }
+]
+
+export const AdminPaymentCards = [
+  {
+    title: "Total Revenue",
+    data: mockAdminPayments.reduce((sum, p) => sum + p.amount, 0),
+    cardcontent: "All transactions",
+    icon: DollarSign
+  },
+  {
+    title: "Completed",
+    data: mockAdminPayments.filter((p) => p.status === "completed").length,
+    cardcontent: "Successful payments",
+    icon: TrendingUp
+  },
+  {
+    title: "Pending",
+    data: mockAdminPayments.filter((p) => p.status === "pending").length,
+    cardcontent: "Awaiting processing",
+    icon: Users
+  }
+]
+
+export const EducatorOverviewCards = [
+  {
+    title: "Total Earnings",
+    data: mockEducatorEarnings.filter((e) => e.status === "paid").reduce((sum, e) => sum + e.amount, 0),
+    cardcontent: "+12% from last month",
+    icon: DollarSign
+  },
+  {
+    title: "Active Students",
+    data: new Set(mockSessions.filter((s) => s.educatorId === "edu-1").map((s) => s.studentId)).size,
+    cardcontent: "Current students ",
+    icon:Users
+  },
+  {
+    title: "Sessions This Week",
+    data:mockSessions.filter((s) => s.educatorId === "edu-1" && s.status === "upcoming").length,
+    cardcontent: "2 today",
+    icon:Calendar
+  },
+  {
+    title: "Avg Rating",
+    data:"4.9",
+    cardcontent: "Based on 156 Reviews",
+    icon:TrendingUp
+  }
+]
+
+export const EducatorPaymentCards = [
+  {
+    title:"Total Earnings",
+    data: mockEducatorEarnings.reduce((sum, e) => sum + e.amount, 0),
+    icon:DollarSign,
+    cardcontent: " All time"
+  },
+  {
+    title:"Pending",
+    data:mockEducatorEarnings
+    .filter((e) => e.status === "pending")
+    .reduce((sum, e) => sum + e.amount, 0),
+    icon:Calendar,
+    cardcontent:mockEducatorEarnings.filter((e) => e.status === "paid").length+ " sessions"
+  },
+  {
+    title:"Paid Out",
+    data:mockEducatorEarnings.filter((e) => e.status === "paid").reduce((sum, e) => sum + e.amount, 0),
+    icon:TrendingUp,
+    cardcontent:mockEducatorEarnings.filter((e) => e.status === "pending").length+"sessions"
+  }
+]
+
+export const StudentOverviewCards=[
+  {
+    title:"Token Balance",
+    data: mockWalletTransactions.reduce((sum, txn) => sum + txn.tokens, 0),
+    icon: Wallet,
+    cardcontent:"Available tokens"
+  },
+  {
+    title:"Upcoming Sessions",
+    data: mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1").slice(0, 2).length,
+    icon: Calendar,
+    cardcontent:"This Week"
+  },
+  {
+    title:"Completed Sessions",
+    data: mockSessions.filter((s) => s.status === "completed" && s.studentId === "stu-1").length,
+    icon: CheckCircle2,
+    cardcontent:"Total Sessions"
+  },
+  {
+    title:"Unread Messages",
+    data: mockChatConversations.reduce((sum, conv) => sum + conv.unread, 0),
+    icon: MessageSquare,
+    cardcontent:"New messages"
+  }
+]
+
+export const StudentWalletData=[
+  {
+    title:"Total Purchased",
+    data: mockWalletTransactions.filter((t) => t.type === "purchase").reduce((sum, txn) => sum + txn.amount, 0) ,
+    icon:ArrowDownRight ,
+    cardcontent:mockWalletTransactions.filter((t) => t.type === "purchase").length+" transactions"
+  },
+  {
+    title:"Total Spent",
+    data:  mockWalletTransactions.filter((t) => t.type === "spent").reduce((sum, txn) => sum + Math.abs(txn.amount), 0),
+    icon: ArrowUpRight,
+    cardcontent:mockWalletTransactions.filter((t) => t.type === "spent").length +" sessions"
+  },
+  {
+    title:"Refunds",
+    data:  "$" +mockWalletTransactions.filter((t) => t.type === "refund").reduce((sum, txn) => sum + txn.amount, 0),
+    icon: RefreshCw,
+    cardcontent:mockWalletTransactions.filter((t) => t.type === "refund").length+"refunds"
+  }
+]
+
+export const AdminQuickActionsCard=[
+  {
+    name:" Manage Users",
+    link:"/admin/users",
+    icon:Users
+  },
+  {
+    name:" View Payments",
+    link:"/admin/payments",
+    icon:DollarSign
+  },
+  {
+    name:"Analytics",
+    link:"/admin/analytics",
+    icon:TrendingUp
+  },
+  {
+    name:"Settings",
+    link:"/admin/settings",
+    icon:Calendar
+  }
 ]

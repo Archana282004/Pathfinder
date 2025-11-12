@@ -1,10 +1,10 @@
 "use client"
 
 import { AdminNav } from "@/components/navigation/admin-nav"
-import { mockAnalytics } from "@/lib/mock-data"
 import AdminStatsGrid from "./stats-grid"
 import AdminMainGrid from "./main-grid"
 import AdminQuickActions from "./quick-actions"
+import Title from "../title"
 
 export default function AdminDashboard() {
 
@@ -13,13 +13,10 @@ export default function AdminDashboard() {
       <AdminNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-8">
-          <div>
-            <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-            <p className="text-muted-foreground">Platform overview and management</p>
-          </div>
+          <Title heading="Admin Dashboard" description="Platform overview and management"/>
 
           {/* Stats Grid */}
-          <AdminStatsGrid mockAnalytics={mockAnalytics} />
+          <AdminStatsGrid />
 
           {/* Main Content Grid */}
           <AdminMainGrid />

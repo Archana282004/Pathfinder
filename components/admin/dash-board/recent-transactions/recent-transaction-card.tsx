@@ -1,7 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
 
 type Transaction = {
   id: string;
@@ -14,19 +11,11 @@ type Transaction = {
   time: string;
 };
 interface RecentTransactionsProps {
-  recentTransactions: Transaction[];
+  transaction: Transaction;
 }
-
-export default function AdminRecentTransactions({ recentTransactions }: RecentTransactionsProps) {
-  return (
-    <div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
-          <CardDescription>Latest payment activity</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {recentTransactions.map((transaction) => (
+export default function RecentTransactionCard({transaction}:RecentTransactionsProps){
+    return(
+        <div>
             <div key={transaction.id} className="flex items-center justify-between p-4 border rounded-lg">
               <div className="space-y-1">
                 <p className="font-medium">{transaction.userName}</p>
@@ -45,12 +34,6 @@ export default function AdminRecentTransactions({ recentTransactions }: RecentTr
                 </Badge>
               </div>
             </div>
-          ))}
-          <Button className="w-full" asChild>
-            <Link href="/admin/payments">View All Transactions</Link>
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
-  )
+        </div>
+    )
 }

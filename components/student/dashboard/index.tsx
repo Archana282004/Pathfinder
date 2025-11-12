@@ -5,6 +5,7 @@ import { mockSessions, mockChatConversations, mockWalletTransactions } from "@/l
 import StatsGrid from "./stats-grid"
 import StudentQuickActions from "./quick-actions"
 import DashboardMainGrid from "./main-grid"
+import Title from "../title"
 
 export default function StudentDashboard() {
     const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1").slice(0, 2)
@@ -26,10 +27,7 @@ export default function StudentDashboard() {
             <StudentNav />
             <div className="container mx-auto px-4 py-8">
                 <div className="space-y-8">
-                    <div>
-                        <h1 className="text-3xl font-bold">Welcome back, Emma!</h1>
-                        <p className="text-muted-foreground">Here's what's happening with your college journey</p>
-                    </div>
+                    <Title heading="Welcome back, Emma!" description="Here's what's happening with your college journey" />
 
                     {/* Stats Grid */}
                     <StatsGrid

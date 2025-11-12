@@ -5,6 +5,7 @@ import { StudentNav } from "@/components/navigation/student-nav"
 import { mockChatConversations, mockMessages } from "@/lib/mock-data"
 import ChatWindow from "./chat-window"
 import ConversationList from "./conversation-list"
+import Title from "../title"
 
 export default function StudentChat() {
   const [selectedConversation, setSelectedConversation] = useState(mockChatConversations[0].id)
@@ -18,10 +19,7 @@ export default function StudentChat() {
       <StudentNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
-          <div>
-            <h1 className="text-3xl font-bold">Messages</h1>
-            <p className="text-muted-foreground">Chat with your educators</p>
-          </div>
+          <Title heading="Messages" description="Chat with your educators"/>
 
           <div className="grid md:grid-cols-3 gap-6 h-[600px]">
             {/* Conversations List */}

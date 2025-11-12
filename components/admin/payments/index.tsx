@@ -7,6 +7,7 @@ import { mockAdminPayments } from "@/lib/mock-data"
 import AdminPaymentStats from "./stats-grid"
 import SearchFilter from "./search-filter"
 import TransactionList from "./transactions-list"
+import Title from "../title"
 
 export default function AdminPayments() {
   const totalRevenue = mockAdminPayments.reduce((sum, p) => sum + p.amount, 0)
@@ -19,10 +20,7 @@ export default function AdminPayments() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">Payment Management</h1>
-              <p className="text-muted-foreground">View and manage all transactions</p>
-            </div>
+            <Title heading="Payment Management" description="View and manage all transactions" />
             <Button>
               <Download className="w-4 h-4 mr-2" />
               Export
@@ -30,11 +28,7 @@ export default function AdminPayments() {
           </div>
 
           {/* Stats Grid */}
-          <AdminPaymentStats
-            totalRevenue={totalRevenue}
-            completedPayments={completedPayments}
-            pendingPayments={pendingPayments}
-          />
+          <AdminPaymentStats />
 
           {/* Search and Filter */}
           <SearchFilter />

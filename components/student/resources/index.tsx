@@ -9,6 +9,7 @@ import { mockResources } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"
 import CategoryTab from "./category-tab"
 import ResourceGrid from "./resources-grid"
+import Title from "../title"
 
 export default function StudentResources() {
   const categories = ["All", "Essay Writing", "Test Prep", "Financial Aid", "Admissions"]
@@ -18,10 +19,7 @@ export default function StudentResources() {
       <StudentNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
-          <div>
-            <h1 className="text-3xl font-bold">Resource Library</h1>
-            <p className="text-muted-foreground">Educational materials and guides to help your college journey</p>
-          </div>
+          <Title heading="Resource Library" description="Educational materials and guides to help your college journey" />
 
           {/* Search and Filter */}
           <SearchFilter />

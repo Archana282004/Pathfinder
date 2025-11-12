@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { mockAdminUsers } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"
 import AdminTabslist from "./tab-list"
+import Title from "../title"
 
 export default function AdminUsers() {
   const students = mockAdminUsers.filter((u) => u.role === "student")
@@ -17,10 +18,7 @@ export default function AdminUsers() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">User Management</h1>
-              <p className="text-muted-foreground">Manage all platform users</p>
-            </div>
+            <Title heading="User Management" description="Manage all platform users" />
             <Button>Add New User</Button>
           </div>
 
