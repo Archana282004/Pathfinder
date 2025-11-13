@@ -1,7 +1,7 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Calendar, Clock } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { CardContent } from "@/components/ui/card";
+import { Calendar, Clock } from "lucide-react";
+import Link from "next/link";
 
 interface UpcomingSessionsListProps {
     upcomingSessions: {
@@ -20,14 +20,9 @@ interface UpcomingSessionsListProps {
         notes: string;
     }[];
 }
-export default function UpcomingSessions({upcomingSessions}:UpcomingSessionsListProps){
+export default function UpcomingSessionTab({upcomingSessions}:UpcomingSessionsListProps){
     return(
-        <Card>
-                <CardHeader>
-                    <CardTitle>Upcoming Sessions</CardTitle>
-                    <CardDescription>Your scheduled counseling sessions</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
+        <CardContent className="space-y-4">
                     {upcomingSessions.map((session) => (
                         <div key={session.id} className="flex items-start justify-between p-4 border rounded-lg">
                             <div className="space-y-1">
@@ -53,7 +48,5 @@ export default function UpcomingSessions({upcomingSessions}:UpcomingSessionsList
                         <Link href="/educator/sessions">View All Sessions</Link>
                     </Button>
                 </CardContent>
-            </Card>
-
     )
 }

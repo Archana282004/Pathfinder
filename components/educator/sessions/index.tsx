@@ -2,7 +2,7 @@
 
 import { EducatorNav } from "@/components/navigation/educator-nav"
 import { mockSessions } from "@/lib/mock-data"
-import TabList from "./tablist"
+import TabList from "./tab-list"
 import Title from "../title"
 
 export default function EducatorSessions() {

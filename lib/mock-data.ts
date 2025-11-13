@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, Calendar, CheckCircle2, DollarSign, MessageSquare, RefreshCw, TrendingUp, Users, Wallet } from "lucide-react"
+import { ArrowDownRight, ArrowUpRight, BookOpen, Calendar, CheckCircle2, Clock, DollarSign, MessageSquare, RefreshCw, TrendingUp, Users, Wallet } from "lucide-react"
 import type { College, Application, StudentProfile, TestScore, Essay, Document, Milestone, FinancialAid } from "./types"
 import { CardContent } from "@/components/ui/card"
 
@@ -1284,5 +1284,72 @@ export const AdminQuickActionsCard=[
     name:"Settings",
     link:"/admin/settings",
     icon:Calendar
+  }
+]
+
+export const UserTablist=[
+ {
+    value:"all",
+    title:"All Users",
+    description:"Complete list of platform users",
+    data:mockAdminUsers
+  },
+ {
+    value:"students",
+    title:"Students",
+    description:"All registered students",
+    data:mockAdminUsers.filter((u) => u.role === "student")
+  },
+  {
+    value:"educators",
+    title:"Educators",
+    description:"All registered educators",
+    data:mockAdminUsers.filter((u) => u.role === "educator")
+  }
+]
+
+export const EducatorQuickActionsData =[
+  {
+    data:"View Schedule",
+    icon: Calendar,
+    link:"/educator/sessions"
+  },
+  {
+    data:"Message Students",
+    icon:MessageSquare,
+    link:"/educator/chat"
+  },
+  {
+    data:" Set Availability",
+    icon:Clock,
+    link:"/educator/availability"
+  },
+  {
+    data:"View Earnings",
+    icon:DollarSign,
+    link:"/educator/earnings"
+  }
+]
+
+export const StudentQuickActionsData =[
+  {
+    data:"Book Session",
+    icon:Calendar,
+    link:"/student/sessions"
+  },
+  {
+    data:"Send Message",
+    icon: MessageSquare,
+    link:"/student/chat"
+  },
+  {
+    data:"Add Tokens",
+    icon: Wallet,
+    link:"/student/wallet"
+  },
+{
+    data:"Browse Resources",
+    icon: BookOpen,
+    link:"/student/resources"
   }
 ]
