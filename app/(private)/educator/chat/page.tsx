@@ -2,8 +2,10 @@
 
 import EducatorChat from "@/components/educator/chat"
 
-export default function EducatorChatPage() {
+const EducatorChatPage = () => {
   return (
     <EducatorChat />
   )
 }
+
+export default EducatorChatPage;

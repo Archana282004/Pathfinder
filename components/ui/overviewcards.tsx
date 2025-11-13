@@ -8,12 +8,12 @@ interface CardType {
     cardcontent: string;
 }
 
-export default function OverviewCards({
+const OverviewCards = ({
     icon: Icon,
     data,
     title,
     cardcontent,
-}: CardType) {
+}: CardType) => {
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -27,3 +27,5 @@ export default function OverviewCards({
         </Card>
     );
 }
+
+export default OverviewCards;

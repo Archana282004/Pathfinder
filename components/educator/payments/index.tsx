@@ -7,7 +7,7 @@ import { mockEducatorEarnings } from "@/lib/mock-data"
 import PaymentInformation from "./payment-info"
 import PaymentHistory from "./history"
 import PaymentOverview from "./overview-stats"
-import Title from "../title"
+import Header from "@/components/ui/header"
 
 export default function EducatorEarnings() {
   const totalEarnings = mockEducatorEarnings.reduce((sum, e) => sum + e.amount, 0)
@@ -22,7 +22,7 @@ export default function EducatorEarnings() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <Title heading="Earnings Dashboard" description="Track your earnings and payouts" />
+            <Header heading="Earnings Dashboard" description="Track your earnings and payouts" />
             <Button>
               <Download className="w-4 h-4 mr-2" />
               Export Report

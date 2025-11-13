@@ -1,9 +1,11 @@
 "use client"
 import StudentWallet from "@/components/student/wallet"
 
-export default function StudentWalletPage() {
+const StudentWalletPage = () => {
 
   return (
     <StudentWallet />
   )
 }
+
+export default StudentWalletPage;

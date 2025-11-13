@@ -20,7 +20,7 @@ interface UpcomingSessionsListProps {
         notes: string;
     }[];
 }
-export default function UpcomingSessionTab({upcomingSessions}:UpcomingSessionsListProps){
+const UpcomingSessionTab = ({upcomingSessions}:UpcomingSessionsListProps) => {
     return(
         <CardContent className="space-y-4">
                     {upcomingSessions.map((session) => (
@@ -50,3 +50,5 @@ export default function UpcomingSessionTab({upcomingSessions}:UpcomingSessionsLi
                 </CardContent>
     )
 }
+
+export default UpcomingSessionTab;

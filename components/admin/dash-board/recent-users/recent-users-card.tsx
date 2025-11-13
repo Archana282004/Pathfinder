@@ -38,7 +38,7 @@ type User = StudentUser | EducatorUser | AdminUser;
 interface RecentUsersTableProps {
   user: User;
 }
-export default function RecentUsersCard({user}:RecentUsersTableProps){
+const RecentUsersCard = ({user}:RecentUsersTableProps) =>{
     return(
         <div>
             <div key={user.id} className="flex items-center justify-between p-4 border rounded-lg">
@@ -59,3 +59,5 @@ export default function RecentUsersCard({user}:RecentUsersTableProps){
         </div>
     )
 }
+
+export default RecentUsersCard;

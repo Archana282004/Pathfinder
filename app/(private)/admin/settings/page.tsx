@@ -2,8 +2,10 @@
 
 import AdminSettings from "@/components/admin/settings"
 
-export default function AdminSettingsPage() {
+const AdminSettingsPage = ()=> {
   return (
     <AdminSettings />
   )
 }
+
+export default AdminSettingsPage;

@@ -1,9 +1,11 @@
 "use client"
 import AdminDashboard from "@/components/admin/dash-board"
 
-export default function AdminDashboardPage() {
+const AdminDashboardPage = () => {
 
   return (
     <AdminDashboard />
   )
 }
+
+export default AdminDashboardPage;

@@ -15,7 +15,7 @@ interface mockWalletTransaction {
     }[]
 }
 
-export default function TransactionHistory({ mockWalletTransactions }: mockWalletTransaction) {
+const TransactionHistory=({ mockWalletTransactions }: mockWalletTransaction)=> {
     return (
         <Card>
             <CardHeader>
@@ -29,10 +29,10 @@ export default function TransactionHistory({ mockWalletTransactions }: mockWalle
                             <div className="flex items-center gap-4">
                                 <div
                                     className={`w-10 h-10 rounded-full flex items-center justify-center ${transaction.type === "purchase"
-                                            ? "bg-green-500/10"
-                                            : transaction.type === "refund"
-                                                ? "bg-blue-500/10"
-                                                : "bg-red-500/10"
+                                        ? "bg-green-500/10"
+                                        : transaction.type === "refund"
+                                            ? "bg-blue-500/10"
+                                            : "bg-red-500/10"
                                         }`}
                                 >
                                     {transaction.type === "purchase" ? (
@@ -67,3 +67,5 @@ export default function TransactionHistory({ mockWalletTransactions }: mockWalle
         </Card>
     )
 }
+
+export default TransactionHistory;

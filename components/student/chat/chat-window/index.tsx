@@ -33,7 +33,7 @@ interface MessageWindowProps {
     setMessageInput: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function ChatWindow({ currentMessages, currentConversation, messageInput, setMessageInput }: MessageWindowProps) {
+const ChatWindow = ({ currentMessages, currentConversation, messageInput, setMessageInput }: MessageWindowProps) => {
     return (
         <Card className="md:col-span-2 flex flex-col">
             <CardHeader className="border-b">
@@ -86,3 +86,5 @@ export default function ChatWindow({ currentMessages, currentConversation, messa
         </Card>
     )
 }
+
+export default ChatWindow;

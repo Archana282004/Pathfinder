@@ -2,9 +2,11 @@
 
 import StudentChat from "@/components/student/chat"
 
-export default function StudentChatPage() {
+const StudentChatPage = () => {
 
   return (
    <StudentChat />
   )
 }
+
+export default StudentChatPage;

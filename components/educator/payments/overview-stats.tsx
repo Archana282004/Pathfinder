@@ -1,5 +1,5 @@
 import { EducatorPaymentCards } from "@/lib/mock-data"
-import OverviewCards from "../cards/overviewcards"
+import OverviewCards from "@/components/ui/overviewcards"
 
 export default function PaymentOverview(){
   return (

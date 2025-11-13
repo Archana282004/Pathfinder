@@ -20,7 +20,7 @@ interface UpcomingSessionsListProps {
     }[];
 }
 
-export default function DashboardMainGrid({ upcomingSessions }: UpcomingSessionsListProps) {
+const DashboardMainGrid = ({ upcomingSessions }: UpcomingSessionsListProps) => {
     return (
         <div className="grid gap-6 md:grid-cols-2">
             {/* Upcoming Sessions */}
@@ -30,3 +30,5 @@ export default function DashboardMainGrid({ upcomingSessions }: UpcomingSessions
         </div>
     )
 }
+
+export default DashboardMainGrid;

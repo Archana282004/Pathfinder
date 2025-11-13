@@ -9,9 +9,9 @@ import { mockResources } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"
 import CategoryTab from "./category-tab"
 import ResourceGrid from "./resources-grid"
-import Title from "../title"
+import Header from "@/components/ui/header"
 
-export default function StudentResources() {
+const StudentResources = () => {
   const categories = ["All", "Essay Writing", "Test Prep", "Financial Aid", "Admissions"]
 
   return (
@@ -19,7 +19,7 @@ export default function StudentResources() {
       <StudentNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
-          <Title heading="Resource Library" description="Educational materials and guides to help your college journey" />
+          <Header heading="Resource Library" description="Educational materials and guides to help your college journey" />
 
           {/* Search and Filter */}
           <SearchFilter />
@@ -34,3 +34,5 @@ export default function StudentResources() {
     </div>
   )
 }
+
+export default StudentResources;

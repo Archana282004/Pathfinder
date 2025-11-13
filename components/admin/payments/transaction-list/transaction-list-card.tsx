@@ -14,7 +14,7 @@ type mockAdminPayments = {
 interface TransactionProps {
   payment: mockAdminPayments
 }
-export default function TransactionListCard({payment}:TransactionProps) {
+const TransactionListCard = ({payment}:TransactionProps) => {
     return (
         <div key={payment.id} className="flex items-center justify-between p-4 border rounded-lg">
             <div className="space-y-1">
@@ -41,3 +41,5 @@ export default function TransactionListCard({payment}:TransactionProps) {
         </div>
     )
 }
+
+export default TransactionListCard;

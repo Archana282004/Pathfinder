@@ -4,7 +4,7 @@ interface availabiltyProps{
     day:string,
     time:string
 }
-export default function AvailabilityTab({day, time}:availabiltyProps) {
+const AvailabilityTab = ({day, time}:availabiltyProps) => {
     return (
         <div className="flex items-center justify-between p-3 border rounded-lg">
             <div>
@@ -17,3 +17,5 @@ export default function AvailabilityTab({day, time}:availabiltyProps) {
         </div>
     )
 }
+
+export default AvailabilityTab;

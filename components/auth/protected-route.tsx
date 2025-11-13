@@ -12,7 +12,7 @@ interface ProtectedRouteProps {
   allowedRoles?: UserRole[]
 }
 
-export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
+const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   const { user, isLoading } = useAuth()
   const router = useRouter()
 
@@ -38,3 +38,5 @@ export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) 
 
   return <>{children}</>
 }
+
+export default ProtectedRoute;

@@ -1,26 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StudentWalletData } from "@/lib/mock-data";
-import { ArrowUpRight, ArrowDownRight, RefreshCw } from "lucide-react"
-import OverviewCards from "../cards/overviewcards";
+import OverviewCards from "@/components/ui/overviewcards";
 
-interface  mockWalletTransaction {
-    id: string;
-    type: string;
-    amount: number;
-    tokens: number;
-    description: string;
-    date: string;
-    time: string;
-    status: string;
-}
-interface StatsGridProps {
-    mockWalletTransactions:mockWalletTransaction[]
-    totalPurchased:number;
-    totalSpent:number;
-}
-
-
-export default function StatsGrid({mockWalletTransactions, totalPurchased, totalSpent}:StatsGridProps){
+const StatsGrid = () => {
     return(
         <div className="grid gap-4 md:grid-cols-3">
             {StudentWalletData.map((card,index)=>(
@@ -35,3 +16,5 @@ export default function StatsGrid({mockWalletTransactions, totalPurchased, total
           </div>
     )
 }
+
+export default StatsGrid;

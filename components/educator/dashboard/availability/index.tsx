@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import AvailabilityTab from "./availability"
-export default function Availability() {
+const Availability = () => {
     return (
         <Card>
             <CardHeader>
@@ -19,3 +19,5 @@ export default function Availability() {
         </Card>
     )
 }
+
+export default Availability;

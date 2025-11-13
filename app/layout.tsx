@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
-export default function RootLayout({
+const RootLayout=({
   children,
 }: Readonly<{
   children: React.ReactNode
-}>) {
+}>)=> {
   return (
     <html lang="en" className="dark">
       <body className={`font-sans antialiased`}>
@@ -32,3 +32,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+export default  RootLayout;

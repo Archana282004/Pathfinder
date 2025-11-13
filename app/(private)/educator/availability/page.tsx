@@ -2,8 +2,10 @@
 
 import EducatorAvailability from "@/components/educator/availability"
 
-export default function EducatorAvailabilityPage() {
+const EducatorAvailabilityPage = () => {
   return (
     <EducatorAvailability />
   )
 }
+
+export default EducatorAvailabilityPage;

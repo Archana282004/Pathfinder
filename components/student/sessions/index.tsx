@@ -4,9 +4,9 @@ import { StudentNav } from "@/components/navigation/student-nav"
 import { Button } from "@/components/ui/button"
 import { mockSessions, mockEducators } from "@/lib/mock-data"
 import TabList from "./tablist"
-import Title from "../title"
+import Header from "@/components/ui/header"
 
-export default function StudentSessions() {
+const StudentSessions = () => {
   const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1")
   const completedSessions = mockSessions.filter((s) => s.status === "completed" && s.studentId === "stu-1")
 
@@ -16,7 +16,7 @@ export default function StudentSessions() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <Title heading="My Sessions" description="View and manage your counseling sessions" />
+            <Header heading="My Sessions" description="View and manage your counseling sessions" />
             <Button>Book New Session</Button>
           </div>
           {/*Tab List */}
@@ -31,3 +31,5 @@ export default function StudentSessions() {
     </div>
   )
 }
+
+export default StudentSessions;

@@ -3,7 +3,7 @@
 import { AdminNav } from "@/components/navigation/admin-nav"
 import { Card } from "@/components/ui/card"
 
-export default function AdminAnalytics() {
+const AdminAnalytics = () => {
   return (
     <div className="min-h-screen bg-background">
       <AdminNav />
@@ -16,3 +16,5 @@ export default function AdminAnalytics() {
     </div>
   )
 }
+
+export default AdminAnalytics;

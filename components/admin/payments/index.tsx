@@ -7,9 +7,9 @@ import { mockAdminPayments } from "@/lib/mock-data"
 import AdminPaymentStats from "./stats-grid"
 import SearchFilter from "./search-filter"
 import TransactionList from "./transaction-list"
-import Title from "../title"
+import Header from "../../ui/header"
 
-export default function AdminPayments() {
+const AdminPayments = () => {
 
   return (
     <div className="min-h-screen bg-background">
@@ -17,7 +17,7 @@ export default function AdminPayments() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <Title heading="Payment Management" description="View and manage all transactions" />
+            <Header heading="Payment Management" description="View and manage all transactions" />
             <Button>
               <Download className="w-4 h-4 mr-2" />
               Export
@@ -39,3 +39,5 @@ export default function AdminPayments() {
     </div>
   )
 }
+
+export default AdminPayments;

@@ -10,7 +10,7 @@ interface Message {
     }[]
 }
 
-export default function RecentMesaages({ recentMessages }: Message) {
+const RecentMesaages = ({ recentMessages }: Message) => {
     return (
         <Card>
             <CardHeader>
@@ -23,3 +23,5 @@ export default function RecentMesaages({ recentMessages }: Message) {
         </Card>
     )
 }
+
+export default RecentMesaages;

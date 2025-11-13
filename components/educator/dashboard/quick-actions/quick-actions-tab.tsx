@@ -7,7 +7,7 @@ interface ActionTabProps {
     icon: ElementType,
     data: string
 }
-export default function QuickActionTab({ link, icon: Icon, data }: ActionTabProps) {
+const QuickActionTab = ({ link, icon: Icon, data }: ActionTabProps) => {
     return (
         <Button variant="outline" className="h-24 flex-col gap-2 bg-transparent" asChild>
             <Link href={link}>
@@ -17,3 +17,5 @@ export default function QuickActionTab({ link, icon: Icon, data }: ActionTabProp
         </Button>
     )
 }
+
+export default QuickActionTab;

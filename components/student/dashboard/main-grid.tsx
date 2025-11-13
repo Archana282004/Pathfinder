@@ -30,10 +30,10 @@ interface DashboardMainGridProps {
     recentMessages: Message[]
 }
 
-export default function DashboardMainGrid({
+const DashboardMainGrid = ({
     upcomingSessions,
     recentMessages,
-}: DashboardMainGridProps) {
+}: DashboardMainGridProps)=> {
     return (
         <div className="grid gap-6 md:grid-cols-2">
             {/* Upcoming Sessions */}
@@ -43,3 +43,5 @@ export default function DashboardMainGrid({
         </div>
     )
 }
+
+export default DashboardMainGrid;

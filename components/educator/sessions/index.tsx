@@ -3,7 +3,7 @@
 import { EducatorNav } from "@/components/navigation/educator-nav"
 import { mockSessions } from "@/lib/mock-data"
 import TabList from "./tab-list"
-import Title from "../title"
+import Header from "@/components/ui/header"
 
 export default function EducatorSessions() {
   const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.educatorId === "edu-1")
@@ -14,7 +14,7 @@ export default function EducatorSessions() {
       <EducatorNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
-          <Title heading="Session Management" description="Manage your counseling sessions and schedule" />
+          <Header heading="Session Management" description="Manage your counseling sessions and schedule" />
             {/*TabList*/}
             <TabList 
             upcomingSessions={upcomingSessions}

@@ -2,7 +2,7 @@ import { mockAdminUsers, mockAdminPayments } from "@/lib/mock-data"
 import AdminRecentUsers from "./recent-users"
 import AdminRecentTransactions from "./recent-transactions";
 
-export default function AdminMainGrid() {
+const AdminMainGrid = () => {
   const recentUsers = mockAdminUsers.slice(0, 3);
 
   const recentTransactions = mockAdminPayments.slice(0, 2)
@@ -18,3 +18,5 @@ export default function AdminMainGrid() {
     </div>
   )
 }
+
+export default AdminMainGrid;

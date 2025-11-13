@@ -4,7 +4,7 @@ import { Calendar, MessageSquare, DollarSign, Clock } from "lucide-react"
 import Link from "next/link"
 import QuickActionTab from "./quick-actions-tab"
 import { EducatorQuickActionsData } from "@/lib/mock-data"
-export default function EducatorQuickActions(){
+const EducatorQuickActions = () =>{
      return(
         <Card>
             <CardHeader>
@@ -26,3 +26,5 @@ export default function EducatorQuickActions(){
           </Card>
      )
 }
+
+export default EducatorQuickActions;

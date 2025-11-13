@@ -5,7 +5,7 @@ import { Plus, Wallet } from "lucide-react";
 interface BalanceCardProps {
     tokenBalance:number
 }
-export default function BalanceCard({tokenBalance}:BalanceCardProps){
+const BalanceCard = ({tokenBalance}:BalanceCardProps) => {
     return(
           <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
             <CardContent className="p-8">
@@ -35,3 +35,5 @@ export default function BalanceCard({tokenBalance}:BalanceCardProps){
           </Card>
     )
 }
+
+export default BalanceCard;

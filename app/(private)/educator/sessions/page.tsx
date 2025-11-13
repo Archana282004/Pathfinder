@@ -2,9 +2,11 @@
 
 import EducatorSessions from "@/components/educator/sessions"
 
-export default function EducatorSessionsPage() {
+const EducatorSessionsPage = () => {
 
   return (
     <EducatorSessions />
   )
 }
+
+export default EducatorSessionsPage;

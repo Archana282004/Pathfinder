@@ -2,9 +2,11 @@
 
 import AdminPayments from "@/components/admin/payments"
 
-export default function AdminPaymentsPage() {
+const AdminPaymentsPage = () => {
 
   return (
     <AdminPayments />
   )
 }
+
+export default AdminPaymentsPage;

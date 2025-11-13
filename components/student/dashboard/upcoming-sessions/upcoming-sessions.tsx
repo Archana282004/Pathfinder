@@ -19,7 +19,7 @@ interface Session {
     }
 
 }
-export default function UpcomingSessionsCard({ session }: Session) {
+const UpcomingSessionsCard = ({ session }: Session) => {
     return (
         <div key={session.id} className="flex items-start justify-between p-4 border rounded-lg">
             <div className="space-y-1">
@@ -42,3 +42,5 @@ export default function UpcomingSessionsCard({ session }: Session) {
         </div>
     )
 }
+
+export default UpcomingSessionsCard;

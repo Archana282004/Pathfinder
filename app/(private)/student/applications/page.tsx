@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress"
 import { mockApplications } from "@/lib/mock-data"
 import { CheckCircle, Circle, Clock, AlertCircle, Plus, Calendar, FileText, ChevronDown, ChevronUp } from "lucide-react"
 
-export default function ApplicationsPage() {
+const ApplicationsPage = () => {
   const [expandedApp, setExpandedApp] = useState<string | null>("app-1")
 
   const getStatusColor = (status: string) => {
@@ -240,3 +240,5 @@ export default function ApplicationsPage() {
     </div>
   )
 }
+
+export default ApplicationsPage;

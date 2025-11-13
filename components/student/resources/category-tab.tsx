@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 interface categories {
     categories: string[]
 }
-export default function CategoryTab({ categories }: categories) {
+const CategoryTab = ({ categories }: categories) => {
     return (
         <div className="flex gap-2 overflow-x-auto pb-2">
             {categories.map((category) => (
@@ -14,3 +14,5 @@ export default function CategoryTab({ categories }: categories) {
         </div>
     )
 }
+
+export default CategoryTab;

@@ -18,7 +18,7 @@ interface TabsListProps {
   allUsers: User[];
 }
 
-export default function AdminTabslist({ students, educators, allUsers }: TabsListProps) {
+const AdminTabslist=({ students, educators, allUsers }: TabsListProps) => {
   return (
     <Tabs defaultValue="all" className="space-y-6">
       <TabsList>
@@ -39,3 +39,5 @@ export default function AdminTabslist({ students, educators, allUsers }: TabsLis
     </Tabs>
   );
 }
+
+export default AdminTabslist

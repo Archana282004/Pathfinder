@@ -5,9 +5,9 @@ import { mockSessions, mockEducatorEarnings } from "@/lib/mock-data"
 import EducatorStats from "./stats-grid"
 import EducatorQuickActions from "./quick-actions"
 import DashboardMainGrid from "./main-grid"
-import Title from "../title"
+import Header from "@/components/ui/header"
 
-export default function EducatorDashboard() {
+const EducatorDashboard = () => {
     const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.educatorId === "edu-1").slice(0, 2)
     
     return (
@@ -15,7 +15,7 @@ export default function EducatorDashboard() {
             <EducatorNav />
             <div className="container mx-auto px-4 py-8">
                 <div className="space-y-8">
-                    <Title heading="Welcome back, Dr. Johnson!" description="Manage your sessions and help students succeed" />
+                    <Header heading="Welcome back, Dr. Johnson!" description="Manage your sessions and help students succeed" />
 
                     {/* Stats Grid */}
                     <EducatorStats />
@@ -30,3 +30,5 @@ export default function EducatorDashboard() {
         </div>
     )
 }
+
+export default EducatorDashboard;

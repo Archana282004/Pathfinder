@@ -7,7 +7,7 @@ interface QuickActionType{
     link:string,
     icon:ElementType
 }
-export default function QuickActionCard({name, icon:Icon, link}:QuickActionType) {
+const QuickActionCard = ({name, icon:Icon, link}:QuickActionType)=> {
     return (
         <Button variant="outline" className="h-24 flex-col gap-2 bg-transparent" asChild>
             <Link href={link}>
@@ -17,3 +17,5 @@ export default function QuickActionCard({name, icon:Icon, link}:QuickActionType)
         </Button>
     )
 }
+
+export default QuickActionCard;

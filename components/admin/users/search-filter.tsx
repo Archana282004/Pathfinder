@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Filter, Search } from "lucide-react";
 
-export default function SearchFilter(){
+const SearchFilter = ()=>{
     return(
         <div>
             <Card>
@@ -23,3 +23,5 @@ export default function SearchFilter(){
         </div>
     )
 }
+
+export default SearchFilter;

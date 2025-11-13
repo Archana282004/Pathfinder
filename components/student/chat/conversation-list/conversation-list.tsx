@@ -18,7 +18,7 @@ interface ConversationListProps {
     mockChatConversations: Conversation[]
 }
 
-export default function ConversationListCard({ mockChatConversations, selectedConversation, setSelectedConversation }: ConversationListProps) {
+const ConversationListCard = ({ mockChatConversations, selectedConversation, setSelectedConversation }: ConversationListProps) => {
     return (
         <CardContent className="space-y-2 p-0">
             {mockChatConversations.map((conv) => (
@@ -52,3 +52,5 @@ export default function ConversationListCard({ mockChatConversations, selectedCo
         </CardContent>
     )
 }
+
+export default ConversationListCard;

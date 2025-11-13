@@ -1177,179 +1177,204 @@ export const EducatorOverviewCards = [
     title: "Active Students",
     data: new Set(mockSessions.filter((s) => s.educatorId === "edu-1").map((s) => s.studentId)).size,
     cardcontent: "Current students ",
-    icon:Users
+    icon: Users
   },
   {
     title: "Sessions This Week",
-    data:mockSessions.filter((s) => s.educatorId === "edu-1" && s.status === "upcoming").length,
+    data: mockSessions.filter((s) => s.educatorId === "edu-1" && s.status === "upcoming").length,
     cardcontent: "2 today",
-    icon:Calendar
+    icon: Calendar
   },
   {
     title: "Avg Rating",
-    data:"4.9",
+    data: "4.9",
     cardcontent: "Based on 156 Reviews",
-    icon:TrendingUp
+    icon: TrendingUp
   }
 ]
 
 export const EducatorPaymentCards = [
   {
-    title:"Total Earnings",
+    title: "Total Earnings",
     data: mockEducatorEarnings.reduce((sum, e) => sum + e.amount, 0),
-    icon:DollarSign,
+    icon: DollarSign,
     cardcontent: " All time"
   },
   {
-    title:"Pending",
-    data:mockEducatorEarnings
-    .filter((e) => e.status === "pending")
-    .reduce((sum, e) => sum + e.amount, 0),
-    icon:Calendar,
-    cardcontent:mockEducatorEarnings.filter((e) => e.status === "paid").length+ " sessions"
+    title: "Pending",
+    data: mockEducatorEarnings
+      .filter((e) => e.status === "pending")
+      .reduce((sum, e) => sum + e.amount, 0),
+    icon: Calendar,
+    cardcontent: mockEducatorEarnings.filter((e) => e.status === "paid").length + " sessions"
   },
   {
-    title:"Paid Out",
-    data:mockEducatorEarnings.filter((e) => e.status === "paid").reduce((sum, e) => sum + e.amount, 0),
-    icon:TrendingUp,
-    cardcontent:mockEducatorEarnings.filter((e) => e.status === "pending").length+"sessions"
+    title: "Paid Out",
+    data: mockEducatorEarnings.filter((e) => e.status === "paid").reduce((sum, e) => sum + e.amount, 0),
+    icon: TrendingUp,
+    cardcontent: mockEducatorEarnings.filter((e) => e.status === "pending").length + "sessions"
   }
 ]
 
-export const StudentOverviewCards=[
+export const StudentOverviewCards = [
   {
-    title:"Token Balance",
+    title: "Token Balance",
     data: mockWalletTransactions.reduce((sum, txn) => sum + txn.tokens, 0),
     icon: Wallet,
-    cardcontent:"Available tokens"
+    cardcontent: "Available tokens"
   },
   {
-    title:"Upcoming Sessions",
+    title: "Upcoming Sessions",
     data: mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1").slice(0, 2).length,
     icon: Calendar,
-    cardcontent:"This Week"
+    cardcontent: "This Week"
   },
   {
-    title:"Completed Sessions",
+    title: "Completed Sessions",
     data: mockSessions.filter((s) => s.status === "completed" && s.studentId === "stu-1").length,
     icon: CheckCircle2,
-    cardcontent:"Total Sessions"
+    cardcontent: "Total Sessions"
   },
   {
-    title:"Unread Messages",
+    title: "Unread Messages",
     data: mockChatConversations.reduce((sum, conv) => sum + conv.unread, 0),
     icon: MessageSquare,
-    cardcontent:"New messages"
+    cardcontent: "New messages"
   }
 ]
 
-export const StudentWalletData=[
+export const StudentWalletData = [
   {
-    title:"Total Purchased",
-    data: mockWalletTransactions.filter((t) => t.type === "purchase").reduce((sum, txn) => sum + txn.amount, 0) ,
-    icon:ArrowDownRight ,
-    cardcontent:mockWalletTransactions.filter((t) => t.type === "purchase").length+" transactions"
+    title: "Total Purchased",
+    data: mockWalletTransactions.filter((t) => t.type === "purchase").reduce((sum, txn) => sum + txn.amount, 0),
+    icon: ArrowDownRight,
+    cardcontent: mockWalletTransactions.filter((t) => t.type === "purchase").length + " transactions"
   },
   {
-    title:"Total Spent",
-    data:  mockWalletTransactions.filter((t) => t.type === "spent").reduce((sum, txn) => sum + Math.abs(txn.amount), 0),
+    title: "Total Spent",
+    data: mockWalletTransactions.filter((t) => t.type === "spent").reduce((sum, txn) => sum + Math.abs(txn.amount), 0),
     icon: ArrowUpRight,
-    cardcontent:mockWalletTransactions.filter((t) => t.type === "spent").length +" sessions"
+    cardcontent: mockWalletTransactions.filter((t) => t.type === "spent").length + " sessions"
   },
   {
-    title:"Refunds",
-    data:  "$" +mockWalletTransactions.filter((t) => t.type === "refund").reduce((sum, txn) => sum + txn.amount, 0),
+    title: "Refunds",
+    data: "$" + mockWalletTransactions.filter((t) => t.type === "refund").reduce((sum, txn) => sum + txn.amount, 0),
     icon: RefreshCw,
-    cardcontent:mockWalletTransactions.filter((t) => t.type === "refund").length+"refunds"
+    cardcontent: mockWalletTransactions.filter((t) => t.type === "refund").length + "refunds"
   }
 ]
 
-export const AdminQuickActionsCard=[
+export const AdminQuickActionsCard = [
   {
-    name:" Manage Users",
-    link:"/admin/users",
-    icon:Users
+    name: " Manage Users",
+    link: "/admin/users",
+    icon: Users
   },
   {
-    name:" View Payments",
-    link:"/admin/payments",
-    icon:DollarSign
+    name: " View Payments",
+    link: "/admin/payments",
+    icon: DollarSign
   },
   {
-    name:"Analytics",
-    link:"/admin/analytics",
-    icon:TrendingUp
+    name: "Analytics",
+    link: "/admin/analytics",
+    icon: TrendingUp
   },
   {
-    name:"Settings",
-    link:"/admin/settings",
-    icon:Calendar
+    name: "Settings",
+    link: "/admin/settings",
+    icon: Calendar
   }
 ]
 
-export const UserTablist=[
- {
-    value:"all",
-    title:"All Users",
-    description:"Complete list of platform users",
-    data:mockAdminUsers
-  },
- {
-    value:"students",
-    title:"Students",
-    description:"All registered students",
-    data:mockAdminUsers.filter((u) => u.role === "student")
+export const UserTablist = [
+  {
+    value: "all",
+    title: "All Users",
+    description: "Complete list of platform users",
+    data: mockAdminUsers
   },
   {
-    value:"educators",
-    title:"Educators",
-    description:"All registered educators",
-    data:mockAdminUsers.filter((u) => u.role === "educator")
+    value: "students",
+    title: "Students",
+    description: "All registered students",
+    data: mockAdminUsers.filter((u) => u.role === "student")
+  },
+  {
+    value: "educators",
+    title: "Educators",
+    description: "All registered educators",
+    data: mockAdminUsers.filter((u) => u.role === "educator")
   }
 ]
 
-export const EducatorQuickActionsData =[
+export const EducatorQuickActionsData = [
   {
-    data:"View Schedule",
+    data: "View Schedule",
     icon: Calendar,
-    link:"/educator/sessions"
+    link: "/educator/sessions"
   },
   {
-    data:"Message Students",
-    icon:MessageSquare,
-    link:"/educator/chat"
+    data: "Message Students",
+    icon: MessageSquare,
+    link: "/educator/chat"
   },
   {
-    data:" Set Availability",
-    icon:Clock,
-    link:"/educator/availability"
+    data: " Set Availability",
+    icon: Clock,
+    link: "/educator/availability"
   },
   {
-    data:"View Earnings",
-    icon:DollarSign,
-    link:"/educator/earnings"
+    data: "View Earnings",
+    icon: DollarSign,
+    link: "/educator/earnings"
   }
 ]
 
-export const StudentQuickActionsData =[
+export const StudentQuickActionsData = [
   {
-    data:"Book Session",
-    icon:Calendar,
-    link:"/student/sessions"
+    data: "Book Session",
+    icon: Calendar,
+    link: "/student/sessions"
   },
   {
-    data:"Send Message",
+    data: "Send Message",
     icon: MessageSquare,
-    link:"/student/chat"
+    link: "/student/chat"
   },
   {
-    data:"Add Tokens",
+    data: "Add Tokens",
     icon: Wallet,
-    link:"/student/wallet"
+    link: "/student/wallet"
   },
-{
-    data:"Browse Resources",
+  {
+    data: "Browse Resources",
     icon: BookOpen,
-    link:"/student/resources"
+    link: "/student/resources"
   }
+]
+
+export const TokenPackagesData = [
+  {
+    badge: "Regular",
+    tokencount: "50",
+    value: "$50",
+    offer: "$1.00 per token",
+    action: "Purchase"
+  },
+  {
+    badge: "Most Popular",
+    tokencount: "100",
+    value: "$95",
+    offer: "Save $5 (5% off)",
+    action: "Purchase"
+  },
+  {
+    badge: "Best Value",
+    tokencount: "200",
+    value: "$180",
+    offer: "Save $20 (10% off)",
+    action: "Purchase"
+  }
+
 ]

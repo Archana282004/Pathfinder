@@ -24,7 +24,7 @@ interface Session {
 }
 
 
-export default function UpcomingSession({ upcomingSessions }: Session) {
+const UpcomingSession = ({ upcomingSessions }: Session) => {
     return (
         <Card>
             <CardHeader>
@@ -45,3 +45,5 @@ export default function UpcomingSession({ upcomingSessions }: Session) {
         </Card>
     )
 }
+
+export default UpcomingSession;

@@ -2,9 +2,11 @@
 
 import EducatorDashboard from "@/components/educator/dashboard"
 
-export default function EducatorDashboardPage() {
+const EducatorDashboardPage = () => {
 
   return (
     <EducatorDashboard />
   )
 }
+
+export default EducatorDashboardPage;

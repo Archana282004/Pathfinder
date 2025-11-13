@@ -21,7 +21,7 @@ interface UpcomingSessionsListProps {
         notes: string;
     }[];
 }
-export default function UpcomingSessions({upcomingSessions}:UpcomingSessionsListProps){
+const UpcomingSessions = ({upcomingSessions}:UpcomingSessionsListProps) => {
     return(
         <Card>
                 <CardHeader>
@@ -35,3 +35,5 @@ export default function UpcomingSessions({upcomingSessions}:UpcomingSessionsList
 
     )
 }
+
+export default UpcomingSessions;

@@ -16,7 +16,7 @@ type mockAdminPayments = {
 interface TransactionProps {
   mockAdminPayments: mockAdminPayments[]
 }
-export default function TransactionList({ mockAdminPayments }: TransactionProps) {
+const TransactionList = ({ mockAdminPayments }: TransactionProps)=> {
   return (
     <div>
       <Card>
@@ -38,3 +38,5 @@ export default function TransactionList({ mockAdminPayments }: TransactionProps)
     </div>
   )
 }
+
+export default TransactionList;

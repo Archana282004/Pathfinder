@@ -17,7 +17,7 @@ interface mockResourcesProps {
     }[]
 }
 
-export default function ResourceGrid({ mockResources }: mockResourcesProps) {
+const ResourceGrid = ({ mockResources }: mockResourcesProps) => {
     return (
         <div className="grid gap-6 md:grid-cols-2">
             {mockResources.map((resource) => (
@@ -63,3 +63,5 @@ export default function ResourceGrid({ mockResources }: mockResourcesProps) {
         </div>
     )
 }
+
+export default ResourceGrid;

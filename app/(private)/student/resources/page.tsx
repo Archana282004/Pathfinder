@@ -2,9 +2,11 @@
 
 import StudentResources from "@/components/student/resources"
 
-export default function StudentResourcesPage() {
+const StudentResourcesPage = () => {
 
   return (
     <StudentResources />
   )
 }
+
+export default StudentResourcesPage;

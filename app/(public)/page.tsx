@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ShieldAlert } from "lucide-react"
 import Link from "next/link"
 
-export default function UnauthorizedPage() {
+const UnauthorizedPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md text-center">
@@ -23,3 +23,5 @@ export default function UnauthorizedPage() {
     </div>
   )
 }
+
+export default UnauthorizedPage;

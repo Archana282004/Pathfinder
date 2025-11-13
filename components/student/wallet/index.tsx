@@ -6,9 +6,9 @@ import BalanceCard from "./balance-card"
 import StatsGrid from "./stats-grid"
 import TransactionHistory from "./transaction-hitory"
 import TokenPackages from "./token-packages"
-import Title from "../title"
+import Header from "@/components/ui/header"
 
-export default function StudentWallet() {
+const StudentWallet = () => {
   const tokenBalance = mockWalletTransactions.reduce((sum, txn) => sum + txn.tokens, 0)
   const totalSpent = mockWalletTransactions
     .filter((t) => t.type === "spent")
@@ -22,17 +22,13 @@ export default function StudentWallet() {
       <StudentNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
-          <Title heading="My Wallet" description="Manage your tokens and transactions"/>
+          <Header heading="My Wallet" description="Manage your tokens and transactions"/>
 
           {/* Balance Card */}
          <BalanceCard tokenBalance={tokenBalance} />
 
           {/* Stats Grid */}
-          <StatsGrid 
-          mockWalletTransactions={mockWalletTransactions}
-          totalSpent={totalSpent}
-          totalPurchased={totalPurchased}
-          />
+          <StatsGrid />
 
           {/* Transaction History */}
          <TransactionHistory 
@@ -46,3 +42,5 @@ export default function StudentWallet() {
     </div>
   )
 }
+
+export default StudentWallet;

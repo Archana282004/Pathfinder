@@ -1,9 +1,9 @@
 import { AdminPaymentCards } from "@/lib/mock-data";
-import OverviewCards from "../cards/overviewcards";
+import OverviewCards from "@/components/ui/overviewcards";
 
 
 
-export default function AdminPaymentStats(){
+const AdminPaymentStats = ()=>{
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {AdminPaymentCards.map((card, index) =>
@@ -18,3 +18,5 @@ export default function AdminPaymentStats(){
     </div>
   )
 }
+
+export default AdminPaymentStats;

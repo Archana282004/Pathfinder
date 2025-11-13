@@ -13,7 +13,7 @@ type Transaction = {
 interface RecentTransactionsProps {
   transaction: Transaction;
 }
-export default function RecentTransactionCard({transaction}:RecentTransactionsProps){
+const RecentTransactionCard = ({transaction}:RecentTransactionsProps) => {
     return(
         <div>
             <div key={transaction.id} className="flex items-center justify-between p-4 border rounded-lg">
@@ -37,3 +37,5 @@ export default function RecentTransactionCard({transaction}:RecentTransactionsPr
         </div>
     )
 }
+
+export default RecentTransactionCard;

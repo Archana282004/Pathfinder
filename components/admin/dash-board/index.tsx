@@ -4,16 +4,16 @@ import { AdminNav } from "@/components/navigation/admin-nav"
 import AdminStatsGrid from "./stats-grid"
 import AdminMainGrid from "./main-grid"
 import AdminQuickActions from "./quick-actions"
-import Title from "../title"
+import Header from "../../ui/header"
 
-export default function AdminDashboard() {
+const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
       <AdminNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-8">
-          <Title heading="Admin Dashboard" description="Platform overview and management"/>
+          <Header heading="Admin Dashboard" description="Platform overview and management"/>
 
           {/* Stats Grid */}
           <AdminStatsGrid />
@@ -29,3 +29,5 @@ export default function AdminDashboard() {
     </div>
   )
 }
+
+export default AdminDashboard;

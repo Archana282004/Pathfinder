@@ -39,7 +39,7 @@ interface MainGridProps {
 
 }
 
-export default function TabList({upcomingSessions, completedSessions, mockEducators}:MainGridProps){
+const TabList = ({upcomingSessions, completedSessions, mockEducators}:MainGridProps) => {
     return(
         <Tabs defaultValue="upcoming" className="space-y-6">
             <TabsList>
@@ -187,3 +187,5 @@ export default function TabList({upcomingSessions, completedSessions, mockEducat
           </Tabs>
     )
 }
+
+export default TabList;

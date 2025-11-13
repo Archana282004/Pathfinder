@@ -3,7 +3,7 @@
 import { EducatorNav } from "@/components/navigation/educator-nav"
 import { Card } from "@/components/ui/card"
 
-export default function EducatorAvailability() {
+const EducatorAvailability = ()=> {
   return (
     <div className="min-h-screen bg-background">
       <EducatorNav />
@@ -16,3 +16,5 @@ export default function EducatorAvailability() {
     </div>
   )
 }
+
+export default EducatorAvailability;

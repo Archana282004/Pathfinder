@@ -2,9 +2,11 @@
 
 import EducatorEarnings from "@/components/educator/payments"
 
-export default function EducatorEarningsPage() {
+const EducatorEarningsPage = () => {
 
   return (
     <EducatorEarnings />
   )
 }
+
+export default EducatorEarningsPage;

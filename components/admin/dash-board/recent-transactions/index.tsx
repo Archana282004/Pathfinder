@@ -18,7 +18,7 @@ interface RecentTransactionsProps {
   recentTransactions: Transaction[];
 }
 
-export default function AdminRecentTransactions({ recentTransactions }: RecentTransactionsProps) {
+const AdminRecentTransactions = ({ recentTransactions }: RecentTransactionsProps)=> {
   return (
     <div>
       <Card>
@@ -41,3 +41,5 @@ export default function AdminRecentTransactions({ recentTransactions }: RecentTr
     </div>
   )
 }
+
+export default AdminRecentTransactions;

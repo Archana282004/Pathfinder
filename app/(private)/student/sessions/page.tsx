@@ -2,9 +2,11 @@
 
 import StudentSessions from "@/components/student/sessions"
 
-export default function StudentSessionsPage() {
+const StudentSessionsPage = () => {
 
   return (
     <StudentSessions />
   )
 }
+
+export default StudentSessionsPage;

@@ -1,8 +1,8 @@
 import { EducatorOverviewCards } from "@/lib/mock-data";
-import OverviewCards from "../cards/overviewcards";
+import OverviewCards from "@/components/ui/overviewcards";
 
 
-export default function EducatorStats() {
+const EducatorStats = () => {
   return (
     <div className="grid gap-4 md:grid-cols-4">
         {EducatorOverviewCards.map((card, index) => (
@@ -19,3 +19,5 @@ export default function EducatorStats() {
 
   )
 }
+
+export default EducatorStats;

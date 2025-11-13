@@ -1,7 +1,7 @@
 import { AdminOverviewCards } from "@/lib/mock-data";
-import OverviewCards from "../cards/overviewcards";
+import OverviewCards from "@/components/ui/overviewcards";
 
-export default function AdminStatsGrid() {
+const AdminStatsGrid = () => {
   return (
     <div>
       <div className="grid gap-4 md:grid-cols-4">
@@ -17,3 +17,5 @@ export default function AdminStatsGrid() {
     </div>
   )
 }
+
+export default AdminStatsGrid;

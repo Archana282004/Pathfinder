@@ -2,9 +2,11 @@
 
 import AdminUsers from "@/components/admin/users"
 
-export default function AdminUsersPage() {
+const AdminUsersPage = () => {
 
   return (
     <AdminUsers />
   )
 }
+
+export default AdminUsersPage;

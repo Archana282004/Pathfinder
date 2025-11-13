@@ -42,7 +42,7 @@ interface RecentUsersTableProps {
   recentUsers: User[];
 }
 
-export default function AdminRecentUsers({ recentUsers }: RecentUsersTableProps) {
+const AdminRecentUsers = ({ recentUsers }: RecentUsersTableProps) => {
   return (
     <div>
       <Card>
@@ -66,3 +66,5 @@ export default function AdminRecentUsers({ recentUsers }: RecentUsersTableProps)
   )
 
 }
+
+export default AdminRecentUsers;

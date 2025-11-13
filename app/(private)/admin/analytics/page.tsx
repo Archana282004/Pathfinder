@@ -2,8 +2,10 @@
 
 import AdminAnalytics from "@/components/admin/analytics"
 
-export default function AdminAnalyticsPage() {
+const AdminAnalyticsPage = () => {
   return (
     <AdminAnalytics />
   )
 }
+
+export default AdminAnalyticsPage;

@@ -19,7 +19,7 @@ interface tablistcardprops {
     description: string,
     data: User[]
 }
-export default function TablistCard({ value, title, description, data }: tablistcardprops) {
+const TablistCard = ({ value, title, description, data }: tablistcardprops) =>{
     return (
         <div>
             <TabsContent value={value} className="space-y-4">
@@ -60,3 +60,5 @@ export default function TablistCard({ value, title, description, data }: tablist
         </div >
     )
 }
+
+export default TablistCard;

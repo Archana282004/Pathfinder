@@ -11,7 +11,7 @@ interface Message {
     }[]
 }
 
-export default function RecentMessageCard({ recentMessages }: Message) {
+const RecentMessageCard = ({ recentMessages }: Message) => {
     return (
         <CardContent className="space-y-4">
             {recentMessages.map((msg) => (
@@ -32,3 +32,5 @@ export default function RecentMessageCard({ recentMessages }: Message) {
         </CardContent>
     )
 }
+
+export default RecentMessageCard;

@@ -5,7 +5,7 @@ import { Calendar, DollarSign, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 import QuickActionCard from "./quick-actions-card";
 
-export default function AdminQuickActions() {
+const AdminQuickActions = () => {
   return (
     <div>
       <Card>
@@ -29,3 +29,5 @@ export default function AdminQuickActions() {
     </div>
   )
 }
+
+export default AdminQuickActions;

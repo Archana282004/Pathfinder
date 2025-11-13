@@ -24,7 +24,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
-export default function HomePage() {
+const HomePage = () => {
   const { user, isLoading } = useAuth()
   const router = useRouter()
 
@@ -699,3 +699,6 @@ export default function HomePage() {
     </div>
   )
 }
+
+
+export default HomePage;
