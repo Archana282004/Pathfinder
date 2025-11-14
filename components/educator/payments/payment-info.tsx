@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import CardsHeader from "@/components/ui/cardheader"
 
 interface PaymentInfo {
   pendingEarnings: number
@@ -8,10 +9,7 @@ interface PaymentInfo {
 export default function PaymentInformation({ pendingEarnings }: PaymentInfo) {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Payout Information</CardTitle>
-        <CardDescription>How and when you get paid</CardDescription>
-      </CardHeader>
+      <CardsHeader title="Payout Information" description="How and when you get paid" />
       <CardContent className="space-y-4">
         <div className="p-4 bg-muted rounded-lg space-y-2">
           <p className="font-medium">Next Payout</p>

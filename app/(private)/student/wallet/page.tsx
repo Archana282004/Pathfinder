@@ -1,4 +1,3 @@
-"use client"
 import StudentWallet from "@/components/student/wallet"
 
 const StudentWalletPage = () => {

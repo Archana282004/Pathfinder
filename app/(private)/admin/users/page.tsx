@@ -1,5 +1,3 @@
-"use client"
-
 import AdminUsers from "@/components/admin/users"
 
 const AdminUsersPage = () => {

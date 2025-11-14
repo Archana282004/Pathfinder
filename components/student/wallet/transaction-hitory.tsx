@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowUpRight, ArrowDownRight, RefreshCw } from "lucide-react"
+import CardsHeader from "@/components/ui/cardheader";
 
 interface mockWalletTransaction {
     mockWalletTransactions: {
@@ -15,13 +16,10 @@ interface mockWalletTransaction {
     }[]
 }
 
-const TransactionHistory=({ mockWalletTransactions }: mockWalletTransaction)=> {
+const TransactionHistory = ({ mockWalletTransactions }: mockWalletTransaction) => {
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Transaction History</CardTitle>
-                <CardDescription>Your recent token activity</CardDescription>
-            </CardHeader>
+            <CardsHeader title="Transaction History" description="Your recent token activity" />
             <CardContent>
                 <div className="space-y-3">
                     {mockWalletTransactions.map((transaction) => (

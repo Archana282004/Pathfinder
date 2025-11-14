@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import CardsHeader from "@/components/ui/cardheader";
 import { TabsContent } from "@/components/ui/tabs";
 import { MoreVertical } from "lucide-react";
 
@@ -19,15 +20,12 @@ interface tablistcardprops {
     description: string,
     data: User[]
 }
-const TablistCard = ({ value, title, description, data }: tablistcardprops) =>{
+const TablistCard = ({ value, title, description, data }: tablistcardprops) => {
     return (
         <div>
             <TabsContent value={value} className="space-y-4">
                 <Card>
-                    <CardHeader>
-                        <CardTitle>{title}</CardTitle>
-                        <CardDescription>{description}</CardDescription>
-                    </CardHeader>
+                    <CardsHeader title={title} description={description} />
                     <CardContent>
                         <div className="space-y-3">
                             {data.map((user) => (

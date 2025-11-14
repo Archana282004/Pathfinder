@@ -2,13 +2,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import AvailabilityTab from "./availability"
+import CardsHeader from "@/components/ui/cardheader"
 const Availability = () => {
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Your Availability</CardTitle>
-                <CardDescription>Manage your schedule and time slots</CardDescription>
-            </CardHeader>
+            <CardsHeader title="Your Availability" description="Manage your schedule and time slots" />
             <CardContent className="space-y-4">
                 <AvailabilityTab day="Monday - Friday" time="9:00 AM - 5:00 PM" />
                 <AvailabilityTab day="Saturday" time="10.00AM - 2.00PM" />

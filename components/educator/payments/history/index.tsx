@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import HistoryCard from "./history-card";
+import CardsHeader from "@/components/ui/cardheader";
 
 interface HistoryInfo {
   mockEducatorEarnings: {
@@ -16,15 +17,13 @@ interface HistoryInfo {
 export default function PaymentHistory({ mockEducatorEarnings }: HistoryInfo) {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Earnings History</CardTitle>
-        <CardDescription>Your session earnings and payouts</CardDescription>
-      </CardHeader>
+      <CardsHeader title="Earnings History" description="Your session earnings and payouts" />
       <CardContent>
         <div className="space-y-3">
-          {mockEducatorEarnings.map((earning) => (
-            <HistoryCard 
-            earning={earning}
+          {mockEducatorEarnings.map((earning, index) => (
+            <HistoryCard
+              key={index}
+              earning={earning}
             />
           ))}
         </div>

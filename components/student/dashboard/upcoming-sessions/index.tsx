@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 import UpcomingSessionsCard from "./upcoming-sessions"
+import CardsHeader from "@/components/ui/cardheader"
 
 interface Session {
     upcomingSessions: {
@@ -27,15 +28,12 @@ interface Session {
 const UpcomingSession = ({ upcomingSessions }: Session) => {
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Upcoming Sessions</CardTitle>
-                <CardDescription>Your scheduled counseling sessions</CardDescription>
-            </CardHeader>
+            <CardsHeader title="Upcoming Sessions" description="Your scheduled counseling sessions" />
             <CardContent className="space-y-4">
                 {upcomingSessions.map((session, index) => (
-                    <UpcomingSessionsCard 
-                    key={index}
-                    session={session}
+                    <UpcomingSessionsCard
+                        key={index}
+                        session={session}
                     />
                 ))}
                 <Button className="w-full" asChild>

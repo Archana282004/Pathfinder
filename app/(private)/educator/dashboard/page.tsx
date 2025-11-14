@@ -1,5 +1,3 @@
-"use client"
-
 import EducatorDashboard from "@/components/educator/dashboard"
 
 const EducatorDashboardPage = () => {

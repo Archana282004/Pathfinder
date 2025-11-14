@@ -1,5 +1,3 @@
-"use client"
-
 import AdminSettings from "@/components/admin/settings"
 
 const AdminSettingsPage = ()=> {

@@ -1,5 +1,3 @@
-"use client"
-
 import EducatorSessions from "@/components/educator/sessions"
 
 const EducatorSessionsPage = () => {

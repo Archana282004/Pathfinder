@@ -1,5 +1,6 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import RecentMessageCard from "./recent-messages";
+import CardsHeader from "@/components/ui/cardheader";
 
 interface Message {
     recentMessages: {
@@ -13,10 +14,7 @@ interface Message {
 const RecentMesaages = ({ recentMessages }: Message) => {
     return (
         <Card>
-            <CardHeader>
-                <CardTitle>Recent Messages</CardTitle>
-                <CardDescription>Latest conversations with educators</CardDescription>
-            </CardHeader>
+            <CardsHeader title="Recent Messages" description="Latest conversations with educators" />
             <RecentMessageCard
                 recentMessages={recentMessages}
             />

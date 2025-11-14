@@ -1,5 +1,3 @@
-"use client"
-
 import AdminPayments from "@/components/admin/payments"
 
 const AdminPaymentsPage = () => {

@@ -1,5 +1,3 @@
-"use client"
-
 import AdminAnalytics from "@/components/admin/analytics"
 
 const AdminAnalyticsPage = () => {

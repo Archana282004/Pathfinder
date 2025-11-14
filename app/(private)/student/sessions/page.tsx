@@ -1,5 +1,3 @@
-"use client"
-
 import StudentSessions from "@/components/student/sessions"
 
 const StudentSessionsPage = () => {

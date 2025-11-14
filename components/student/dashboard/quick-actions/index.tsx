@@ -1,14 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { StudentQuickActionsData } from "@/lib/mock-data"
 import QuickActionCard from "./quick-actions-card"
+import CardsHeader from "@/components/ui/cardheader"
 
 const StudentQuickActions = () =>{
     return(
         <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-              <CardDescription>Common tasks and resources</CardDescription>
-            </CardHeader>
+            <CardsHeader title="Quick Actions" description="Common tasks and resources"/>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-4">
                 {StudentQuickActionsData.map((card, index)=>(

@@ -1,5 +1,3 @@
-"use client"
-
 import StudentResources from "@/components/student/resources"
 
 const StudentResourcesPage = () => {

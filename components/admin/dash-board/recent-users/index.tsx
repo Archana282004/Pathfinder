@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import RecentUsersCard from "./recent-users-card";
+import CardsHeader from "@/components/ui/cardheader";
 
 type StudentUser = {
   id: string;
@@ -46,15 +47,13 @@ const AdminRecentUsers = ({ recentUsers }: RecentUsersTableProps) => {
   return (
     <div>
       <Card>
-        <CardHeader>
-          <CardTitle>Recent Users</CardTitle>
-          <CardDescription>Newly registered users</CardDescription>
-        </CardHeader>
+        <CardsHeader
+          title="Recent Users" description="Newly registered users" />
         <CardContent className="space-y-4">
           {recentUsers.map((user) => (
             <RecentUsersCard
-            key={user.id}
-            user={user}
+              key={user.id}
+              user={user}
             />
           ))}
           <Button className="w-full" asChild>

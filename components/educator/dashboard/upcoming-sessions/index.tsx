@@ -1,8 +1,6 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Calendar, Clock } from "lucide-react"
-import Link from "next/link"
+import { Card } from "@/components/ui/card"
 import UpcomingSessionTab from "./upcoming-sessions-tab";
+import CardsHeader from "@/components/ui/cardheader";
 
 interface UpcomingSessionsListProps {
     upcomingSessions: {
@@ -21,17 +19,14 @@ interface UpcomingSessionsListProps {
         notes: string;
     }[];
 }
-const UpcomingSessions = ({upcomingSessions}:UpcomingSessionsListProps) => {
-    return(
+const UpcomingSessions = ({ upcomingSessions }: UpcomingSessionsListProps) => {
+    return (
         <Card>
-                <CardHeader>
-                    <CardTitle>Upcoming Sessions</CardTitle>
-                    <CardDescription>Your scheduled counseling sessions</CardDescription>
-                </CardHeader>
-               <UpcomingSessionTab 
-               upcomingSessions={upcomingSessions}
-               />
-            </Card>
+            <CardsHeader title="Upcoming Sessions" description="Your scheduled counseling sessions" />
+            <UpcomingSessionTab
+                upcomingSessions={upcomingSessions}
+            />
+        </Card>
 
     )
 }
