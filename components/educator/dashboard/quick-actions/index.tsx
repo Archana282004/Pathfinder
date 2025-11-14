@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import QuickActionTab from "./quick-actions-tab"
 import { EducatorQuickActionsData } from "@/lib/mock-data"
-import CardsHeader from "@/components/ui/cardheader"
+import CardsHeader from "@/components/ui/card-header"
 const EducatorQuickActions = () => {
   return (
     <Card>

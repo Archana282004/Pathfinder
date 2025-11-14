@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 import UpcomingSessionsCard from "./upcoming-sessions"
-import CardsHeader from "@/components/ui/cardheader"
+import CardsHeader from "@/components/ui/card-header"
 
 interface Session {
     upcomingSessions: {

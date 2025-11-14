@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import CardsHeader from "@/components/ui/cardheader"
+import CardsHeader from "@/components/ui/card-header"
 
 interface PaymentInfo {
   pendingEarnings: number

@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import AvailabilityTab from "./availability"
-import CardsHeader from "@/components/ui/cardheader"
+import CardsHeader from "@/components/ui/card-header"
 const Availability = () => {
     return (
         <Card>

@@ -4,7 +4,7 @@ import { AdminQuickActionsCard } from "@/lib/mock-data";
 import { Calendar, DollarSign, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 import QuickActionCard from "./quick-actions-card";
-import CardsHeader from "@/components/ui/cardheader";
+import CardsHeader from "@/components/ui/card-header";
 
 const AdminQuickActions = () => {
   return (

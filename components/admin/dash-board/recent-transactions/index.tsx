@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import RecentTransactionCard from "./recent-transaction-card";
-import CardsHeader from "@/components/ui/cardheader";
+import CardsHeader from "@/components/ui/card-header";
 
 type Transaction = {
   id: string;

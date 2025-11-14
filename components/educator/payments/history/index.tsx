@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import HistoryCard from "./history-card";
-import CardsHeader from "@/components/ui/cardheader";
+import CardsHeader from "@/components/ui/card-header";
 
 interface HistoryInfo {
   mockEducatorEarnings: {

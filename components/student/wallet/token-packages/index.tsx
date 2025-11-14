@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { TokenPackagesData } from "@/lib/mock-data"
 import TokenPackagesCard from "./token-packages"
-import CardsHeader from "@/components/ui/cardheader"
+import CardsHeader from "@/components/ui/card-header"
 export default function TokenPackages() {
     return (
         <Card>

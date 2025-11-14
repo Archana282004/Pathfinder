@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import TransactionListCard from "./transaction-list-card";
-import CardsHeader from "@/components/ui/cardheader";
+import CardsHeader from "@/components/ui/card-header";
 
 type mockAdminPayments = {
   id: string;

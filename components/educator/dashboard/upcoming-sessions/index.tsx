@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 import UpcomingSessionTab from "./upcoming-sessions-tab";
-import CardsHeader from "@/components/ui/cardheader";
+import CardsHeader from "@/components/ui/card-header";
 
 interface UpcomingSessionsListProps {
     upcomingSessions: {

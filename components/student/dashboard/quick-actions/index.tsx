@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { StudentQuickActionsData } from "@/lib/mock-data"
 import QuickActionCard from "./quick-actions-card"
-import CardsHeader from "@/components/ui/cardheader"
+import CardsHeader from "@/components/ui/card-header"
 
 const StudentQuickActions = () =>{
     return(
