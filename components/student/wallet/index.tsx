@@ -1,6 +1,6 @@
 "use client"
 
-import { StudentNav } from "@/components/navigation/student-nav"
+import  StudentNav  from "@/components/navigation/student-nav"
 import { mockWalletTransactions } from "@/lib/mock-data"
 import BalanceCard from "./balance-card"
 import StatsGrid from "./stats-grid"

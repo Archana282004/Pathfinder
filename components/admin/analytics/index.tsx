@@ -1,6 +1,6 @@
 "use client"
 
-import { AdminNav } from "@/components/navigation/admin-nav"
+import AdminNav from "@/components/navigation/admin-nav"
 import { Card } from "@/components/ui/card"
 
 const AdminAnalytics = () => {

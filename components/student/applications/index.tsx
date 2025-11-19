@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { StudentNav } from "@/components/navigation/student-nav"
+import  StudentNav from "@/components/navigation/student-nav"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { mockApplications } from "@/lib/mock-data"

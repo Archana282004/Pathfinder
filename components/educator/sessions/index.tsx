@@ -1,6 +1,6 @@
 "use client"
 
-import { EducatorNav } from "@/components/navigation/educator-nav"
+import  EducatorNav  from "@/components/navigation/educator-nav"
 import { mockSessions } from "@/lib/mock-data"
 import TabList from "./tab-list"
 import Header from "@/components/ui/header"

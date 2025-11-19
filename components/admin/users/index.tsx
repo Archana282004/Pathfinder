@@ -1,6 +1,6 @@
 "use client"
 
-import { AdminNav } from "@/components/navigation/admin-nav"
+import  AdminNav  from "@/components/navigation/admin-nav"
 import { Button } from "@/components/ui/button"
 import { mockAdminUsers } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"

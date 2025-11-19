@@ -1,6 +1,6 @@
 "use client"
 
-import { StudentNav } from "@/components/navigation/student-nav"
+import StudentNav from "@/components/navigation/student-nav"
 import { Button } from "@/components/ui/button"
 import { mockSessions, mockEducators } from "@/lib/mock-data"
 import TabList from "./tablist"

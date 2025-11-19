@@ -1,6 +1,6 @@
 "use client"
 
-import { AdminNav } from "@/components/navigation/admin-nav"
+import  AdminNav  from "@/components/navigation/admin-nav"
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import { mockAdminPayments } from "@/lib/mock-data"

@@ -1,7 +1,7 @@
 "use client"
 
-import { EducatorNav } from "@/components/navigation/educator-nav"
-import { mockSessions, mockEducatorEarnings } from "@/lib/mock-data"
+import EducatorNav  from "@/components/navigation/educator-nav"
+import { mockSessions } from "@/lib/mock-data"
 import EducatorStats from "./stats-grid"
 import EducatorQuickActions from "./quick-actions"
 import DashboardMainGrid from "./main-grid"

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { StudentNav } from "@/components/navigation/student-nav"
+import StudentNav from "@/components/navigation/student-nav"
 import { mockColleges } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"
 import SavedColleges from "./saved-colleges"

@@ -1,6 +1,6 @@
 "use client"
 
-import { EducatorNav } from "@/components/navigation/educator-nav"
+import EducatorNav  from "@/components/navigation/educator-nav"
 import { Card } from "@/components/ui/card"
 
 const EducatorChat = () =>{

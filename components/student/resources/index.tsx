@@ -1,10 +1,6 @@
 "use client"
 
-import { StudentNav } from "@/components/navigation/student-nav"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { FileText, Video, Download, Search, Filter } from "lucide-react"
+import  StudentNav  from "@/components/navigation/student-nav"
 import { mockResources } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"
 import CategoryTab from "./category-tab"

@@ -1,6 +1,6 @@
 "use client"
 
-import { AdminNav } from "@/components/navigation/admin-nav"
+import AdminNav  from "@/components/navigation/admin-nav"
 import AdminStatsGrid from "./stats-grid"
 import AdminMainGrid from "./main-grid"
 import AdminQuickActions from "./quick-actions"

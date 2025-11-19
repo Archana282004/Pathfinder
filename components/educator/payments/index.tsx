@@ -1,6 +1,6 @@
 "use client"
 
-import { EducatorNav } from "@/components/navigation/educator-nav"
+import  EducatorNav from "@/components/navigation/educator-nav"
 import { Button } from "@/components/ui/button"
 import {Download } from "lucide-react"
 import { mockEducatorEarnings } from "@/lib/mock-data"

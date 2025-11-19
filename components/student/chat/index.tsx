@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { StudentNav } from "@/components/navigation/student-nav"
+import StudentNav  from "@/components/navigation/student-nav"
 import { mockChatConversations, mockMessages } from "@/lib/mock-data"
 import ChatWindow from "./chat-window"
 import ConversationList from "./conversation-list"
