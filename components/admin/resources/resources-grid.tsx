@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FileText, Video, Download } from "lucide-react"
+import { FileText, Video, Download, Trash2 } from "lucide-react"
 
 interface mockResourcesProps {
     mockResources: {
@@ -24,7 +24,7 @@ const ResourceGrid = ({ mockResources }: mockResourcesProps) => {
                 <Card key={resource.id}>
                     <CardHeader>
                         <div className="flex items-start justify-between">
-                            <div className="flex items-start gap-3">
+                            <div className="flex items-start gap-3 w-full">
                                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                                     {resource.type === "Video" ? (
                                         <Video className="w-6 h-6 text-primary" />
@@ -32,22 +32,33 @@ const ResourceGrid = ({ mockResources }: mockResourcesProps) => {
                                         <FileText className="w-6 h-6 text-primary" />
                                     )}
                                 </div>
-                                <div className="flex-1">
-                                    <CardTitle className="text-lg">{resource.title}</CardTitle>
-                                    <CardDescription className="mt-1">{resource.description}</CardDescription>
+                                <div className="flex items-center justify-between pt-2 w-full">
+                                    <div>
+                                        <CardTitle className="text-lg">{resource.title}</CardTitle>
+                                        <CardDescription className="mt-1">{resource.description}</CardDescription>
+                                    </div>
+                                    
+                                        <Button
+                                            size="sm"
+                                            variant="ghost"
+                                            className="p-1 red bg-none"
+                                        >
+                                            <Trash2 className="w-1 h-4 bg-none text-red-500" />
+                                        </Button>
+                                    
                                 </div>
                             </div>
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        
+
                         <div className="flex items-center justify-between pt-2 ">
                             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Badge variant="secondary">{resource.category}</Badge>
-                            <span>•</span>
-                            <span>{resource.type}</span>
+                                <Badge variant="secondary">{resource.category}</Badge>
+                                <span>•</span>
+                                <span>{resource.type}</span>
 
-                        </div>
+                            </div>
                             <Button size="sm">
                                 <Download className="w-4 h-4 mr-2" />
                                 Download

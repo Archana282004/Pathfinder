@@ -52,9 +52,6 @@ const RecentUsersCard = ({user}:RecentUsersTableProps) =>{
                   <span>{new Date(user.joinDate).toLocaleDateString()}</span>
                 </div>
               </div>
-              <Button size="sm" variant="outline">
-                View
-              </Button>
             </div>
         </div>
     )

@@ -1271,9 +1271,9 @@ export const AdminQuickActionsCard = [
     icon: Users
   },
   {
-    name: " View Payments",
-    link: "/admin/payments",
-    icon: DollarSign
+    name: " View Resources",
+    link: "/admin/resources",
+    icon: BookOpen
   },
   {
     name: "Analytics",
@@ -1377,4 +1377,17 @@ export const TokenPackagesData = [
     action: "Purchase"
   }
 
+]
+
+export const Useroverviewlist = [
+  {name:"Students", value:90, color:"orange"},
+  {name:"Educators", value:28, color:"green"},
+  {name:"Total", value:118, color:"yellow"}
+]
+
+export const Sessionoverviewlist = [
+  { name: "Completed", value: 32, color:"orange" },
+  { name: "Upcoming", value: 12, color:"green" },
+  { name: "Cancelled", value: 3, color:"red" },
+  { name: "Expired", value: 14, color:"yellow" }
 ]

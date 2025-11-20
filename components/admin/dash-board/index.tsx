@@ -13,7 +13,7 @@ const AdminDashboard = () => {
       <AdminNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-8">
-          <Header heading="Admin Dashboard" description="Platform overview and management"/>
+          <Header heading="Welcome back, Admin" description="Platform overview and management"/>
 
           {/* Stats Grid */}
           <AdminStatsGrid />

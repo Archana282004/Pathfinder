@@ -8,12 +8,10 @@ const AdminMainGrid = () => {
   const recentTransactions = mockAdminPayments.slice(0, 2)
   return (
     <div>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 ">
         {/* Recent Users */}
         <AdminRecentUsers recentUsers={recentUsers} />
 
-        {/* Recent Transactions */}
-        <AdminRecentTransactions recentTransactions={recentTransactions} />
       </div>
     </div>
   )

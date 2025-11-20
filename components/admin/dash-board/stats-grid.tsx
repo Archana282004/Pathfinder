@@ -11,7 +11,7 @@ const AdminStatsGrid = () => {
             title={card.title}
             data={card.mockAnalyticsdata}
             icon={card.icon}
-            cardcontent={card.cardcontent} />
+            />
         )}
       </div>
     </div>

@@ -5,14 +5,12 @@ interface CardType {
     icon: ElementType;
     data: any;
     title: string;
-    cardcontent: string;
 }
 
 const OverviewCards = ({
     icon: Icon,
     data,
     title,
-    cardcontent,
 }: CardType) => {
     return (
         <Card>
@@ -22,7 +20,6 @@ const OverviewCards = ({
             </CardHeader>
             <CardContent>
                 <div className="text-2xl font-bold">{data}</div>
-                <p className="text-xs text-muted-foreground">{cardcontent}</p>
             </CardContent>
         </Card>
     );

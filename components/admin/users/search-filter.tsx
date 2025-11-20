@@ -13,10 +13,6 @@ const SearchFilter = ()=>{
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input placeholder="Search users..." className="pl-10" />
                 </div>
-                <Button variant="outline">
-                  <Filter className="w-4 h-4 mr-2" />
-                  Filter
-                </Button>
               </div>
             </CardContent>
           </Card>
