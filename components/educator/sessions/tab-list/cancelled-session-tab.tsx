@@ -1,7 +1,7 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Clock, Video, User } from "lucide-react"
+
 
 interface Session {
  session:{
@@ -20,8 +20,7 @@ interface Session {
   notes?: string;
  }
 }
-
-export default function CompletedSessionTab({session}:Session){
+export default function CancelledSessionTab({session}:Session){
     return(
          <Card key={session.id}>
                   <CardContent className="p-6">
@@ -51,7 +50,9 @@ export default function CompletedSessionTab({session}:Session){
                           </span>
                         </div>
                         {session.notes && (
-                          <p className="text-sm text-muted-foreground bg-muted p-3 rounded-lg">{session.notes}</p>
+                          <p className="text-sm text-muted-foreground bg-muted p-3 rounded-lg">
+                            <strong>Notes:</strong> {session.notes}
+                          </p>
                         )}
                       </div>
                     </div>

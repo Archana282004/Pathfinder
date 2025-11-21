@@ -35,7 +35,6 @@ export default function UpcomingSessionTab({session}:Session){
                               {session.studentName}
                             </p>
                           </div>
-                          <Badge>{session.type}</Badge>
                         </div>
                         <div className="flex items-center gap-6 text-sm text-muted-foreground">
                           <span className="flex items-center gap-2">
@@ -62,11 +61,8 @@ export default function UpcomingSessionTab({session}:Session){
                           <Video className="w-4 h-4 mr-2" />
                           Start Session
                         </Button>
-                        <Button size="sm" variant="outline">
-                          Reschedule
-                        </Button>
-                        <Button size="sm" variant="ghost">
-                          Cancel
+                        <Button size="sm" className="bg-green-900 text-white hover:bg-green-900 text-white">
+                          Accept
                         </Button>
                       </div>
                     </div>

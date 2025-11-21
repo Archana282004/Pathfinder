@@ -23,7 +23,6 @@ const StudentSessions = () => {
           <TabList 
           upcomingSessions={upcomingSessions}
           completedSessions={completedSessions}
-          mockEducators={mockEducators}
           />
           
         </div>

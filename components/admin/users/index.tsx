@@ -6,12 +6,18 @@ import { mockAdminUsers } from "@/lib/mock-data"
 import SearchFilter from "./search-filter"
 import AdminTabslist from "./tab-list"
 import Header from "../../ui/header"
+import { useState } from "react"
+import AddUserForm from "./add-user"
 
 const AdminUsers = () => {
   const students = mockAdminUsers.filter((u) => u.role === "student")
   const educators = mockAdminUsers.filter((u) => u.role === "educator")
   const allUsers = mockAdminUsers
-
+  const [isOpen, setIsOpen] = useState(false)
+  const HandleAddUser = () =>{
+    setIsOpen(true);
+  }
+  
   return (
     <div className="min-h-screen bg-background">
       <AdminNav />
@@ -19,7 +25,7 @@ const AdminUsers = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <Header heading="User Management" description="Manage all platform users" />
-            <Button>Add New User</Button>
+            <Button onClick={HandleAddUser} >Add New User</Button>
           </div>
 
           {/* Search and Filter */}
@@ -30,6 +36,8 @@ const AdminUsers = () => {
          educators={educators}
          allUsers={allUsers}
          />
+         
+         <AddUserForm open={isOpen} setOpen={setIsOpen} />
         </div>
       </div>
     </div>

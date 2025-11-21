@@ -8,6 +8,8 @@ import Header from "@/components/ui/header"
 export default function EducatorSessions() {
   const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.educatorId === "edu-1")
   const completedSessions = mockSessions.filter((s) => s.status === "completed" && s.educatorId === "edu-1")
+  const cancelledSessions = mockSessions.filter((s) => s.status === "cancelled" && s.educatorId === "edu-1")
+  const expiredSessions = mockSessions.filter((s) => s.status === "expired" && s.educatorId === "edu-1")
 
   return (
     <div className="min-h-screen bg-background">
@@ -19,6 +21,8 @@ export default function EducatorSessions() {
             <TabList 
             upcomingSessions={upcomingSessions}
             completedSessions={completedSessions}
+            cancelledSessions={cancelledSessions}
+            expiredSessions={expiredSessions}
             />
       
         </div>

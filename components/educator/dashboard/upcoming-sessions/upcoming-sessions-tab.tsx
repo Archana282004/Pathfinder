@@ -39,9 +39,6 @@ const UpcomingSessionTab = ({upcomingSessions}:UpcomingSessionsListProps) => {
                                     </span>
                                 </div>
                             </div>
-                            <Button size="sm" variant="outline">
-                                View
-                            </Button>
                         </div>
                     ))}
                     <Button className="w-full" asChild>

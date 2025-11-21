@@ -19,27 +19,14 @@ interface Session {
   meetingLink?: string 
   notes: string
 }
-interface mockEducators {
-    id: string;
-    name: string;
-    title: string;
-    specialty: string;
-    rating: number;
-    reviews: number;
-    hourlyRate: number;
-    avatar: string;
-    bio: string;
-    availability: string[];
-}
 
 interface MainGridProps {
   upcomingSessions: Session[]
   completedSessions: Session[]
-  mockEducators:mockEducators[]
 
 }
 
-const TabList = ({upcomingSessions, completedSessions, mockEducators}:MainGridProps) => {
+const TabList = ({upcomingSessions, completedSessions}:MainGridProps) => {
     return(
         <Tabs defaultValue="upcoming" className="space-y-6">
             <TabsList>
@@ -148,41 +135,6 @@ const TabList = ({upcomingSessions, completedSessions, mockEducators}:MainGridPr
                   </CardContent>
                 </Card>
               ))}
-            </TabsContent>
-
-            <TabsContent value="educators" className="space-y-4">
-              <div className="grid gap-6 md:grid-cols-2">
-                {mockEducators.map((educator) => (
-                  <Card key={educator.id}>
-                    <CardHeader>
-                      <div className="flex items-start gap-4">
-                        <img
-                          src={educator.avatar || "/placeholder.svg"}
-                          alt={educator.name}
-                          className="w-16 h-16 rounded-full"
-                        />
-                        <div className="flex-1">
-                          <CardTitle>{educator.name}</CardTitle>
-                          <CardDescription>{educator.title}</CardDescription>
-                          <div className="flex items-center gap-2 mt-2">
-                            <Badge variant="secondary">{educator.specialty}</Badge>
-                            <span className="text-sm text-muted-foreground">
-                              ⭐ {educator.rating} ({educator.reviews} reviews)
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-sm text-muted-foreground">{educator.bio}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-semibold">${educator.hourlyRate}/hour</span>
-                        <Button>Book Session</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
             </TabsContent>
           </Tabs>
     )

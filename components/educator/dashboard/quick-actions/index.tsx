@@ -7,7 +7,7 @@ const EducatorQuickActions = () => {
     <Card>
       <CardsHeader title="Quick Actions" description="Common tasks and tools" />
       <CardContent>
-        <div className="grid gap-4 md:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-3">
           {EducatorQuickActionsData.map((card, index) => (
             <QuickActionTab
               key={index}

@@ -1,6 +1,6 @@
 "use client"
 
-import { Home, Calendar, MessageSquare, DollarSign, Clock } from "lucide-react"
+import { Home, Calendar, MessageSquare, Clock, FileText } from "lucide-react"
 import NavMenu from "."
 
 const EducatorNav = () => {
@@ -10,7 +10,7 @@ const EducatorNav = () => {
     { href: "/educator/sessions", label: "Sessions", icon: Calendar },
     { href: "/educator/chat", label: "Chat", icon: MessageSquare },
     { href: "/educator/availability", label: "Availability", icon: Clock },
-    { href: "/educator/earnings", label: "Earnings", icon: DollarSign },
+    { href: "/educator/faq", label: "FAQs", icon: FileText },
   ]
 
   return (

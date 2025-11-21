@@ -152,14 +152,14 @@ export const mockSessions = [
   {
     id: "ses-5",
     title: "Essay Brainstorming",
-    educatorId: "edu-3",
+    educatorId: "edu-1",
     educatorName: "Dr. Emily Rodriguez",
     studentId: "stu-1",
     studentName: "Emma Wilson",
     date: "2025-10-26",
     time: "11:00",
     duration: 60,
-    status: "upcoming",
+    status: "expired",
     type: "Essay Writing",
     meetingLink: "https://meet.pathfinder.com/ses-5",
     notes: "Generate ideas for supplemental essays",
@@ -167,14 +167,14 @@ export const mockSessions = [
   {
     id: "ses-6",
     title: "ACT Practice Review",
-    educatorId: "edu-2",
+    educatorId: "edu-1",
     educatorName: "Prof. Michael Chen",
     studentId: "stu-1",
     studentName: "Emma Wilson",
     date: "2025-10-20",
     time: "15:00",
     duration: 90,
-    status: "completed",
+    status: "cancelled",
     type: "Test Prep",
     notes: "Reviewed practice test results",
   },
@@ -1184,12 +1184,6 @@ export const EducatorOverviewCards = [
     data: mockSessions.filter((s) => s.educatorId === "edu-1" && s.status === "upcoming").length,
     cardcontent: "2 today",
     icon: Calendar
-  },
-  {
-    title: "Avg Rating",
-    data: "4.9",
-    cardcontent: "Based on 156 Reviews",
-    icon: TrendingUp
   }
 ]
 
@@ -1323,11 +1317,6 @@ export const EducatorQuickActionsData = [
     data: " Set Availability",
     icon: Clock,
     link: "/educator/availability"
-  },
-  {
-    data: "View Earnings",
-    icon: DollarSign,
-    link: "/educator/earnings"
   }
 ]
 

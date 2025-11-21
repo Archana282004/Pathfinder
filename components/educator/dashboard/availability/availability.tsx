@@ -11,9 +11,6 @@ const AvailabilityTab = ({day, time}:availabiltyProps) => {
                 <p className="font-medium">{day}</p>
                 <p className="text-sm text-muted-foreground">{time}</p>
             </div>
-            <Button size="sm" variant="ghost">
-                Edit
-            </Button>
         </div>
     )
 }

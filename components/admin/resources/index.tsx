@@ -7,6 +7,7 @@ import CategoryTab from "./category-tab"
 import ResourceGrid from "./resources-grid"
 import Header from "@/components/ui/header"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const AdminResources = () => {
   const categories = ["All", "Essay Writing", "Test Prep", "Financial Aid", "Admissions"]
@@ -19,9 +20,11 @@ const AdminResources = () => {
           <div className="flex justify-between">
             <Header heading="Resource Library" description="Educational materials and guides to help your college journey" />
 
+              <Link href="/admin/resources/create-resource" >
               <Button size="sm">
                 Add Resource
               </Button>
+              </Link>
 
           </div>
           {/* Search and Filter */}
