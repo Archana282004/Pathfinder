@@ -9,6 +9,8 @@ import Header from "@/components/ui/header"
 const StudentSessions = () => {
   const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1")
   const completedSessions = mockSessions.filter((s) => s.status === "completed" && s.studentId === "stu-1")
+  const cancelledSessions = mockSessions.filter((s) => s.status === "cancelled" && s.studentId === "stu-1")
+  const expiredSessions = mockSessions.filter((s) => s.status === "expired" && s.studentId === "stu-1")
 
   return (
     <div className="min-h-screen bg-background">
@@ -23,6 +25,8 @@ const StudentSessions = () => {
           <TabList 
           upcomingSessions={upcomingSessions}
           completedSessions={completedSessions}
+          cancelledSessions={cancelledSessions}
+          expiredSessions={expiredSessions}
           />
           
         </div>

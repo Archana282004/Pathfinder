@@ -35,8 +35,6 @@ const StudentWallet = () => {
          mockWalletTransactions={mockWalletTransactions}
          />
 
-          {/* Token Packages */}
-          <TokenPackages />
         </div>
       </div>
     </div>

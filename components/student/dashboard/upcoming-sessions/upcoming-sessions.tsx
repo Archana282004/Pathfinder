@@ -36,9 +36,6 @@ const UpcomingSessionsCard = ({ session }: Session) => {
                     </span>
                 </div>
             </div>
-            <Button size="sm" variant="outline">
-                View
-            </Button>
         </div>
     )
 }

@@ -4,12 +4,17 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { GraduationCap, Users } from "lucide-react"
 
-const AddUserForm = ({ open, setOpen }: any) => {
+interface UserFormProps{
+    open:any;
+    setOpen:any;
+    mode:"create"| "edit"
+}
+const UserForm = ({ open, setOpen,mode }: UserFormProps) => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="flex flex-col gap-8">
                 <DialogHeader>
-                    <DialogTitle>Create an User</DialogTitle>
+                    <DialogTitle>{mode=="create" ? "Create an User" : "Edit an User"}</DialogTitle>
                     <p className="text-muted-foreground text-sm">Get started with Pathfinder today</p>
                 </DialogHeader>
 
@@ -48,11 +53,11 @@ const AddUserForm = ({ open, setOpen }: any) => {
                 </div>
 
                 <DialogFooter>
-                    <Button type="submit" className="w-full">Create account</Button>
+                    <Button type="submit" className="w-full">{mode=="create" ?"Create account" : "Edit account"}</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
     )
 }
 
-export default AddUserForm
+export default UserForm

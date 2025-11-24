@@ -19,7 +19,7 @@ const StudentChat = () => {
       <StudentNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
-          <Header heading="Messages" description="Chat with your Students"/>
+          <Header heading="Messages" description="Chat with your educators"/>
 
           <div className="grid md:grid-cols-3 gap-6 h-[600px]">
             {/* Conversations List */}

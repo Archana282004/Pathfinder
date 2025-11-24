@@ -7,7 +7,7 @@ import SearchFilter from "./search-filter"
 import AdminTabslist from "./tab-list"
 import Header from "../../ui/header"
 import { useState } from "react"
-import AddUserForm from "./add-user"
+import UserForm from "./add-user"
 
 const AdminUsers = () => {
   const students = mockAdminUsers.filter((u) => u.role === "student")
@@ -37,7 +37,7 @@ const AdminUsers = () => {
          allUsers={allUsers}
          />
          
-         <AddUserForm open={isOpen} setOpen={setIsOpen} />
+         <UserForm open={isOpen} setOpen={setIsOpen} mode="create" />
         </div>
       </div>
     </div>

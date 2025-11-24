@@ -23,10 +23,6 @@ const BalanceCard = ({tokenBalance}:BalanceCardProps) => {
                 </div>
               </div>
               <div className="mt-6 flex gap-3">
-                <Button size="lg" className="flex-1">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Tokens
-                </Button>
                 <Button size="lg" variant="outline">
                   Transfer
                 </Button>

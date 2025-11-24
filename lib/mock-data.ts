@@ -126,7 +126,7 @@ export const mockSessions = [
     title: "College List Strategy",
     educatorId: "edu-1",
     educatorName: "Dr. Sarah Johnson",
-    studentId: "stu-3",
+    studentId: "stu-1",
     studentName: "Sophia Lee",
     date: "2025-10-23",
     time: "16:00",
@@ -1379,4 +1379,31 @@ export const Sessionoverviewlist = [
   { name: "Upcoming", value: 12, color:"green" },
   { name: "Cancelled", value: 3, color:"red" },
   { name: "Expired", value: 14, color:"yellow" }
+]
+
+export const EducatorFAQslist = [
+  {
+    question:"How do I login as an Educator ?",
+    answer:"Educators cannot self-register. The admin will create the profile, and you’ll receive login credentials to access your account."
+  },
+  {
+    question:"How can I set my availability for sessions ?",
+    answer:"After logging in, you can set your available time slots under the Availability section. These slots will be visible to all registered students for booking."
+  },
+  {
+    question:"Can I modify or cancel a session once it's booked ?",
+    answer:"No, educators cannot reschedule or cancel sessions once they are booked by a student."
+  },
+  {
+    question:"What happens when a student books one of my session ?",
+    answer:"Once a student books a slot, that time slot will be disabled for other students, ensuring one-on-one sessions."
+  },
+  {
+    question:"Can I view my past and upcoming Sessions ?",
+    answer:"Yes, you can view both your upcoming and completed sessions from your educator dashboard."
+  },
+  {
+    question:"How are sessions prices or tokens value decided?",
+    answer:"Session pricing (in tokens) is determined by the admin."
+  }
 ]
