@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { mockSessions, mockEducators } from "@/lib/mock-data"
 import TabList from "./tablist"
 import Header from "@/components/ui/header"
+import Link from "next/link"
 
 const StudentSessions = () => {
   const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1")
@@ -19,7 +20,9 @@ const StudentSessions = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <Header heading="My Sessions" description="View and manage your counseling sessions" />
-            <Button>Book New Session</Button>
+            <Link href="/student/sessions/book-session">
+              <Button >Book New Session</Button>
+            </Link>
           </div>
           {/*Tab List */}
           <TabList 

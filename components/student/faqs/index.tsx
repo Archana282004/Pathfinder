@@ -1,12 +1,12 @@
 "use client"
-import EducatorNav from "@/components/navigation/educator-nav";
+import StudentNav from "@/components/navigation/student-nav"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { EducatorFAQslist } from "@/lib/mock-data";
+import { StudentFAQslist } from "@/lib/mock-data";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
-const EducatorFAQComponent = () => {
+const StudentFAQComponent = () => {
     // Store which index is open (null = none)
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -20,7 +20,7 @@ const EducatorFAQComponent = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            <EducatorNav />
+            <StudentNav />
             <div className="flex justify-center container mx-auto px-4 py-8">
                 <Card className="w-200">
                     <CardTitle className="flex justify-center text-3xl text-orange-400">
@@ -28,7 +28,7 @@ const EducatorFAQComponent = () => {
                     </CardTitle>
 
                     <CardContent className="flex flex-col gap-2">
-                        {EducatorFAQslist.map((faq, index) => {
+                        {StudentFAQslist.map((faq, index) => {
                             const isAnswer = openIndex === index; // <- only this question opens
 
                             return (
@@ -71,4 +71,4 @@ const EducatorFAQComponent = () => {
     );
 };
 
-export default EducatorFAQComponent;
+export default StudentFAQComponent;

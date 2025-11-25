@@ -1407,3 +1407,38 @@ export const EducatorFAQslist = [
     answer:"Session pricing (in tokens) is determined by the admin."
   }
 ]
+
+export const StudentFAQslist = [
+  {
+    question:"How can I sign up as a student?",
+    answer:"You can register directly on the portal using your details. Once registered, you’ll receive bonus tokens in your wallet to book sessions."
+  },
+  {
+    question:"How do I book a session with an Educator ?",
+    answer:"After logging in, view the available time slots under the 'Availability' section set by the educators and book a session that suits you."
+  },
+  {
+    question:"What happens if another student books the same slot ?",
+    answer:"Each time slot can only be booked by one student. Once booked, that slot will no longer be available to others."
+  },
+  {
+    question:"Can I reschedule my sesssion ?",
+    answer:"Yes, you can reschedule your session up to 24 hours before the scheduled start time without any additional token charge."
+  },
+  {
+    question:"Can I cancel my session ?",
+    answer:"Yes, you can cancel your session before 24 hours of the start time to get a full token refund. Cancellations made within 24 hours won’t be refunded."
+  },
+  {
+    question:"What if I don't join the session ?",
+    answer:"If you don’t join within 10 minutes of the scheduled time, the session will be marked as expired, and tokens won’t be refunded."
+  },
+  {
+    question:"Can I chat with Educators ?",
+    answer:"Yes, students can chat with any educator anytime through the chat feature."
+  },
+  {
+    question:"What are the session duration available ?",
+    answer:"Admin provides two session durations — 30 minutes and 60 minutes. You can choose as per your need, and tokens will be deducted accordingly."
+  },
+]
