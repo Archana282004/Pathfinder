@@ -1,0 +1,32 @@
+import { Card, CardContent} from "@/src/components/ui/card"
+import HistoryCard from "./history-card";
+import CardsHeader from "@/src/components/ui/card-header";
+
+interface HistoryInfo {
+  mockEducatorEarnings: {
+    id: string;
+    sessionId: string;
+    studentName: string;
+    amount: number;
+    date: string;
+    status: string;
+  }[];
+
+}
+export default function PaymentHistory({ mockEducatorEarnings }: HistoryInfo) {
+  return (
+    <Card>
+      <CardsHeader title="Earnings History" description="Your session earnings and payouts" />
+      <CardContent>
+        <div className="space-y-3">
+          {mockEducatorEarnings.map((earning, index) => (
+            <HistoryCard
+              key={index}
+              earning={earning}
+            />
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
