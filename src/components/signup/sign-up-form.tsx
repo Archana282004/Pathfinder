@@ -8,20 +8,22 @@ import Link from "next/link"
 import { GraduationCap, Users, Shield } from "lucide-react"
 
 type User = "student" | "educator" | "admin";
+interface FormDataType {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    role: string;
+    phone: string;
+};
 
 interface SignupFormProps {
-    email: string;
-    setEmail: React.Dispatch<React.SetStateAction<string>>;
-    password: string;
-    setPassword: React.Dispatch<React.SetStateAction<string>>;
-    name: string;
-    setName: React.Dispatch<React.SetStateAction<string>>;
-    role: User;
-    setRole: React.Dispatch<React.SetStateAction<User>>;
+    formData: FormDataType;
+    setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
     isLoading: boolean;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 }
-const SignUpForm =({ name, setName, email, setEmail, password, setPassword, role, setRole, isLoading, handleSubmit }: SignupFormProps)=> {
+const SignUpForm = ({ formData, setFormData, isLoading, handleSubmit }: SignupFormProps) => {
     return (
         <Card className="w-full max-w-md">
             <CardHeader className="space-y-1">
@@ -31,13 +33,36 @@ const SignUpForm =({ name, setName, email, setEmail, password, setPassword, role
             <CardContent className="space-y-4">
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">First Name</Label>
                         <Input
-                            id="name"
+                            id="firstname"
                             type="text"
-                            placeholder="John Doe"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            placeholder="John"
+                            value={formData.firstName}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    firstName: e.target.value,
+                                }))
+                            }
+
+                            required
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="name">Last Name</Label>
+                        <Input
+                            id="lastname"
+                            type="text"
+                            placeholder="Doe"
+                            value={formData.lastName}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    lastName: e.target.value,
+                                }))
+                            }
+
                             required
                         />
                     </div>
@@ -47,8 +72,13 @@ const SignUpForm =({ name, setName, email, setEmail, password, setPassword, role
                             id="email"
                             type="email"
                             placeholder="you@example.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    email: e.target.value,
+                                }))
+                            }
                             required
                         />
                     </div>
@@ -58,16 +88,30 @@ const SignUpForm =({ name, setName, email, setEmail, password, setPassword, role
                             id="password"
                             type="password"
                             placeholder="••••••••"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={formData.password}
+                            onChange={(e) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    password: e.target.value,
+                                }))
+                            }
                             required
                             minLength={8}
                         />
                     </div>
 
                     <div className="space-y-3">
-                        <Label>I am a...</Label>
-                        <RadioGroup value={role} onValueChange={(value) => setRole(value as UserRole)}>
+                        <Label>Role</Label>
+                        <RadioGroup
+                            value={formData.role}
+                            onValueChange={(value) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    role: value,
+                                }))
+                            }
+                        >
+
                             <div className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-accent/50 cursor-pointer">
                                 <RadioGroupItem value="student" id="student" />
                                 <Label htmlFor="student" className="flex items-center gap-2 cursor-pointer flex-1">
@@ -92,7 +136,7 @@ const SignUpForm =({ name, setName, email, setEmail, password, setPassword, role
                         </RadioGroup>
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={isLoading}>
+                    <Button type="submit" className="w-full" disabled={isLoading} >
                         {isLoading ? "Creating account..." : "Create account"}
                     </Button>
                 </form>

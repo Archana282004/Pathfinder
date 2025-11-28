@@ -4,23 +4,23 @@ import { Label } from "@/src/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card"
 import Link from "next/link"
 import { GraduationCap, BookOpen, Shield } from "lucide-react"
-
+interface logintype{
+    email:string;
+    password:string;
+}
 type LoginFormProps = {
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-
-  password: string;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  signInData: logintype;
+  setSignInData: React.Dispatch<React.SetStateAction<logintype>>;
+  
 
   isLoading: boolean;
 
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  handleTestUserLogin: (role: "student" | "educator" | "admin") => void;
   handleOAuthLogin: (provider: string) => void;
   
 };
 
-const SignInForm =({handleTestUserLogin, handleSubmit, handleOAuthLogin, email, setEmail, password, setPassword, isLoading}:LoginFormProps)=> {
+const SignInForm =({ handleSubmit, handleOAuthLogin, signInData, setSignInData, isLoading}:LoginFormProps)=> {
     return (
         <Card className="w-full max-w-md">
             <CardHeader className="space-y-1">
@@ -28,35 +28,7 @@ const SignInForm =({handleTestUserLogin, handleSubmit, handleOAuthLogin, email, 
                 <CardDescription>Sign in to your Pathfinder account</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="space-y-2">
-                    <Label className="text-sm text-muted-foreground">Quick Test Login</Label>
-                    <div className="grid grid-cols-3 gap-2">
-                        <Button
-                            variant="outline"
-                            className="flex flex-col h-auto py-3 gap-1 bg-transparent"
-                            onClick={() => handleTestUserLogin("student")}
-                        >
-                            <GraduationCap className="h-5 w-5" />
-                            <span className="text-xs">Student</span>
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="flex flex-col h-auto py-3 gap-1 bg-transparent"
-                            onClick={() => handleTestUserLogin("educator")}
-                        >
-                            <BookOpen className="h-5 w-5" />
-                            <span className="text-xs">Educator</span>
-                        </Button>
-                        <Button
-                            variant="outline"
-                            className="flex flex-col h-auto py-3 gap-1 bg-transparent"
-                            onClick={() => handleTestUserLogin("admin")}
-                        >
-                            <Shield className="h-5 w-5" />
-                            <span className="text-xs">Admin</span>
-                        </Button>
-                    </div>
-                </div>
+                
 
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
@@ -74,8 +46,13 @@ const SignInForm =({handleTestUserLogin, handleSubmit, handleOAuthLogin, email, 
                             id="email"
                             type="email"
                             placeholder="you@example.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={signInData?.email}
+                           onChange={(e) =>
+                                setSignInData((prev) => ({
+                                    ...prev,
+                                    email: e.target.value,
+                                }))
+                            }
                             required
                         />
                     </div>
@@ -85,8 +62,13 @@ const SignInForm =({handleTestUserLogin, handleSubmit, handleOAuthLogin, email, 
                             id="password"
                             type="password"
                             placeholder="••••••••"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={signInData?.password}
+                            onChange={(e) =>
+                                setSignInData((prev) => ({
+                                    ...prev,
+                                    password: e.target.value,
+                                }))
+                            }
                             required
                         />
                     </div>

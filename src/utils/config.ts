@@ -1,0 +1,5 @@
+export const config = {
+    API_URL: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
+    STREAM_API_KEY: process.env.NEXT_PUBLIC_STREAM_API_KEY,
+    STREAM_API_SECRET: process.env.NEXT_PUBLIC_STREAM_API_SECRET
+};

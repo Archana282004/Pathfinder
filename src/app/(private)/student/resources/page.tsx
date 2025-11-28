@@ -1,4 +1,4 @@
-import StudentResources from "@/components/student/resources"
+import StudentResources from "@/src/components/student/resources"
 
 const StudentResourcesPage = () => {
 

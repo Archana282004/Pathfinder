@@ -1,4 +1,4 @@
-import StudentDashboard from "@/components/student/dashboard"
+import StudentDashboard from "@/src/components/student/dashboard"
 
 const StudentDashboardPage = () => {
 

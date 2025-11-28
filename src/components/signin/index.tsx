@@ -7,45 +7,40 @@ import { useAuth } from "@/src/contexts/auth-context"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/src/hooks/use-toast"
 import SignInForm from "./sign-in-form"
+import { SignIn } from "@/src/store/actions/authaction"
+import { useAppDispatch } from "@/src/store/hooks"
 
-const LoginComponent = ()=> {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+const LoginComponent = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const { login, loginAsTestUser } = useAuth()
+  const { loginAsTestUser } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
+  interface logintype {
+    email: string;
+    password: string;
+  }
+  const initialsigninData = {
+    email: "",
+    password: ""
+  }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const [signInData, setSignInData] = useState<logintype>(initialsigninData);
 
-    try {
-      await login(email, password)
-      toast({
-        title: "Welcome back!",
-        description: "You have successfully logged in.",
-      })
-      router.push("/")
-    } catch (error) {
-      toast({
-        title: "Login failed",
-        description: "Invalid email or password. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsLoading(false)
+  const dispatch = useAppDispatch()
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const response = await dispatch(SignIn(signInData));
+    debugger
+    const path = (response.signIn.user.role).toLowerCase()
+    if(response.signIn.success){
+      router.push(`${path}/dashboard`)
     }
-  }
+  };
 
-  const handleTestUserLogin = (role: "student" | "educator" | "admin") => {
-    loginAsTestUser(role)
-    toast({
-      title: "Logged in as test user",
-      description: `You are now logged in as a test ${role}.`,
-    })
-    router.push("/")
-  }
+
+
 
   const handleOAuthLogin = (provider: string) => {
     toast({
@@ -56,15 +51,12 @@ const LoginComponent = ()=> {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <SignInForm 
-      handleTestUserLogin={handleTestUserLogin}
-      handleOAuthLogin={handleOAuthLogin}
-      handleSubmit={handleSubmit}
-      isLoading={isLoading}
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
+      <SignInForm
+        handleOAuthLogin={handleOAuthLogin}
+        handleSubmit={handleSubmit}
+        isLoading={isLoading}
+        signInData={signInData}
+        setSignInData={setSignInData}
       />
     </div>
   )

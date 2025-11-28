@@ -1,6 +1,6 @@
 "use client"
 
-import LoginComponent from "@/components/signin"
+import LoginComponent from "@/src/components/signin"
 
 const LoginPage = ()=> {
 

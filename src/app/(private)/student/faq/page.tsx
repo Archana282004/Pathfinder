@@ -1,4 +1,4 @@
-import StudentFAQComponent from "@/components/student/faqs"
+import StudentFAQComponent from "@/src/components/student/faqs"
 
 const StudentFAQPage = () =>{
     return(
