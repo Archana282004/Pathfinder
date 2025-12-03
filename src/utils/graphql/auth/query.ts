@@ -1,6 +1,6 @@
 import { gql, DocumentNode } from '@apollo/client';
 
-export const SIGNUP_MUTATION :DocumentNode = gql`
+export const SIGNUP_MUTATION: DocumentNode = gql`
 mutation SignUp($input: SignUpInput!) {
   signUp(input: $input) {
     message
@@ -8,7 +8,7 @@ mutation SignUp($input: SignUpInput!) {
   }
 } `;
 
-export const SIGNIN_MUTATION : DocumentNode = gql`
+export const SIGNIN_MUTATION: DocumentNode = gql`
 mutation SignIn($input: SignInInput!) {
   signIn(input: $input) {
     accessToken
@@ -26,7 +26,7 @@ mutation SignIn($input: SignInInput!) {
   }
 } `;
 
-export const REFRESH_TOKEN_MUTATION : DocumentNode = gql`
+export const REFRESH_TOKEN_MUTATION: DocumentNode = gql`
 mutation RefreshToken($refreshToken: String!) {
   refreshToken(refreshToken: $refreshToken) {
     accessToken
@@ -35,3 +35,32 @@ mutation RefreshToken($refreshToken: String!) {
     success
   }
 } `;
+
+
+export const CHANGEPASSWORD_MUTATION: DocumentNode = gql`
+mutation ChangePassword($input: ChangePasswordInput!) {
+  ChangePassword(input: $input) {
+    message
+    success
+  }
+}`
+
+export const UPDATEUSER_MUTATION :DocumentNode = gql`
+mutation UpdateUser($updateUserId: String!, $updateUserInput: UpdateUserInput!) {
+  updateUser(id: $updateUserId, updateUserInput: $updateUserInput) {
+    message
+    success
+    user {
+      id
+      email
+      first_name
+      last_name
+      role
+      profile {
+        specialization
+        session_topic
+        session_description
+      }
+    }
+  }
+}`

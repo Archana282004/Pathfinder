@@ -12,20 +12,25 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu"
-import {LogOut } from "lucide-react"
+import { LogOut, User } from "lucide-react"
 import Link from "next/link"
 import { ElementType } from "react"
+import Cookies from "js-cookie"
+import { useAppSelector } from "@/src/store/hooks"
 
-  interface navItemsProps{
-   navItems:{
-     href:string;
-    label:string;
-    icon:ElementType
-   }[]
-  }
+interface navItemsProps {
+  navItems: {
+    href: string;
+    label: string;
+    icon: ElementType
+  }[]
+}
 
-const NavMenu = ({navItems}:navItemsProps) =>{
+const NavMenu = ({ navItems }: navItemsProps) => {
   const { user, logout } = useAuth()
+  
+  const userr = useAppSelector((state)=>state.auth.user)
+   const role = userr?.role;
   const router = useRouter()
   const pathname = usePathname()
 
@@ -77,6 +82,12 @@ const NavMenu = ({navItems}:navItemsProps) =>{
                   <p className="text-xs text-muted-foreground">{user?.email}</p>
                 </div>
               </DropdownMenuLabel>
+              <DropdownMenuItem asChild>
+                <Link href={`/${role}/profile`}>
+                  <User className="mr-2 h-4 w-4" />
+                  Profile
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
@@ -84,6 +95,7 @@ const NavMenu = ({navItems}:navItemsProps) =>{
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
         </div>
       </div>
     </nav>

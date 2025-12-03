@@ -1,6 +1,6 @@
 import { ArrowDownRight, ArrowUpRight, BookOpen, Calendar, CheckCircle2, Clock, DollarSign, MessageSquare, RefreshCw, TrendingUp, Users, Wallet } from "lucide-react"
 import type { College, Application, StudentProfile, TestScore, Essay, Document, Milestone, FinancialAid } from "./types"
-import { CardContent } from "@/components/ui/card"
+
 
 export const mockEducators = [
   {

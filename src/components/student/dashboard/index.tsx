@@ -21,7 +21,7 @@ const StudentDashboard = () => {
 
     const tokenBalance = mockWalletTransactions.reduce((sum, txn) => sum + txn.tokens, 0)
     const unreadMessages = mockChatConversations.reduce((sum, conv) => sum + conv.unread, 0)
-
+    
     return (
         <div className="min-h-screen bg-background">
             <StudentNav />

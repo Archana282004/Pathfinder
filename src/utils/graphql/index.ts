@@ -46,7 +46,6 @@ export const fetchGraphQLQuery = async <
   }
 };
 
-debugger
 export const fetchGraphQLMutation = async <
   T,
   V extends Record<string, unknown> = Record<string, unknown>

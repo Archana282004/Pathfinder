@@ -32,8 +32,8 @@ const LoginComponent = () => {
     e.preventDefault();
 
     const response = await dispatch(SignIn(signInData));
-    debugger
-    const path = (response.signIn.user.role).toLowerCase()
+    
+    const path = (response?.signIn.user.role).toLowerCase()
     if(response.signIn.success){
       router.push(`${path}/dashboard`)
     }

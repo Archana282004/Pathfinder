@@ -1,6 +1,8 @@
 
-import Availability from "./availability";
+import { useEffect, useState } from "react";
 import UpcomingSessions from "./upcoming-sessions";
+import { getEducatorAvalability_Action } from "@/src/utils/graphql/availability/action";
+import Availability from "./availability";
 
 interface UpcomingSessionsListProps {
     upcomingSessions: {
@@ -19,16 +21,30 @@ interface UpcomingSessionsListProps {
         notes: string;
     }[];
 }
-
+interface availabiltyProps{
+    dayOfWeek: string,
+    startTime: string,
+    endTime: string
+}
 const DashboardMainGrid = ({ upcomingSessions }: UpcomingSessionsListProps) => {
+
+    const [educatoravailability, setAvailability] = useState<availabiltyProps[]>([]);
+
+    useEffect(() => { 
+        const fetchEduAvailability = async () => {
+            const response = await getEducatorAvalability_Action(); 
+            setAvailability(response?.GetEducatorAvailability ?? []);
+        }
+        fetchEduAvailability();
+    }, []);
+
     return (
         <div className="grid gap-6 md:grid-cols-2">
-            {/* Upcoming Sessions */}
             <UpcomingSessions upcomingSessions={upcomingSessions}/>
-            {/* Availability */}
-            <Availability />
+            <Availability availability={educatoravailability} />
         </div>
     )
 }
+
 
 export default DashboardMainGrid;
