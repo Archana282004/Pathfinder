@@ -17,7 +17,7 @@ const StatsGrid = () => {
   useEffect(() => {
     if (!userId) return;
 
-    const fetchDashboard = async () => { debugger
+    const fetchDashboard = async () => {
       const res = await getStudentDashboard_Action({ userId });
       setDashboardData(res?.getStudentDashboard)
     };

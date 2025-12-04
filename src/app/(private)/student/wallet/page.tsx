@@ -1,4 +1,4 @@
-import StudentWallet from "@/components/student/wallet"
+import StudentWallet from "@/src/components/student/wallet";
 
 const StudentWalletPage = () => {
 

@@ -1,25 +1,17 @@
 import { Card } from "@/src/components/ui/card"
 import UpcomingSessionTab from "./upcoming-sessions-tab";
 import CardsHeader from "@/src/components/ui/card-header";
-
-interface UpcomingSessionsListProps {
-    upcomingSessions: {
-        id: string;
-        title: string;
-        educatorId: string;
-        educatorName: string;
-        studentId: string;
-        studentName: string;
-        date: string;
-        time: string;
-        duration: number;
-        status: string;
-        type: string;
-        meetingLink?: string;
-        notes: string;
-    }[];
+interface upcomingSessionsProps {
+           upcomingSessions:{ duration_min: number,
+            educator: {
+                first_name: string,
+                last_name: string
+            },
+            id:string,
+            scheduled_at_start_time: string,
+            title: string}[]
 }
-const UpcomingSessions = ({ upcomingSessions }: UpcomingSessionsListProps) => {
+const UpcomingSessions = ({ upcomingSessions }: upcomingSessionsProps) => {
     return (
         <Card>
             <CardsHeader title="Upcoming Sessions" description="Your scheduled counseling sessions" />

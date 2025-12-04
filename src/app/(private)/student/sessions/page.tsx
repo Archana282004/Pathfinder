@@ -1,4 +1,4 @@
-import StudentSessions from "@/components/student/sessions"
+import StudentSessions from "@/src/components/student/sessions";
 
 const StudentSessionsPage = () => {
 

@@ -6,19 +6,14 @@ import CardsHeader from "@/src/components/ui/card-header"
 
 interface Session {
     upcomingSessions: {
-        id: string;
-        title: string;
-        educatorId: string;
-        educatorName: string;
-        studentId: string;
-        studentName: string;
-        date: string;
-        time: string;
-        duration: number;
-        status: string;
-        type: string;
-        meetingLink?: string;
-        notes: string;
+        duration_min: number,
+        educator: {
+            first_name: string,
+            last_name: string
+        },
+        id: string,
+        scheduled_at_start_time: string,
+        title: string
     }[]
 
 }

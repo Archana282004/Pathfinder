@@ -1,4 +1,4 @@
-import StudentChat from "@/components/student/chat"
+import StudentChat from "@/src/components/student/chat";
 
 const StudentChatPage = () => {
 

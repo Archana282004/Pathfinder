@@ -1,21 +1,19 @@
 
+import { useAppSelector } from "@/src/store/hooks";
 import RecentMesaages from "./recent-messages";
 import UpcomingSession from "./upcoming-sessions";
+import { useEffect, useState } from "react";
+import { getSessions_Action } from "@/src/utils/graphql/sessions/action";
 
 interface Session {
-    id: string;
-    title: string;
-    educatorId: string;
-    educatorName: string;
-    studentId: string;
-    studentName: string;
-    date: string;
-    time: string;
-    duration: number;
-    status: string;
-    type: string;
-    meetingLink?: string;
-    notes: string;
+    duration_min: number,
+    educator: {
+        first_name: string,
+        last_name: string
+    },
+    id: string,
+    scheduled_at_start_time: string,
+    title: string
 }
 
 interface Message {
@@ -26,14 +24,28 @@ interface Message {
 }
 
 interface DashboardMainGridProps {
-    upcomingSessions: Session[]
     recentMessages: Message[]
 }
 
-const DashboardMainGrid = ({
-    upcomingSessions,
-    recentMessages,
-}: DashboardMainGridProps)=> {
+const DashboardMainGrid = ({recentMessages}: DashboardMainGridProps) => {
+const user = useAppSelector((state) => state.auth.user);
+    const userId = user?.id;
+
+
+    const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
+
+
+
+    useEffect(() => {
+        if (!userId) return;
+        const fetchStudentUpcomingSessions = async () => {
+            const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })
+            setUpcomingSessions(sessionsresponse?.getSessions?.sessions ?? [])
+        }
+        fetchStudentUpcomingSessions();
+    }, []);
+
+
     return (
         <div className="grid gap-6 md:grid-cols-2">
             {/* Upcoming Sessions */}

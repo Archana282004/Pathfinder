@@ -35,7 +35,6 @@ const StudentDashboard = () => {
                     {/* Main Content Grid */}
                     <DashboardMainGrid
                         recentMessages={recentMessages}
-                        upcomingSessions={upcomingSessions}
                     />
                     {/* Quick Actions */}
                     <StudentQuickActions

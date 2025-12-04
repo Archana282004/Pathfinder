@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import  StudentNav  from "@/components/navigation/student-nav"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
+import StudentNav from "@/src/components/navigation/student-nav"
+import { Card } from "@/src/components/ui/card"
+import { Button } from "@/src/components/ui/button"
+import { Badge } from "@/src/components/ui/badge"
+import { Progress } from "@/src/components/ui/progress"
 import { mockApplications } from "@/src/lib/mock-data"
 import { CheckCircle, Circle, Clock, AlertCircle, Plus, Calendar, FileText, ChevronDown, ChevronUp } from "lucide-react"
 

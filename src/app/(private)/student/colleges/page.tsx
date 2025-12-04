@@ -1,4 +1,4 @@
-import CollegesComponent from "@/components/student/college"
+import CollegesComponent from "@/src/components/student/college";
 
 const CollegesPage = () => {
 
