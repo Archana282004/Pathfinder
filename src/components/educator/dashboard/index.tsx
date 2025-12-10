@@ -8,8 +8,24 @@ import DashboardMainGrid from "./main-grid"
 import Header from "@/src/components/ui/header"
 import { useAppSelector } from "@/src/store/hooks"
 
+
+interface availabiltyProps {
+    dayOfWeek: string,
+    startTime: string,
+    endTime: string
+}
+interface upcomingSessionsProps {
+            duration_min: number,
+            educator: {
+                first_name: string,
+                last_name: string
+            },
+            id:string,
+            scheduled_at_start_time: string,
+            title: string
+}
+
 const EducatorDashboard = () => {
-    const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.educatorId === "edu-1").slice(0, 2)
     const user = useAppSelector((state)=>state.auth.user);
     const username = user?.first_name +" "+ user?.last_name;
     
