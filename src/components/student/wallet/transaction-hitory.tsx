@@ -3,61 +3,20 @@
 import { Card, CardContent } from "@/src/components/ui/card"
 import { Badge } from "@/src/components/ui/badge"
 import { ArrowUpRight, ArrowDownRight, RefreshCw } from "lucide-react"
-import CardsHeader from "@/src/components/ui/card-header";
-import { useAppSelector } from "@/src/store/hooks";
-import { useEffect, useState } from "react";
-import { getStudentTransaction_Action } from "@/src/utils/graphql/wallet/action";
+import CardsHeader from "@/src/components/ui/card-header"
 
-interface mockWalletTransaction {
-    mockWalletTransactions: {
-        id: string;
-        type: string;
-        amount: number;
-        tokens: number;
-        description: string;
-        date: string;
-        time: string;
-        status: string;
-    }[]
-}
-interface transactions
-    {
+interface TransationHistoryProps{
+    transaction:{
         transaction_type: string,
         session: {
             scheduled_at_start_time: string
         },
         amount: number
-    }
+    }[]
+}
 
-
-
-const TransactionHistory = ({ mockWalletTransactions }: mockWalletTransaction) => {
-
-    const user = useAppSelector((state) => state.auth.user);
-        const userId = user?.id;
-    
-    
-        const [transaction, setTransaction] = useState<transactions[]>([]);
-    
-    
-    
-        useEffect(() => {
-            if (!userId) return;
-            const fetchStudentTransactions = async () => {
-                
-                try{
-                    const response = await getStudentTransaction_Action();
-                const data = response?.getStudentTransactionHistory?.transactions;
-                setTransaction(response?.getStudentTransactionHistory?.transactions ?? []);
-                }
-                catch(err){
-                    console.log("error", err)
-                }
-            }
-            fetchStudentTransactions();
-        }, [userId]);
-    
-    
+const TransactionHistory = ({transaction}:TransationHistoryProps) => {
+   
     return (
         <Card>
             <CardsHeader title="Transaction History" description="Your recent token activity" />

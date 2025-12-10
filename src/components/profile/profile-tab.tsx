@@ -136,9 +136,7 @@ const EducatorProfileTab = ({ userData, setUserData }: ProfileTabProps) => {
         e.preventDefault();
 
         if (validator.current.allValid()) {
-            debugger
             const res = await updateUser_Action(userData);
-            debugger
             if (res?.updateUser?.success) {
                 toast({ title: `${res?.updateUser?.message}`, variant: "default" })
             }

@@ -8,8 +8,7 @@ query Query {
     totalSpent
     totalRefunded
   }
-}
-`;
+}`;
 
 export const GET_STUDENT_TRANSACTION_HISTORY: DocumentNode = gql`
 query Transactions($input: StudentTransactionHistoryInput) {
@@ -22,5 +21,13 @@ query Transactions($input: StudentTransactionHistoryInput) {
       amount
     }
   }
-}
-`;
+}`;
+
+export const GET_TOKEN_BALANCE_QUERY : DocumentNode = gql `
+query Query {
+  gettoken {
+    tokenBalance
+    success
+    message
+  }
+}`;
