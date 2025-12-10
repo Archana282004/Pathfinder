@@ -1,4 +1,4 @@
-import BookNewSession from "@/components/student/sessions/book-session"
+import BookNewSession from "@/src/components/student/sessions/book-session"
 
 const BookNewSessionPage = () =>{
     return(

@@ -1,3 +1,5 @@
+"use client"
+
 import { AdminPaymentCards } from "@/src/lib/mock-data";
 import OverviewCards from "@/src/components/ui/overviewcards";
 

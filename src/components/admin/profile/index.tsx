@@ -1,10 +1,10 @@
-"use client";
+"use client"
+
 import { useState } from "react";
 import UpdatePassword from "../../ui/upadate-password";
 import Header from "../../ui/header";
 import ProfileTab from "../../profile";
-import StudentNav from "../../navigation/student-nav";
-import { current } from "@reduxjs/toolkit";
+import AdminNav from "../../navigation/admin-nav";
 
 const AdminProfileComponent = () => {
   const [active, setActive] = useState("profile");
@@ -28,23 +28,32 @@ const AdminProfileComponent = () => {
       ? "border-transparent text-white-400 font-semibold"
       : "border-transparent text-gray-500"
     }`;
-  
+
   return (
     <div className="min-h-screen bg-background">
-      <StudentNav />
+      <AdminNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex justify-between">
             <Header heading="My Profile" description="Update your personal information" />
           </div>
           <div className="flex gap-4 ">
-            <button className={tabClasses("profile")} onClick={() => setActive("profile")}>
+            <button
+              type="button"
+              className={tabClasses("profile")}
+              onClick={() => setActive("profile")}
+            >
               Profile
             </button>
 
-            <button className={tabClasses("password")} onClick={() => setActive("password")}>
+            <button
+              type="button"
+              className={tabClasses("password")}
+              onClick={() => setActive("password")}
+            >
               Change Password
             </button>
+
           </div>
           <div className="mt-4">
             {active === "profile" && <ProfileTab userData={userData} setUserData={setUserData} />}

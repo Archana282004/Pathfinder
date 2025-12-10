@@ -20,4 +20,21 @@ query GetEducatorDashboard($userId: String!) {
     totalEarnings
   }
 }
-`
+`;
+
+export const GET_ADMIN_DASHBOARD_QUERY : DocumentNode = gql`
+query GetAdminDashboard {
+  getAdminDashboard {
+    growthRate
+    activeSessions
+    revenue
+    totalusers
+    users {
+      first_name
+      last_name
+      role
+      created_at
+    }
+  }
+}
+`;

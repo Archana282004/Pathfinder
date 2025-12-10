@@ -1,3 +1,5 @@
+"use client"
+
 import AdminNav from "@/src/components/navigation/admin-nav";
 import Header from "@/src/components/ui/header";
 import UserDetailsCard from "./user-detils-card";

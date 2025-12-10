@@ -1,3 +1,5 @@
+"use client"
+
 import { Card } from "@/src/components/ui/card"
 import RecentMessageCard from "./recent-messages";
 import CardsHeader from "@/src/components/ui/card-header";

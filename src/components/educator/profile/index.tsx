@@ -1,9 +1,10 @@
-"use client";
-import { useState } from "react";
-import UpdatePassword from "../../ui/upadate-password";
-import Header from "../../ui/header";
-import EducatorNav from "../../navigation/educator-nav";
-import EducatorProfileTab from "../../profile/profile-tab";
+"use client"
+
+import { useState } from "react"
+import UpdatePassword from "@/src/components/ui/upadate-password"
+import Header from "@/src/components/ui/header"
+import EducatorNav from "@/src/components/navigation/educator-nav"
+import EducatorProfileTab from "@/src/components/profile/profile-tab"
 
 const EducatorProfileComponent = () => {
   const [active, setActive] = useState("profile");
@@ -19,6 +20,21 @@ const EducatorProfileComponent = () => {
     newPassword: ""
   }
   const [password, setPassword] = useState(initialPasswordData)
+
+   const initialUserData = {
+    updateUserId: "",
+    updateUserInput: {
+      first_name: "",
+      last_name: "",
+      phone: "",
+      profile: {
+            specialization: "",
+            session_topic: "",
+            session_description: ""
+        }
+    }
+  }
+  const [userData, setUserData] = useState(initialUserData)
   return (
     <div className="min-h-screen bg-background">
       <EducatorNav />
@@ -37,7 +53,7 @@ const EducatorProfileComponent = () => {
             </button>
           </div>
           <div className="mt-4">
-            {active === "profile" && <EducatorProfileTab />}
+            {active === "profile" && <EducatorProfileTab userData={userData} setUserData={setUserData}/>}
             {active === "password" && <UpdatePassword password={password} setPassword={setPassword} />}
           </div>
         </div>

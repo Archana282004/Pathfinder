@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent} from "@/src/components/ui/card";
 import TransactionListCard from "./transaction-list-card";
 import CardsHeader from "@/src/components/ui/card-header";

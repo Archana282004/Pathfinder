@@ -5,6 +5,7 @@ import { useState } from "react"
 import SignUpComponent from "@/src/components/signup/sign-up-form"
 import { signUp } from "@/src/store/actions/authaction"
 import { useRouter } from "next/navigation"
+import { useToast } from "@/src/hooks/use-toast"
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -17,7 +18,8 @@ const Signup = () => {
     phone: ""
   }
   const [formData, setFormData] = useState(initialForm)
-  const router = useRouter()
+  const router = useRouter();
+  const {toast} = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,9 +30,10 @@ const Signup = () => {
     });
     if(response.signUp.success){ 
       router.push("/login")
+      toast({title:`${response?.signUp?.message}`, variant:"default"})
     }
     else{
-      alert(response.signUp.message)
+      toast({title:`${response?.signUp?.message}`, variant:"destructive"})
     }
 
 

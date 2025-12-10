@@ -1,4 +1,5 @@
 "use client"
+
 import EducatorNav from "@/src/components/navigation/educator-nav";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
@@ -7,7 +8,6 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 const EducatorFAQComponent = () => {
-    // Store which index is open (null = none)
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const handleAnswer = (index: number) => {
@@ -29,7 +29,7 @@ const EducatorFAQComponent = () => {
 
                     <CardContent className="flex flex-col gap-2">
                         {EducatorFAQslist.map((faq, index) => {
-                            const isAnswer = openIndex === index; // <- only this question opens
+                            const isAnswer = openIndex === index; 
 
                             return (
                                 <Card key={index} className={isAnswer ? "h-40" : "h-20"}>

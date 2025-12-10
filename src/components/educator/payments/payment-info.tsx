@@ -1,12 +1,14 @@
+"use client"
+
 import { Button } from "@/src/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card"
+import { Card, CardContent} from "@/src/components/ui/card"
 import CardsHeader from "@/src/components/ui/card-header"
 
 interface PaymentInfo {
   pendingEarnings: number
 }
 
-export default function PaymentInformation({ pendingEarnings }: PaymentInfo) {
+const PaymentInformation = ({ pendingEarnings }: PaymentInfo)=> {
   return (
     <Card>
       <CardsHeader title="Payout Information" description="How and when you get paid" />
@@ -31,3 +33,5 @@ export default function PaymentInformation({ pendingEarnings }: PaymentInfo) {
     </Card>
   )
 }
+
+export default PaymentInformation;

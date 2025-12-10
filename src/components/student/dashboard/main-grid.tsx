@@ -1,3 +1,4 @@
+"use client"
 
 import { useAppSelector } from "@/src/store/hooks";
 import RecentMesaages from "./recent-messages";
@@ -27,8 +28,8 @@ interface DashboardMainGridProps {
     recentMessages: Message[]
 }
 
-const DashboardMainGrid = ({recentMessages}: DashboardMainGridProps) => {
-const user = useAppSelector((state) => state.auth.user);
+const DashboardMainGrid = ({ recentMessages }: DashboardMainGridProps) => {
+    const user = useAppSelector((state) => state.auth.user);
     const userId = user?.id;
 
 

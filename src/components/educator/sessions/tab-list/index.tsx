@@ -1,43 +1,50 @@
+"use client"
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
 import UpcomingSessionTab from "./upcoming-session-tab"
 import CompletedSessionTab from "./completed-session-tab"
 import CancelledSessionTab from "./cancelled-session-tab";
 
-interface Session {
-  id: string;
-  title: string;
-  educatorId: string;
-  educatorName: string;
-  studentId: string;
-  studentName: string;
-  date: string;
-  time: string;
-  duration: number;
-  status: string;
-  type: string;
-  meetingLink?: string; 
-  notes?: string;
+interface Sessions {
+  id: string,
+  description: string | null,
+  duration_min: number,
+  student: {
+   
+    first_name: string,
+    last_name: string
+  },
+  scheduled_at_start_time: string,
+  title: string,
 }
-
 interface SessionsProps {
-  upcomingSessions: Session[];
-  completedSessions: Session[];
-  cancelledSessions: Session[];
-  expiredSessions:Session[];
+  sessions: Sessions[],
+  completedCount: number,
+  canceledCount: number,
+  upcomingCount: number,
+  expiredCount: number
 }
 
-export default function TabList({ upcomingSessions, completedSessions, cancelledSessions, expiredSessions }: SessionsProps){
+interface TablistProps {
+  upcomingSessions: SessionsProps | null;
+  completedSessions: SessionsProps | null;
+  cancelledSessions: SessionsProps | null;
+  expiredSessions: SessionsProps | null;
+
+}
+
+export default function TabList({ upcomingSessions, completedSessions, cancelledSessions, expiredSessions }: TablistProps){
     return(
             <Tabs defaultValue="upcoming" className="space-y-6">
             <TabsList>
-              <TabsTrigger value="upcoming">Upcoming ({upcomingSessions.length})</TabsTrigger>
-              <TabsTrigger value="completed">Completed ({completedSessions.length})</TabsTrigger>
-              <TabsTrigger value="cancelled">Cancelled ({cancelledSessions.length})</TabsTrigger>
-              <TabsTrigger value="expired">Expired ({expiredSessions.length})</TabsTrigger>
+              <TabsTrigger value="upcoming">Upcoming ({upcomingSessions?.upcomingCount})</TabsTrigger>
+              <TabsTrigger value="completed">Completed ({completedSessions?.completedCount})</TabsTrigger>
+              <TabsTrigger value="cancelled">Cancelled ({cancelledSessions?.canceledCount})</TabsTrigger>
+              <TabsTrigger value="expired">Expired ({expiredSessions?.expiredCount})</TabsTrigger>
             </TabsList>
 
             <TabsContent value="upcoming" className="space-y-4">
-              {upcomingSessions.map((session,index) => (
+              {upcomingSessions?.sessions.map((session,index) => (
                 <UpcomingSessionTab 
                 key={index}
                 session={session}
@@ -46,7 +53,7 @@ export default function TabList({ upcomingSessions, completedSessions, cancelled
             </TabsContent>
 
             <TabsContent value="completed" className="space-y-4">
-              {completedSessions.map((session, index) => (
+              {completedSessions?.sessions.map((session, index) => (
                <CompletedSessionTab 
                key={index}
                session={session}
@@ -56,7 +63,7 @@ export default function TabList({ upcomingSessions, completedSessions, cancelled
 
 
             <TabsContent value="cancelled" className="space-y-4">
-              {cancelledSessions.map((session, index) => (
+              {cancelledSessions?.sessions.map((session, index) => (
                <CancelledSessionTab 
                key={index}
                session={session}
@@ -65,7 +72,7 @@ export default function TabList({ upcomingSessions, completedSessions, cancelled
             </TabsContent>
 
             <TabsContent value="expired" className="space-y-4">
-              {expiredSessions.map((session, index) => (
+              {expiredSessions?.sessions.map((session, index) => (
                <CancelledSessionTab 
                key={index}
                session={session}

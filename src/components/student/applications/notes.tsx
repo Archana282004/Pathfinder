@@ -1,3 +1,5 @@
+"use client"
+
 import { Card } from "@/src/components/ui/card"
 import { Application } from "@/src/lib/types";
 interface NotesProps {

@@ -1,6 +1,7 @@
-import { EducatorOverviewCards } from "@/src/lib/mock-data";
+"use client"
+
 import OverviewCards from "@/src/components/ui/overviewcards";
-import { useAppDispatch, useAppSelector } from "@/src/store/hooks";
+import { useAppSelector } from "@/src/store/hooks";
 import { useEffect, useState } from "react";
 import { getEducatorDashboard_Action } from "@/src/utils/graphql/dashboard/action";
 import { Calendar, DollarSign, Users } from "lucide-react";

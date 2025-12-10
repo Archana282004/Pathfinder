@@ -41,3 +41,6 @@ export const signUp = async (formData: any) => {
   return res;
 };
 
+export const appLogout = async (dispatch: AppDispatch) => {
+      dispatch(authReducer.logout());
+}

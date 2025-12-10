@@ -1,15 +1,74 @@
 "use client"
 
 import  EducatorNav  from "@/src/components/navigation/educator-nav"
-import { mockSessions } from "@/src/lib/mock-data"
 import TabList from "./tab-list"
 import Header from "@/src/components/ui/header"
+import { useAppSelector } from "@/src/store/hooks"
+import { useEffect, useState } from "react"
+import { getSessions_Action } from "@/src/utils/graphql/sessions/action"
 
+ interface Sessions {
+   id: string,
+   description: string | null,
+   duration_min: number,
+   student: {
+     first_name: string,
+     last_name: string
+   },
+   scheduled_at_start_time: string,
+   title: string,
+ }
+ interface SessionsProps {
+   sessions: Sessions[],
+   completedCount: number,
+   canceledCount: number,
+   upcomingCount: number,
+   expiredCount: number
+ }
+ 
 export default function EducatorSessions() {
-  const upcomingSessions = mockSessions.filter((s) => s.status === "upcoming" && s.educatorId === "edu-1")
-  const completedSessions = mockSessions.filter((s) => s.status === "completed" && s.educatorId === "edu-1")
-  const cancelledSessions = mockSessions.filter((s) => s.status === "cancelled" && s.educatorId === "edu-1")
-  const expiredSessions = mockSessions.filter((s) => s.status === "expired" && s.educatorId === "edu-1")
+   const initialData = {
+     sessions: [],
+     completedCount: 0,
+     canceledCount: 0,
+     upcomingCount: 0,
+     expiredCount: 0
+   }
+   const user = useAppSelector((state) => state.auth.user);
+   const userId = user?.id;
+   const [upcoming, setUpcoming] = useState<SessionsProps | null>(initialData);
+   const [completed, setCompleted] = useState<SessionsProps | null>(initialData);
+   const [cancelled, setCancelled] = useState<SessionsProps | null>(initialData);
+   const [expired, setExpired] = useState<SessionsProps | null>(initialData);
+ 
+   useEffect(() => {
+           if (!userId) return;
+           const fetchUpcomingSessions = async () => {
+               const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })
+               setUpcoming(sessionsresponse?.getSessions ?? null)
+           }
+ 
+           const fetchCompletedSessions = async () => {
+               const sessionsresponse = await getSessions_Action({ input: { filter: "COMPLETED" } })
+               setCompleted(sessionsresponse?.getSessions ?? null)
+           }
+ 
+            const fetchCancelledSessions = async () => {
+               const sessionsresponse = await getSessions_Action({ input: { filter: "CANCELLED" } })
+               setCancelled(sessionsresponse?.getSessions ?? null)
+           }
+ 
+           const fetchExpiredSessions = async () => {
+               const sessionsresponse = await getSessions_Action({ input: { filter: "EXPIRED" } })
+               setExpired(sessionsresponse?.getSessions ?? null)
+           }
+ 
+           fetchUpcomingSessions();
+           fetchCompletedSessions();
+           fetchCancelledSessions();
+           fetchExpiredSessions();
+       }, []);
+ 
 
   return (
     <div className="min-h-screen bg-background">
@@ -19,10 +78,10 @@ export default function EducatorSessions() {
           <Header heading="Session Management" description="Manage your counseling sessions and schedule" />
             {/*TabList*/}
             <TabList 
-            upcomingSessions={upcomingSessions}
-            completedSessions={completedSessions}
-            cancelledSessions={cancelledSessions}
-            expiredSessions={expiredSessions}
+            upcomingSessions={upcoming}
+            completedSessions={completed}
+            cancelledSessions={cancelled}
+            expiredSessions={expired}
             />
       
         </div>

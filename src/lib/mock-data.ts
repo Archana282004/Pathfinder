@@ -1118,33 +1118,6 @@ export const mockFinancialAid: FinancialAid[] = [
   },
 ]
 
-export const AdminOverviewCards = [
-  {
-    title: "Total Users",
-    mockAnalyticsdata: mockAnalytics.totalUsers,
-    cardcontent: "+18% from last month",
-    icon: Users
-  },
-  {
-    title: "Revenue",
-    mockAnalyticsdata: mockAnalytics.totalRevenue.toLocaleString(),
-    cardcontent: "+20% from last month",
-    icon: DollarSign
-  },
-  {
-    title: "Active Sessions",
-    mockAnalyticsdata: mockAnalytics.activeSessions,
-    cardcontent: "This Month",
-    icon: Calendar
-  },
-  {
-    title: "Growth Rate",
-    mockAnalyticsdata: mockAnalytics.growthRate,
-    cardcontent: "User Growth",
-    icon: TrendingUp
-  }
-]
-
 export const AdminPaymentCards = [
   {
     title: "Total Revenue",
@@ -1163,27 +1136,6 @@ export const AdminPaymentCards = [
     data: mockAdminPayments.filter((p) => p.status === "pending").length,
     cardcontent: "Awaiting processing",
     icon: Users
-  }
-]
-
-export const EducatorOverviewCards = [
-  {
-    title: "Total Earnings",
-    data: mockEducatorEarnings.filter((e) => e.status === "paid").reduce((sum, e) => sum + e.amount, 0),
-    cardcontent: "+12% from last month",
-    icon: DollarSign
-  },
-  {
-    title: "Active Students",
-    data: new Set(mockSessions.filter((s) => s.educatorId === "edu-1").map((s) => s.studentId)).size,
-    cardcontent: "Current students ",
-    icon: Users
-  },
-  {
-    title: "Sessions This Week",
-    data: mockSessions.filter((s) => s.educatorId === "edu-1" && s.status === "upcoming").length,
-    cardcontent: "2 today",
-    icon: Calendar
   }
 ]
 
@@ -1210,54 +1162,6 @@ export const EducatorPaymentCards = [
   }
 ]
 
-export const StudentOverviewCards = [
-  {
-    title: "Token Balance",
-    data: mockWalletTransactions.reduce((sum, txn) => sum + txn.tokens, 0),
-    icon: Wallet,
-    cardcontent: "Available tokens"
-  },
-  {
-    title: "Upcoming Sessions",
-    data: mockSessions.filter((s) => s.status === "upcoming" && s.studentId === "stu-1").slice(0, 2).length,
-    icon: Calendar,
-    cardcontent: "This Week"
-  },
-  {
-    title: "Completed Sessions",
-    data: mockSessions.filter((s) => s.status === "completed" && s.studentId === "stu-1").length,
-    icon: CheckCircle2,
-    cardcontent: "Total Sessions"
-  },
-  {
-    title: "Unread Messages",
-    data: mockChatConversations.reduce((sum, conv) => sum + conv.unread, 0),
-    icon: MessageSquare,
-    cardcontent: "New messages"
-  }
-]
-
-export const StudentWalletData = [
-  {
-    title: "Total Purchased",
-    data: mockWalletTransactions.filter((t) => t.type === "purchase").reduce((sum, txn) => sum + txn.amount, 0),
-    icon: ArrowDownRight,
-    cardcontent: mockWalletTransactions.filter((t) => t.type === "purchase").length + " transactions"
-  },
-  {
-    title: "Total Spent",
-    data: mockWalletTransactions.filter((t) => t.type === "spent").reduce((sum, txn) => sum + Math.abs(txn.amount), 0),
-    icon: ArrowUpRight,
-    cardcontent: mockWalletTransactions.filter((t) => t.type === "spent").length + " sessions"
-  },
-  {
-    title: "Refunds",
-    data: "$" + mockWalletTransactions.filter((t) => t.type === "refund").reduce((sum, txn) => sum + txn.amount, 0),
-    icon: RefreshCw,
-    cardcontent: mockWalletTransactions.filter((t) => t.type === "refund").length + "refunds"
-  }
-]
-
 export const AdminQuickActionsCard = [
   {
     name: " Manage Users",
@@ -1281,26 +1185,7 @@ export const AdminQuickActionsCard = [
   }
 ]
 
-export const UserTablist = [
-  {
-    value: "all",
-    title: "All Users",
-    description: "Complete list of platform users",
-    data: mockAdminUsers
-  },
-  {
-    value: "students",
-    title: "Students",
-    description: "All registered students",
-    data: mockAdminUsers.filter((u) => u.role === "student")
-  },
-  {
-    value: "educators",
-    title: "Educators",
-    description: "All registered educators",
-    data: mockAdminUsers.filter((u) => u.role === "educator")
-  }
-]
+
 
 export const EducatorQuickActionsData = [
   {
@@ -1366,19 +1251,6 @@ export const TokenPackagesData = [
     action: "Purchase"
   }
 
-]
-
-export const Useroverviewlist = [
-  {name:"Students", value:90, color:"orange"},
-  {name:"Educators", value:28, color:"green"},
-  {name:"Total", value:118, color:"yellow"}
-]
-
-export const Sessionoverviewlist = [
-  { name: "Completed", value: 32, color:"orange" },
-  { name: "Upcoming", value: 12, color:"green" },
-  { name: "Cancelled", value: 3, color:"red" },
-  { name: "Expired", value: 14, color:"yellow" }
 ]
 
 export const EducatorFAQslist = [

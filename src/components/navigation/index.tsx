@@ -14,9 +14,12 @@ import {
 } from "@/src/components/ui/dropdown-menu"
 import { LogOut, User } from "lucide-react"
 import Link from "next/link"
-import { ElementType } from "react"
-import Cookies from "js-cookie"
-import { useAppSelector } from "@/src/store/hooks"
+import { ElementType, useState } from "react"
+import { useAppDispatch, useAppSelector } from "@/src/store/hooks"
+import LogoutModal from "@/src/components"
+import { appLogout } from "@/src/store/actions/authaction"
+import { logout } from "@/src/store/reducers/authreducer"
+import { useToast } from "@/src/hooks/use-toast"
 
 interface navItemsProps {
   navItems: {
@@ -27,20 +30,24 @@ interface navItemsProps {
 }
 
 const NavMenu = ({ navItems }: navItemsProps) => {
-  const { user, logout } = useAuth()
-  
-  const userr = useAppSelector((state)=>state.auth.user)
-   const role = userr?.role;
+  const { user } = useAuth()
+  const userr = useAppSelector((state) => state.auth.user)
+  const role = userr?.role;
   const router = useRouter()
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const [logOff, setLogOff] = useState(false)
+  const dispatch = useAppDispatch();
+  const {toast} = useToast();
 
   const handleLogout = () => {
-    logout()
-    router.push("/")
+    setLogOff(true);
   }
 
-
-
+  const handleConfirm = () =>{
+    dispatch(logout())
+    toast({title:"LogOut Successfull "})
+    router.push("/login")
+  }
 
   return (
     <nav className="border-b bg-card">
@@ -70,16 +77,16 @@ const NavMenu = ({ navItems }: navItemsProps) => {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                 <Avatar>
-                  <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name} />
-                  <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
+                  <AvatarImage src={userr?.avatar_path || "/educator-woman.jpg"} alt={user?.name} />
+                  <AvatarFallback>{userr?.name?.charAt(0)}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium">{user?.name}</p>
-                  <p className="text-xs text-muted-foreground">{user?.email}</p>
+                  <p className="text-sm font-medium">{userr?.first_name + " " + userr?.last_name}</p>
+                  <p className="text-xs text-muted-foreground">{userr?.email}</p>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuItem asChild>
@@ -95,6 +102,12 @@ const NavMenu = ({ navItems }: navItemsProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          {logOff && <LogoutModal 
+          open={logOff}
+          setOpen={setLogOff}
+          onConfirm={handleConfirm}
+          />}
 
         </div>
       </div>

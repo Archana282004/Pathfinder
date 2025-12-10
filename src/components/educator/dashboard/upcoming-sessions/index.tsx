@@ -1,3 +1,5 @@
+"use client"
+
 import { Card } from "@/src/components/ui/card"
 import UpcomingSessionTab from "./upcoming-sessions-tab";
 import CardsHeader from "@/src/components/ui/card-header";

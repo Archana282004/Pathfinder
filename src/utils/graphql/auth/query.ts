@@ -63,4 +63,21 @@ mutation UpdateUser($updateUserId: String!, $updateUserInput: UpdateUserInput!) 
       }
     }
   }
+}`;
+
+export const GET_USER_QUERY : DocumentNode = gql`
+query Query($userId: String!) {
+  user(id: $userId) {
+    email
+    first_name
+    last_name
+    phone
+    role
+    avatar_path
+      profile {
+        specialization
+        session_topic
+        session_description
+      }
+  }
 }`

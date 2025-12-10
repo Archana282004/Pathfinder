@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import StudentNav  from "@/src/components/navigation/student-nav"
 import { mockChatConversations, mockMessages } from "@/src/lib/mock-data"
 import ChatWindow from "./chat-window"
 import ConversationList from "./conversation-list"
 import Header from "@/src/components/ui/header"
+import EducatorNav from "../../navigation/educator-nav"
 
 const StudentChat = () => {
   const [selectedConversation, setSelectedConversation] = useState(mockChatConversations[0].id)
@@ -16,7 +16,7 @@ const StudentChat = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <StudentNav />
+      <EducatorNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <Header heading="Messages" description="Chat with your Students"/>

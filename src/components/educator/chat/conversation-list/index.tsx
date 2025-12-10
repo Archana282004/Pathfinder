@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardHeader, CardTitle } from "@/src/components/ui/card"
 import ConversationListCard from "./conversation-list";
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { Application } from "@/src/lib/types";
 
 interface ApplicationDetailsProps{

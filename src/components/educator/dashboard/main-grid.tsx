@@ -1,3 +1,4 @@
+"use client"
 
 import { useEffect, useState } from "react";
 import UpcomingSessions from "./upcoming-sessions";
@@ -36,7 +37,7 @@ const DashboardMainGrid = () => {
         if (!userId) return;
         const fetchEduAvailability = async () => {
             const response = await getEducatorAvalability_Action();
-            setAvailability(response?.GetEducatorAvailability?.availabilityDays ?? []);
+            setAvailability(response?.GetEducatorAvailability?.availabilityDays.slice(0,3) ?? []);
         }
         const fetchEduUpcomingSessions = async () => {
             const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })

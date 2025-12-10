@@ -1,11 +1,53 @@
+"use client"
+
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent } from "@/src/components/ui/card";
 import CardsHeader from "@/src/components/ui/card-header";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
+import { Settings_Action } from "@/src/utils/graphql/settings/action";
+import { useToast } from "@/src/hooks/use-toast";
 
+ interface Settingstype {
+    default_admin_token: number,
+    cancellation_time: {
+        hours: number,
+        minutes: number
+    },
+    reschedule_time: {
+        hours: number,
+        minutes: number
+    },
+    session_amount: string
+}
+ interface SettingsProps {
+    settings: Settingstype,
+     handleNestedChange: (e: React.ChangeEvent<HTMLInputElement>, parent: "cancellation_time" | "reschedule_time") => void
+    
+}
 
-const CancellationAndRescheduling = () => {
+const CancellationAndRescheduling = ({ settings, handleNestedChange }: SettingsProps) => {
+    const {toast} = useToast();
+    const handleSubmit = async () => {
+        
+        const response = await Settings_Action({
+            variables: {
+                input: {
+                    default_admin_token: Number(settings?.default_admin_token),
+                    cancellation_time: {hours:settings?.cancellation_time?.hours, minutes:settings?.cancellation_time?.minutes},
+                    reschedule_time: {hours:settings?.reschedule_time?.hours, minutes:settings?.reschedule_time?.minutes},
+                    session_amount: settings.session_amount
+                }
+            }
+        })
+        
+        if(response?.adminUpdateSettings?.success){ 
+            toast({title:`${response?.adminUpdateSettings?.message}`, variant:"default"})
+        }else{ 
+             toast({title:`${response?.adminUpdateSettings?.message}`, variant:"destructive"})
+        }
+    }
+
     return (
         <Card>
             <CardsHeader
@@ -19,12 +61,12 @@ const CancellationAndRescheduling = () => {
                         <div className="flex gap-4 w-full">
                             <div className="flex flex-col flex-1">
                                 <p className="text-muted-foreground">Hours</p>
-                                <Input type="number" className="w-full" />
+                                <Input name="hours" type="number" className="w-full" value={settings?.cancellation_time?.hours} onChange={(e) => handleNestedChange(e, "cancellation_time")} />
                             </div>
 
                             <div className="flex flex-col flex-1">
                                 <p className="text-muted-foreground">Minutes</p>
-                                <Input type="number" className="w-full" />
+                                <Input name="minutes" type="number" className="w-full" value={settings?.cancellation_time?.minutes} onChange={(e) => handleNestedChange(e, "cancellation_time")} />
                             </div>
                         </div>
 
@@ -38,12 +80,12 @@ const CancellationAndRescheduling = () => {
                         <div className="flex gap-4 w-full">
                             <div className="flex flex-col flex-1">
                                 <p className="text-muted-foreground">Hours</p>
-                                <Input type="number" className="w-full" />
+                                <Input name="hours" type="number" className="w-full" value={settings?.reschedule_time?.hours} onChange={(e) => handleNestedChange(e, "reschedule_time")} />
                             </div>
 
                             <div className="flex flex-col flex-1">
                                 <p className="text-muted-foreground">Minutes</p>
-                                <Input type="number" className="w-full" />
+                                <Input name="minutes" type="number" className="w-full" value={settings?.reschedule_time?.minutes} onChange={(e) => handleNestedChange(e, "reschedule_time")} />
                             </div>
                         </div>
 
@@ -55,7 +97,7 @@ const CancellationAndRescheduling = () => {
 
                 </div>
                 <div className="flex justify-end">
-                    <Button size="sm">
+                    <Button type="submit" onClick={handleSubmit} >
                         Save
                     </Button>
                 </div>

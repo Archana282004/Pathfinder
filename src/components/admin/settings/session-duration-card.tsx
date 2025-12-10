@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent } from "@/src/components/ui/card";
 import CardsHeader from "@/src/components/ui/card-header";
 import { Input } from "@/src/components/ui/input";

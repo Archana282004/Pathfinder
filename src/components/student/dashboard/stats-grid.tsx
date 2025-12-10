@@ -1,6 +1,8 @@
-import { mockChatConversations, StudentOverviewCards } from "@/src/lib/mock-data"
+"use client"
+
+import { mockChatConversations } from "@/src/lib/mock-data"
 import OverviewCards from "@/src/components/ui/overviewcards"
-import { useAppDispatch, useAppSelector } from "@/src/store/hooks"
+import {  useAppSelector } from "@/src/store/hooks"
 import { getStudentDashboard_Action } from "@/src/utils/graphql/dashboard/action";
 import { useEffect, useState } from "react";
 import { Calendar, CheckCircle2, MessageSquare, Wallet } from "lucide-react";

@@ -1,3 +1,5 @@
+"use client"
+
 import AdminNav from "@/src/components/navigation/admin-nav";
 import { Button } from "@/src/components/ui/button";
 import Header from "@/src/components/ui/header";

@@ -1,8 +1,10 @@
+"use client"
+
 import { Card, CardContent} from "@/src/components/ui/card"
 import { TokenPackagesData } from "@/src/lib/mock-data"
 import TokenPackagesCard from "./token-packages"
 import CardsHeader from "@/src/components/ui/card-header"
-export default function TokenPackages() {
+const TokenPackages = () => {
     return (
         <Card>
             <CardsHeader title="Buy Token Packages" description="Choose a package that fits your needs" />
@@ -23,3 +25,5 @@ export default function TokenPackages() {
         </Card>
     )
 }
+
+export default TokenPackages;

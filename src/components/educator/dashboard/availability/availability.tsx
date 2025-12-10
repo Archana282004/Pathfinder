@@ -1,4 +1,4 @@
-"use client"
+
 interface availabiltyProps{
     day:string,
     startTime:string,

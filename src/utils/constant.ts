@@ -238,3 +238,4 @@ export const COLORS = {
 export const ERROR_MSG = {
   network: 'Network Error: Unable to connect to the server'
 }
+

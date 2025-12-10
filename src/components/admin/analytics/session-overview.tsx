@@ -1,9 +1,22 @@
-import { Card, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { Sessionoverviewlist } from "@/src/lib/mock-data";
-import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+"use client"
 
-const SessionOverview = () => {
-    const data = Sessionoverviewlist
+import { Card, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+interface SessionOverviewProps {
+    sessionData: {
+        cancelled: number,
+        completed: number,
+        upcoming: number,
+        expired: number
+    }
+}
+const SessionOverview = ({ sessionData }: SessionOverviewProps) => {
+    const data = [
+        { name: "Upcoming", value: sessionData?.upcoming, color: "orange" },
+        { name: "Completed", value: sessionData?.completed, color: "green" },
+        { name: "Expired", value: sessionData?.expired, color: "red" },
+        { name: "Cancelled", value: sessionData?.cancelled, color: "yellow" },
+    ]
     return (
         <Card>
             <CardHeader>
@@ -18,7 +31,7 @@ const SessionOverview = () => {
                             label={{ value: "Value", position: "insideBottom", offset: -5 }}
                         />
 
-                        <YAxis  ticks={[0, 10, 20, 30, 40]} />
+                        <YAxis ticks={[0, 50, 100, 150, 200]} />
                         <Tooltip />
                         <Bar dataKey="value">
                             {data.map((entry, index) => (

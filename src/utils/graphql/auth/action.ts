@@ -1,6 +1,6 @@
 "use server"
 import { fetchGraphQLMutation, fetchGraphQLQuery } from ".."
-import { CHANGEPASSWORD_MUTATION, REFRESH_TOKEN_MUTATION, SIGNIN_MUTATION, SIGNUP_MUTATION, UPDATEUSER_MUTATION } from "./query";
+import { CHANGEPASSWORD_MUTATION, GET_USER_QUERY, REFRESH_TOKEN_MUTATION, SIGNIN_MUTATION, SIGNUP_MUTATION, UPDATEUSER_MUTATION } from "./query";
 
 
 export const signIn_Action = async ({
@@ -58,4 +58,10 @@ export const updateUser_Action = async (form: any, selectedFilePath?: string, pr
   return res;
 };
 
-
+export const getUser_Action = async (variables:any ): Promise<any> => { 
+  const res = await fetchGraphQLQuery<any>(
+    GET_USER_QUERY,
+    variables
+  );
+  return res;
+};

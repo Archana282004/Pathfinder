@@ -1,7 +1,10 @@
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import UserForm from "./add-user";
-import ConfirmationModal from "./confirmation-modal";
+"use client"
+
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import UserForm from "./add-user"
+import ConfirmationModal from "./confirmation-modal"
+
 interface KebabMenuProps {
     id: string
 }

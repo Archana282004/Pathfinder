@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent } from "@/src/components/ui/card"
 import QuickActionTab from "./quick-actions-tab"
 import { EducatorQuickActionsData } from "@/src/lib/mock-data"

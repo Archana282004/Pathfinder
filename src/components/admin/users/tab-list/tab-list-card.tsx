@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent } from "@/src/components/ui/card";
@@ -7,13 +9,19 @@ import { useEffect, useRef, useState } from "react";
 import KebabMenu from "../kebab-menu-modal";
 
 interface User {
-  id: string;
-  name: string;
+  id: string
+  active_status: boolean;
+  created_at: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  platform: string;
   role: string;
-  status: string;
-  joinDate: string;
-  avatar?: string;
-  title?: string;
+  avatar_path: string;
+  profile: {
+    specizilization: string;
+  }
 }
 
 interface tablistcardprops {
@@ -28,14 +36,13 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMenu = (id: string) => {
-    setOpenMenuId((prev) => (prev === id ? null : id)); // toggle menu
+    setOpenMenuId((prev) => (prev === id ? null : id)); 
   };
 
-  // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setOpenMenuId(null); // close any open menu
+        setOpenMenuId(null); 
       }
     };
 
@@ -44,40 +51,41 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
   }, []);
 
   return (
-    <TabsContent value={value} className="space-y-4" ref={containerRef}>
+<div>
+      <TabsContent value={value} className="space-y-4" ref={containerRef}>
       <Card>
         <CardContent>
           <div className="space-y-3">
-            {data.map((user) => (
+            {data.map((user, index) => (
               <div
-                key={user.id}
+                key={index}
                 className="relative flex items-center justify-between p-4 border rounded-lg"
               >
                 <div className="flex items-center gap-4">
                   <img
-                    src={user.avatar || "/placeholder.svg"}
-                    alt={user.name}
+                    src={user?.avatar_path || "/educator-woman.jpg"}
+                    alt={user?.first_name + " " + user?.last_name}
                     className="w-12 h-12 rounded-full"
                   />
                   <div>
-                    <p className="font-medium">{user.name}</p>
+                    <p className="font-medium">{user?.first_name + " " + user?.last_name}</p>
                     <p className="text-sm text-muted-foreground">
-                      Joined {new Date(user.joinDate).toLocaleDateString()}
+                      Joined {new Date(user?.created_at).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <Badge
-                    variant={user.status === "active" ? "default" : "secondary"}
+                    variant={user?.active_status ? "default" : "secondary"}
                   >
-                    {user.status}
+                    {user.active_status ? "Active" : "InActive"}
                   </Badge>
 
                   <Button
                     size="sm"
                     variant="ghost"
-                    onClick={() => handleMenu(user.id)}
+                    onClick={() => handleMenu(user?.id)}
                   >
                     <MoreVertical className="w-4 h-4" />
                   </Button>
@@ -85,7 +93,7 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
 
                 {/* Dropdown menu only for the clicked user */}
                 {openMenuId === user.id && (
-                  <KebabMenu id={user.id}/>
+                  <KebabMenu id={user.id} />
                 )}
               </div>
             ))}
@@ -93,6 +101,10 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
         </CardContent>
       </Card>
     </TabsContent>
+    
+</div>
+
+    
   );
 };
 

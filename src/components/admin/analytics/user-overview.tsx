@@ -1,9 +1,21 @@
+"use client"
+
 import { Card, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { Useroverviewlist } from "@/src/lib/mock-data";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
-const UserOverview = () => {
-    const data = Useroverviewlist
+interface UserOverviewProps {
+    userOverviewData: {
+        educators: number,
+        students: number,
+        total: number
+    }
+}
+const UserOverview = ({ userOverviewData }: UserOverviewProps) => {
+    const data = [
+        { name: "Educators", value: userOverviewData.educators, color:"orange"},
+        { name: "Students", value: userOverviewData.students, color:"green" },
+        { name: "Total", value: userOverviewData.total, color:"yellow" },
+    ]
     return (
         <Card>
             <CardHeader>

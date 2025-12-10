@@ -1,7 +1,9 @@
+"use client"
+
 import { EducatorPaymentCards } from "@/src/lib/mock-data"
 import OverviewCards from "@/src/components/ui/overviewcards"
 
-export default function PaymentOverview(){
+const PaymentOverview = () =>{
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {EducatorPaymentCards.map((card,index)=>(
@@ -15,3 +17,5 @@ export default function PaymentOverview(){
     </div>
   )
 }
+
+export default PaymentOverview;

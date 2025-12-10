@@ -1,10 +1,10 @@
+"use client"
 
-"use client";
-import { useState } from "react";
-import UpdatePassword from "../../ui/upadate-password";
-import Header from "../../ui/header";
-import AdminNav from "../../navigation/admin-nav";
-import ProfileTab from "../../profile";
+import { useState } from "react"
+import UpdatePassword from "@/src/components/ui/upadate-password"
+import Header from "@/src/components/ui/header"
+import ProfileTab from "../../profile"
+import StudentNav from "@/src/components/navigation/student-nav"
 
 const StudentProfileComponent = () => {
   const [active, setActive] = useState("profile");
@@ -15,41 +15,45 @@ const StudentProfileComponent = () => {
       : "border-transparent text-gray-500"
     }`;
 
-  const initialPasswordData = {
+  const [password, setPassword] = useState({
     currentPassword: "",
-    newPassword: ""
-  }
-  const [password, setPassword] = useState(initialPasswordData)
+    newPassword: "",
+  });
 
-  const initialUserData = {
+  const [userData, setUserData] = useState({
     updateUserId: "",
     updateUserInput: {
       first_name: "",
       last_name: "",
       phone: "",
     }
-  }
-  const [userData, setUserData] = useState(initialUserData)
+  });
+
   return (
     <div className="min-h-screen bg-background">
-      <AdminNav />
+      <StudentNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <div className="flex justify-between">
             <Header heading="My Profile" description="Update your personal information" />
           </div>
-          <div className="flex gap-4 ">
+
+          <div className="flex gap-4">
             <button className={tabClasses("profile")} onClick={() => setActive("profile")}>
               Profile
             </button>
-
             <button className={tabClasses("password")} onClick={() => setActive("password")}>
               Change Password
             </button>
           </div>
+
           <div className="mt-4">
-            {active === "profile" && <ProfileTab userData={userData} setUserData={setUserData}/>}
-            {active === "password" && <UpdatePassword password={password} setPassword={setPassword} />}
+            {active === "profile" && (
+              <ProfileTab userData={userData} setUserData={setUserData} />
+            )}
+            {active === "password" && (
+              <UpdatePassword password={password} setPassword={setPassword} />
+            )}
           </div>
         </div>
       </div>
