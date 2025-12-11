@@ -69,15 +69,23 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
                   />
                   <div>
                     <p className="font-medium">{user?.first_name + " " + user?.last_name}</p>
+
+                    <div className="flex items-center gap-2">
+                    <Badge
+                    variant={user?.role== "EDUCATOR" ? "secondary" : "default"}
+                  >
+                    {user?.role}
+                  </Badge>
                     <p className="text-sm text-muted-foreground">
                       Joined {new Date(user?.created_at).toLocaleDateString()}
                     </p>
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <Badge
-                    variant={user?.active_status ? "default" : "secondary"}
+                    variant={user?.active_status ? "secondary" : "default"}
                   >
                     {user.active_status ? "Active" : "InActive"}
                   </Badge>
@@ -91,9 +99,8 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
                   </Button>
                 </div>
 
-                {/* Dropdown menu only for the clicked user */}
                 {openMenuId === user.id && (
-                  <KebabMenu id={user.id} />
+                  <KebabMenu id={user.id} active_status={user?.active_status} />
                 )}
               </div>
             ))}

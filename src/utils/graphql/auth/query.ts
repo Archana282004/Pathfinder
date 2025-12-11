@@ -56,6 +56,7 @@ mutation UpdateUser($updateUserId: String!, $updateUserInput: UpdateUserInput!) 
       first_name
       last_name
       role
+      active_status
       profile {
         specialization
         session_topic
@@ -73,7 +74,9 @@ query Query($userId: String!) {
     last_name
     phone
     role
+    platform
     avatar_path
+    active_status
       profile {
         specialization
         session_topic

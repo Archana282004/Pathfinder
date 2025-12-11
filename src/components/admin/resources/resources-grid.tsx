@@ -39,8 +39,6 @@ const ResourceGrid = ({ resources }: ResourcesProps) => {
                     toast({ title: `${response?.RemoveResource?.message}`, variant: "default" });
                 }
             }
-
-
             removeresource();
         }
     }

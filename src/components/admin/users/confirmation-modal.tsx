@@ -1,27 +1,55 @@
-"use client"
+"use client";
 
 import { Button } from "@/src/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog";
 
-const ConfirmationModal = ({open, setOpen}:any) =>{
-    return(
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent>
+interface ConfirmationModalProps {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    active_status: boolean;
+    handleStatusToggle: () => void;
+}
+
+const ConfirmationModal = ({
+    open,
+    setOpen,
+    active_status,
+    handleStatusToggle
+}: ConfirmationModalProps) => {
+
+    return (
+        <Dialog open={open} onOpenChange={setOpen} >
+            <DialogContent >
                 <DialogHeader>
-                <DialogTitle>
-                    Deactivate User
-                </DialogTitle>
-                <p className="text-muted-foreground text-sm">Are you sure you want to deactivate this user?</p>
+                    <DialogTitle>
+                        {active_status ? "Deactivate User" : "Activate User"}
+                    </DialogTitle>
+                    <p className="text-muted-foreground text-sm">
+                        Are you sure you want to {active_status ? "deactivate" : "activate"} this user?
+                    </p>
+                </DialogHeader>
+
                 <DialogFooter>
-                    <Button className="bg-transparent text-color-white border border-color-orange hover:bg-transparent text-color-white">Cancel</Button>
-                    <Button className="bg-lime-700 text-color-white hover:bg-lime-700 text-color-white">Deactivate</Button>
-                     <Button size="sm" asChild>
-                  </Button>
+                    <Button
+                        variant="outline"
+                        onClick={() => setOpen(false)}
+                    >
+                        Cancel
+                    </Button>
+
+                    <Button
+                        className="bg-lime-700 text-white hover:bg-lime-800"
+                        onClick={() => {
+                            handleStatusToggle();
+                            setOpen(false); 
+                        }}
+                    >
+                        {active_status ? "Deactivate" : "Activate"}
+                    </Button>
                 </DialogFooter>
-            </DialogHeader>
             </DialogContent>
         </Dialog>
-    )
-}
+    );
+};
 
 export default ConfirmationModal;

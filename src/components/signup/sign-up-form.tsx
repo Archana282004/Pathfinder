@@ -71,7 +71,6 @@ const SignUpForm = ({
 
       <CardContent className="space-y-4">
         <form onSubmit={handleValidationSubmit} className="space-y-4">
-          {/* ROLE */}
           <div className="space-y-3">
             <Label>I am a...</Label>
             <RadioGroup

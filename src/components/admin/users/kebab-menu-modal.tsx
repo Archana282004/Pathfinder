@@ -4,12 +4,14 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import UserForm from "./add-user"
 import ConfirmationModal from "./confirmation-modal"
+import { updateUser_Action } from "@/src/utils/graphql/auth/action"
 
 interface KebabMenuProps {
     id: string
+    active_status: boolean;
 }
 
-const KebabMenu = ({ id }: KebabMenuProps) => {
+const KebabMenu = ({ id, active_status }: KebabMenuProps) => {
     const router = useRouter();
     const handleView = () => {
         router.push(`/admin/users/${id}`)
@@ -23,16 +25,48 @@ const KebabMenu = ({ id }: KebabMenuProps) => {
     const HandleInactivateUser = () => {
         setIsConfirmationOpen(true);
     }
-    return (
-        <div className="absolute right-10 top-14 bg-black shadow-md border rounded-md p-2 w-32 z-50">
-            <p className="p-2 hover:bg-gray-100 cursor-pointer" onClick={handleView}>View</p>
-            <p className="p-2 hover:bg-gray-100 cursor-pointer" onClick={HandleEditUser}>Edit</p>
-            <p className="p-2 hover:bg-gray-100 cursor-pointer" onClick={HandleInactivateUser}>Inactive</p>
-            <UserForm open={isOpen} setOpen={setIsOpen} mode="edit" />
-            <ConfirmationModal open={isConfirmationOpen} setOpen={setIsConfirmationOpen} />
-        </div>
 
-    )
+    const handleStatusToggle = async () => {
+        try {
+            debugger
+            const response = await updateUser_Action({
+                updateUserId: id,
+                updateUserInput: {
+                    active_status: !active_status,
+                },
+            })
+            debugger
+
+            setIsConfirmationOpen(false);
+
+        } catch (error) {
+            console.error("Status update failed:", error);
+        }
+    };
+
+
+    return (
+        <>
+            <div className="absolute right-10 top-14 bg-black shadow-md border rounded-md p-2 w-32 z-50" >
+                <p className="p-2 hover:bg-gray-100 cursor-pointer" onClick={handleView}>View</p>
+                <p className="p-2 hover:bg-gray-100 cursor-pointer" onClick={HandleEditUser}>Edit</p>
+                <p className="p-2 hover:bg-gray-100 cursor-pointer" onClick={HandleInactivateUser}>
+                    {active_status ? "InActive" : "Active"}
+                </p>
+
+                <UserForm open={isOpen} setOpen={setIsOpen} mode="edit" />
+            </div>
+
+            {/* Move dialog here */}
+            <ConfirmationModal
+                open={isConfirmationOpen}
+                setOpen={setIsConfirmationOpen}
+                active_status={active_status}
+                handleStatusToggle={handleStatusToggle}
+            />
+        </>
+    );
+
 }
 
 export default KebabMenu;
