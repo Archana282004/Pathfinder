@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/src/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog";
 
 interface ConfirmationModalProps {
     open: boolean;
@@ -18,18 +18,26 @@ const ConfirmationModal = ({
 }: ConfirmationModalProps) => {
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} >
+        <Dialog open={open} data-modal-open={open ? "true" : "false"} onOpenChange={setOpen} >
             <DialogContent >
                 <DialogHeader>
                     <DialogTitle>
                         {active_status ? "Deactivate User" : "Activate User"}
                     </DialogTitle>
-                    <p className="text-muted-foreground text-sm">
+                    <DialogDescription className="text-muted-foreground text-sm">
                         Are you sure you want to {active_status ? "deactivate" : "activate"} this user?
-                    </p>
+                    </DialogDescription>
                 </DialogHeader>
-
+                   
                 <DialogFooter>
+                    <button className="bg-lime-700 text-white hover:bg-lime-800"
+                        onClick={() => { debugger
+                            console.log("Clicked");
+                            handleStatusToggle();
+                            setOpen(false); 
+                        }}>
+                        {active_status ? "Deactivate" : "Activate"}
+                    </button>
                     <Button
                         variant="outline"
                         onClick={() => setOpen(false)}
@@ -37,15 +45,6 @@ const ConfirmationModal = ({
                         Cancel
                     </Button>
 
-                    <Button
-                        className="bg-lime-700 text-white hover:bg-lime-800"
-                        onClick={() => {
-                            handleStatusToggle();
-                            setOpen(false); 
-                        }}
-                    >
-                        {active_status ? "Deactivate" : "Activate"}
-                    </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

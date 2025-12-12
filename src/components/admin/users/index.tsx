@@ -2,7 +2,6 @@
 
 import  AdminNav  from "@/src/components/navigation/admin-nav"
 import { Button } from "@/src/components/ui/button"
-import { mockAdminUsers } from "@/src/lib/mock-data"
 import SearchFilter from "./search-filter"
 import AdminTabslist from "./tab-list"
 import Header from "../../ui/header"
@@ -10,9 +9,6 @@ import { useState } from "react"
 import UserForm from "./add-user"
 
 const AdminUsers = () => {
-  const students = mockAdminUsers.filter((u) => u.role === "student")
-  const educators = mockAdminUsers.filter((u) => u.role === "educator")
-  const allUsers = mockAdminUsers
   const [isOpen, setIsOpen] = useState(false)
   const HandleAddUser = () =>{
     setIsOpen(true);
@@ -31,11 +27,7 @@ const AdminUsers = () => {
           {/* Search and Filter */}
           <SearchFilter />
 
-         <AdminTabslist 
-         students={students}
-         educators={educators}
-         allUsers={allUsers}
-         />
+         <AdminTabslist />
          
          <UserForm open={isOpen} setOpen={setIsOpen} mode="create" />
         </div>

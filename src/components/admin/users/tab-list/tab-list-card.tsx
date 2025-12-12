@@ -99,6 +99,7 @@ const TablistCard = ({ value, data }: tablistcardprops) => {
                   </Button>
                 </div>
 
+                {/* Dropdown menu only for the clicked user */}
                 {openMenuId === user.id && (
                   <KebabMenu id={user.id} active_status={user?.active_status} />
                 )}

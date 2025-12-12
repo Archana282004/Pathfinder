@@ -16,8 +16,9 @@ const KebabMenu = ({ id, active_status }: KebabMenuProps) => {
     const handleView = () => {
         router.push(`/admin/users/${id}`)
     }
-    const [isOpen, setIsOpen] = useState(false)
-    const HandleEditUser = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    
+    const HandleEditUser = () => { debugger
         setIsOpen(true);
     }
 
@@ -27,6 +28,7 @@ const KebabMenu = ({ id, active_status }: KebabMenuProps) => {
     }
 
     const handleStatusToggle = async () => {
+        debugger
         try {
             debugger
             const response = await updateUser_Action({
@@ -37,13 +39,10 @@ const KebabMenu = ({ id, active_status }: KebabMenuProps) => {
             })
             debugger
 
-            setIsConfirmationOpen(false);
-
         } catch (error) {
             console.error("Status update failed:", error);
         }
     };
-
 
     return (
         <>
@@ -54,16 +53,24 @@ const KebabMenu = ({ id, active_status }: KebabMenuProps) => {
                     {active_status ? "InActive" : "Active"}
                 </p>
 
-                <UserForm open={isOpen} setOpen={setIsOpen} mode="edit" />
             </div>
 
-            {/* Move dialog here */}
-            <ConfirmationModal
-                open={isConfirmationOpen}
-                setOpen={setIsConfirmationOpen}
-                active_status={active_status}
-                handleStatusToggle={handleStatusToggle}
-            />
+            {isOpen && (
+                <UserForm
+                    open={isOpen}
+                    setOpen={setIsOpen}
+                    mode="edit"
+                    id={id}
+                />
+            )}
+            {isConfirmationOpen && (
+                <ConfirmationModal
+                    open={isConfirmationOpen}
+                    setOpen={setIsConfirmationOpen}
+                    active_status={active_status}
+                    handleStatusToggle={handleStatusToggle}
+                />
+            )}
         </>
     );
 

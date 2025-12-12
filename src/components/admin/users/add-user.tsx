@@ -16,10 +16,11 @@ import { useAppSelector } from "@/src/store/hooks"
 interface UserFormProps {
     open: any;
     setOpen: any;
-    mode: "create" | "edit"
+    mode: "create" | "edit";
+    id?: string;
 }
 
-const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
+const UserForm = ({ open, setOpen, mode, id }: UserFormProps) => {
 
     const initialForm = {
         email: "",
@@ -41,9 +42,9 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
         }
     })).current;
 
-    const handleSubmit = async (e: React.FormEvent) => { 
+    const handleSubmit = async (e: React.FormEvent) => { debugger
         e.preventDefault();
- 
+
         if (!validator.allValid()) {
             validator.showMessages();
             forceUpdate(n => n + 1);
@@ -65,15 +66,34 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
     };
 
     useEffect(() => {
-    if (!open) {
-        validator.hideMessages();
-        setFormData(initialForm);   
-        forceUpdate(n => n + 1);
-    }
-}, [open]);
+        if (!open) {
+            validator.hideMessages();
+            setFormData(initialForm);
+            forceUpdate(n => n + 1);
+        }
+    }, [open]);
+
+    useEffect(() => {
+        if (mode === "edit" && id) {
+            const fetchUserData = async () => {
+                const response = await getUser_Action({ userId: id });
+                if (response?.user) {
+                    const user = response.user;
+                    setFormData({
+                        email: user.email || "",
+                        password: user.password || "",
+                        firstName: user.first_name || "",
+                        lastName: user.last_name || "",
+                        role: user.role.toLowerCase() || ""
+                    });
+                }
+            };
+            fetchUserData();
+        }
+    }, [mode, id]);
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} data-modal-open={open ? "true" : "false"} onOpenChange={setOpen}>
             <DialogContent className="flex flex-col gap-8">
                 <DialogHeader>
                     <DialogTitle>{mode === "create" ? "Create an User" : "Edit an User"}</DialogTitle>
@@ -84,13 +104,32 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
 
                     <div className="flex flex-row gap-2 w-full">
                         <Label className="flex items-center gap-2 border p-2 rounded-md cursor-pointer text-sm text-muted-foreground flex-1 text-color-white">
-                            <Input type="radio" name="role" value="student" className="w-4 h-14" onChange={(e) => { setFormData((prev) => ({ ...prev, role: e.target.value }))}}/>
+                            <Input
+                                type="radio"
+                                name="role"
+                                value="student"
+                                className="h-4 w-4"
+                                checked={formData.role === "student"}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({ ...prev, role: e.target.value }))
+                                }
+                            />
+
                             <GraduationCap className="h-4" />
                             Student
                         </Label>
 
                         <Label className="flex items-center gap-2 border p-2 rounded-md cursor-pointer text-sm text-muted-foreground flex-1 text-color-white">
-                            <Input type="radio" name="role" value="educator" className="w-4 h-4" onChange={(e) => { setFormData((prev) => ({ ...prev, role: e.target.value }))}}/>
+                            <Input
+                                type="radio"
+                                name="role"
+                                value="educator"
+                                className="h-4 w-4"
+                                checked={formData.role === "educator"}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({ ...prev, role: e.target.value }))
+                                }
+                            />
                             <Users className="h-4" />
                             Educator
                         </Label>
@@ -104,8 +143,10 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
                         <Input
                             type="text"
                             placeholder="Enter your first name"
+                            value={formData.firstName}
                             onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
                         />
+
                         <span className="text-red-500 text-xs">
                             {validator.message("first name", formData.firstName, "required")}
                         </span>
@@ -116,6 +157,7 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
                         <Input
                             type="text"
                             placeholder="Enter your last name"
+                            value={formData.lastName}
                             onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
                         />
                         <span className="text-red-500 text-xs">
@@ -127,6 +169,7 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
                         <Label>Email</Label>
                         <Input
                             type="email"
+                            value={formData.email}
                             placeholder="Enter your email"
                             onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                         />
@@ -140,6 +183,7 @@ const UserForm = ({ open, setOpen, mode }: UserFormProps) => {
                         <Input
                             type="text"
                             placeholder="Enter your password"
+                            value={formData.password}
                             onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                         />
                         <span className="text-red-500 text-xs">

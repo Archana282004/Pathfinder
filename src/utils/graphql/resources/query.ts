@@ -23,4 +23,25 @@ mutation Mutation($removeResourceId: String!) {
     message
     success
   }
-}`
+}`;
+
+export const CREATE_RESOURCE_MUTATION: DocumentNode = gql`
+  mutation CreateResource($createResourceInput: CreateResourceInput!) {
+    CreateResource(createResourceInput: $createResourceInput) {
+      id
+      title
+      description
+      resource_type
+      created_at
+      updated_at
+      attachment {
+        file_type
+        file_url
+        uploadedByUser {
+          first_name
+          last_name
+        }
+      }
+    }
+  }
+`;

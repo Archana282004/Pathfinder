@@ -10,7 +10,8 @@ interface CategoryTabProps {
 
 const CategoryTab = ({ categories, selected, onSelect }: CategoryTabProps) => {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2">
+    <div>
+      <div className="flex gap-2 overflow-x-auto pb-2">
       {categories.map((category) => (
         <Button
           key={category}
@@ -21,6 +22,11 @@ const CategoryTab = ({ categories, selected, onSelect }: CategoryTabProps) => {
           {category}
         </Button>
       ))}
+    </div>
+
+    <div>
+      <Button >Load More ...</Button>
+    </div>
     </div>
   );
 };

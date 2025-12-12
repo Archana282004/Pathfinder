@@ -10,6 +10,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useAppSelector } from "@/src/store/hooks"
 import { getAllResources_Action } from "@/src/utils/graphql/resources/action"
+import SearchFilter from "../payments/search-filter"
 interface ResourcesProps {
   total: number,
   items: {
@@ -37,17 +38,24 @@ const AdminResources = () => {
   
     const [resources, setResources] = useState<ResourcesProps>(resourcesInitialData)
     const [selectedCategory, setSelectedCategory] = useState("All");
-  
+
+    const [pagination, setPagination] = useState({
+      limit: 10,
+      page: 1,
+      search: ""
+    });
     useEffect(() => {
       if (!userId) return;
   
       const fetchAllResources = async () => {
-        const response = await getAllResources_Action({})
+        debugger
+        const response = await getAllResources_Action({searchFilter:{...pagination}})
+        debugger
         setResources(response?.GetAllResources || resourcesInitialData)
       };
   
       fetchAllResources();
-    }, [userId]);
+    }, [userId, pagination]);
   
     const categoryMap: Record<string, string> = {
       "Essay Writing": "ESSAY_WRITING",
@@ -80,7 +88,7 @@ const AdminResources = () => {
 
           </div>
           {/* Search and Filter */}
-          <SearchBar />
+          <SearchBar pagination={pagination}  setPagination={setPagination} />
 
           {/* Category Tabs */}
           <CategoryTab
