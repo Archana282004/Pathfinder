@@ -46,25 +46,30 @@ const StudentSessions = () => {
   const [cancelled, setCancelled] = useState<StudentSessionsProps | null>(initialData);
   const [expired, setExpired] = useState<StudentSessionsProps | null>(initialData);
 
+  const [upcomingPagination, setUpcomingPagination] = useState({ page: 1, limit:10, filter:"UPCOMING" });
+  const [completedPagination, setCompletedPagination] = useState({ page: 1, limit:10, filter:"COMPLETED" });
+  const [cancelledPagination, setCancelledPagination] = useState({ page: 1, limit:10, filter:"CANCELLED" });
+  const [expiredPagination, setExpiredPagination] = useState({ page: 1, limit:10, filter:"EXPIRED" });
+
   useEffect(() => {
           if (!userId) return;
           const fetchUpcomingSessions = async () => {
-              const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })
+              const sessionsresponse = await getSessions_Action({ input: { ...upcomingPagination } })
               setUpcoming(sessionsresponse?.getSessions ?? null)
           }
 
           const fetchCompletedSessions = async () => {
-              const sessionsresponse = await getSessions_Action({ input: { filter: "COMPLETED" } })
+              const sessionsresponse = await getSessions_Action({ input: { ...completedPagination } })
               setCompleted(sessionsresponse?.getSessions ?? null)
           }
 
            const fetchCancelledSessions = async () => {
-              const sessionsresponse = await getSessions_Action({ input: { filter: "CANCELLED" } })
+              const sessionsresponse = await getSessions_Action({ input: { ...cancelledPagination } })
               setCancelled(sessionsresponse?.getSessions ?? null)
           }
 
           const fetchExpiredSessions = async () => {
-              const sessionsresponse = await getSessions_Action({ input: { filter: "EXPIRED" } })
+              const sessionsresponse = await getSessions_Action({ input: { ...expiredPagination } })
               setExpired(sessionsresponse?.getSessions ?? null)
           }
 
@@ -72,7 +77,19 @@ const StudentSessions = () => {
           fetchCompletedSessions();
           fetchCancelledSessions();
           fetchExpiredSessions();
-      }, []);
+      }, [upcomingPagination, completedPagination, cancelledPagination, expiredPagination, userId]);
+
+      const handleLoadMore = (activeTab:string) =>{
+        if (activeTab === "upcoming") {
+          setUpcomingPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+        } else if (activeTab === "completed") {
+          setCompletedPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+        } else if (activeTab === "cancelled") {
+          setCancelledPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+        } else if (activeTab === "expired") {
+          setExpiredPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+        }
+      }
 
   return (
     <div className="min-h-screen bg-background">
@@ -91,6 +108,7 @@ const StudentSessions = () => {
             completedSessions={completed}
             cancelledSessions={cancelled}
             expiredSessions={expired}
+            handleLoadMore={handleLoadMore}
           />
 
         </div>

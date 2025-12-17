@@ -6,7 +6,6 @@ import { Badge } from "@/src/components/ui/badge"
 import { FileText, Video, Download, Trash2 } from "lucide-react"
 import { RemoveResource_Action } from "@/src/utils/graphql/resources/action"
 import { useToast } from "@/src/hooks/use-toast"
-import { useRouter } from "next/navigation"
 
 interface ResourcesProps {
     resources: {
@@ -25,7 +24,6 @@ interface ResourcesProps {
 const ResourceGrid = ({ resources }: ResourcesProps) => {
 
     const { toast } = useToast();
-    const router = useRouter();
     const handleOpen = (file_url: string) => {
         if (file_url) {
             window.open(file_url, "_blank");

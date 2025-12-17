@@ -1,74 +1,92 @@
 "use client"
 
-import  EducatorNav  from "@/src/components/navigation/educator-nav"
+import EducatorNav from "@/src/components/navigation/educator-nav"
 import TabList from "./tab-list"
 import Header from "@/src/components/ui/header"
 import { useAppSelector } from "@/src/store/hooks"
 import { useEffect, useState } from "react"
 import { getSessions_Action } from "@/src/utils/graphql/sessions/action"
 
- interface Sessions {
-   id: string,
-   description: string | null,
-   duration_min: number,
-   student: {
-     first_name: string,
-     last_name: string
-   },
-   scheduled_at_start_time: string,
-   title: string,
- }
- interface SessionsProps {
-   sessions: Sessions[],
-   completedCount: number,
-   canceledCount: number,
-   upcomingCount: number,
-   expiredCount: number
- }
- 
+interface Sessions {
+  id: string,
+  description: string | null,
+  duration_min: number,
+  student: {
+    first_name: string,
+    last_name: string
+  },
+  scheduled_at_start_time: string,
+  title: string,
+}
+interface SessionsProps {
+  sessions: Sessions[],
+  completedCount: number,
+  canceledCount: number,
+  upcomingCount: number,
+  expiredCount: number
+}
+
 export default function EducatorSessions() {
-   const initialData = {
-     sessions: [],
-     completedCount: 0,
-     canceledCount: 0,
-     upcomingCount: 0,
-     expiredCount: 0
-   }
-   const user = useAppSelector((state) => state.auth.user);
-   const userId = user?.id;
-   const [upcoming, setUpcoming] = useState<SessionsProps | null>(initialData);
-   const [completed, setCompleted] = useState<SessionsProps | null>(initialData);
-   const [cancelled, setCancelled] = useState<SessionsProps | null>(initialData);
-   const [expired, setExpired] = useState<SessionsProps | null>(initialData);
- 
-   useEffect(() => {
-           if (!userId) return;
-           const fetchUpcomingSessions = async () => {
-               const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })
-               setUpcoming(sessionsresponse?.getSessions ?? null)
-           }
- 
-           const fetchCompletedSessions = async () => {
-               const sessionsresponse = await getSessions_Action({ input: { filter: "COMPLETED" } })
-               setCompleted(sessionsresponse?.getSessions ?? null)
-           }
- 
-            const fetchCancelledSessions = async () => {
-               const sessionsresponse = await getSessions_Action({ input: { filter: "CANCELLED" } })
-               setCancelled(sessionsresponse?.getSessions ?? null)
-           }
- 
-           const fetchExpiredSessions = async () => {
-               const sessionsresponse = await getSessions_Action({ input: { filter: "EXPIRED" } })
-               setExpired(sessionsresponse?.getSessions ?? null)
-           }
- 
-           fetchUpcomingSessions();
-           fetchCompletedSessions();
-           fetchCancelledSessions();
-           fetchExpiredSessions();
-       }, []);
- 
+  const initialData = {
+    sessions: [],
+    completedCount: 0,
+    canceledCount: 0,
+    upcomingCount: 0,
+    expiredCount: 0
+  }
+  const user = useAppSelector((state) => state.auth.user);
+  const userId = user?.id;
+  const [upcoming, setUpcoming] = useState<SessionsProps | null>(initialData);
+  const [completed, setCompleted] = useState<SessionsProps | null>(initialData);
+  const [cancelled, setCancelled] = useState<SessionsProps | null>(initialData);
+  const [expired, setExpired] = useState<SessionsProps | null>(initialData);
+
+  const [upcomingPagination, setUpcomingPagination] = useState({ page: 1, limit: 10, filter: "UPCOMING" });
+  const [completedPagination, setCompletedPagination] = useState({ page: 1, limit: 10, filter: "COMPLETED" });
+  const [cancelledPagination, setCancelledPagination] = useState({ page: 1, limit: 10, filter: "CANCELLED" });
+  const [expiredPagination, setExpiredPagination] = useState({ page: 1, limit: 10, filter: "EXPIRED" });
+
+
+  useEffect(() => {
+    if (!userId) return;
+    const fetchUpcomingSessions = async () => {
+      const sessionsresponse = await getSessions_Action({ input: { ...upcomingPagination } })
+      setUpcoming(sessionsresponse?.getSessions ?? null)
+    }
+
+    const fetchCompletedSessions = async () => {
+      const sessionsresponse = await getSessions_Action({ input: { ...completedPagination } })
+      setCompleted(sessionsresponse?.getSessions ?? null)
+    }
+
+    const fetchCancelledSessions = async () => {
+      const sessionsresponse = await getSessions_Action({ input: { ...cancelledPagination } })
+      setCancelled(sessionsresponse?.getSessions ?? null)
+    }
+
+    const fetchExpiredSessions = async () => {
+      const sessionsresponse = await getSessions_Action({ input: { ...expiredPagination } })
+      setExpired(sessionsresponse?.getSessions ?? null)
+    }
+
+    fetchUpcomingSessions();
+    fetchCompletedSessions();
+    fetchCancelledSessions();
+    fetchExpiredSessions();
+  }, [upcomingPagination, completedPagination, cancelledPagination, expiredPagination]);
+
+  const handleLoadMore = (activeTab: string) => {
+    if (activeTab === "upcoming") {
+      setUpcomingPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+    } else if (activeTab === "completed") {
+      setCompletedPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+    } else if (activeTab === "cancelled") {
+      setCancelledPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+    } else if (activeTab === "expired") {
+      setExpiredPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+    }
+  }
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,14 +94,15 @@ export default function EducatorSessions() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <Header heading="Session Management" description="Manage your counseling sessions and schedule" />
-            {/*TabList*/}
-            <TabList 
+          {/*TabList*/}
+          <TabList
             upcomingSessions={upcoming}
             completedSessions={completed}
             cancelledSessions={cancelled}
             expiredSessions={expired}
-            />
-      
+            handleLoadMore={handleLoadMore}
+          />
+
         </div>
       </div>
     </div>

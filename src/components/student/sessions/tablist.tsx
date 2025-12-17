@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/src/components/ui/card"
 import { Button } from "@/src/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs"
 import { Calendar, Clock, Video, User } from "lucide-react"
+import { useState } from "react"
 
 interface Sessions {
   id: string,
@@ -32,12 +33,19 @@ interface MainGridProps {
   completedSessions: SessionsProps | null;
   cancelledSessions: SessionsProps | null;
   expiredSessions: SessionsProps | null;
+  handleLoadMore: (activeTab: string) => void
 
 }
 
-const TabList = ({ upcomingSessions, completedSessions, cancelledSessions, expiredSessions }: MainGridProps) => {
+const TabList = ({ upcomingSessions, completedSessions, cancelledSessions, expiredSessions, handleLoadMore }: MainGridProps) => {
+  const [activeTab, setActiveTab] = useState("upcoming");
+
   return (
-    <Tabs defaultValue="upcoming" className="space-y-6">
+    <Tabs
+      value={activeTab}
+      onValueChange={setActiveTab}
+      className="space-y-6"
+    >
       <TabsList>
         <TabsTrigger value="upcoming">Upcoming ({upcomingSessions?.upcomingCount})</TabsTrigger>
         <TabsTrigger value="completed">Completed ({completedSessions?.completedCount})</TabsTrigger>
@@ -101,6 +109,13 @@ const TabList = ({ upcomingSessions, completedSessions, cancelledSessions, expir
             </CardContent>
           </Card>
         ))}
+        {upcomingSessions?.sessions.length === 0 && (
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="text-muted-foreground">No upcoming sessions found.</p>
+            </CardContent>
+          </Card>
+        )}
       </TabsContent>
 
       <TabsContent value="completed" className="space-y-4">
@@ -147,6 +162,18 @@ const TabList = ({ upcomingSessions, completedSessions, cancelledSessions, expir
             </CardContent>
           </Card>
         ))}
+        {completedSessions?.sessions.length === 0 && (
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="text-muted-foreground">No completed sessions found.</p>
+            </CardContent>
+          </Card>
+        )}
+        {completedSessions?.sessions.length != 0 && (
+          <div className="flex justify-center">
+            <Button variant="outline" onClick={() => handleLoadMore(activeTab)}>Load More</Button>
+          </div>
+        )}
       </TabsContent>
 
       <TabsContent value="cancelled" className="space-y-4">
@@ -193,6 +220,18 @@ const TabList = ({ upcomingSessions, completedSessions, cancelledSessions, expir
             </CardContent>
           </Card>
         ))}
+        {cancelledSessions?.sessions.length === 0 && (
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="text-muted-foreground">No cancelled sessions found.</p>
+            </CardContent>
+          </Card>
+        )}
+        {cancelledSessions?.sessions.length != 0 && (
+          <div className="flex justify-center">
+            <Button variant="outline" onClick={() => handleLoadMore(activeTab)}>Load More</Button>
+          </div>
+        )}
       </TabsContent>
 
       <TabsContent value="expired" className="space-y-4">
@@ -239,6 +278,18 @@ const TabList = ({ upcomingSessions, completedSessions, cancelledSessions, expir
             </CardContent>
           </Card>
         ))}
+        {expiredSessions?.sessions.length === 0 && (
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="text-muted-foreground">No expired sessions found.</p>
+            </CardContent>
+          </Card>
+        )}
+        {expiredSessions?.sessions.length != 0 && (
+          <div className="flex justify-center">
+            <Button variant="outline" onClick={() => handleLoadMore(activeTab)}>Load More</Button>
+          </div>
+        )}
       </TabsContent>
     </Tabs>
   )

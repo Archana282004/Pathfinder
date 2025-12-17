@@ -1,58 +1,44 @@
-"use client"
+"use client";
 
-import StudentNav from "@/src/components/navigation/student-nav"
-import SearchFilter from "./search-filter"
-import CategoryTab from "./category-tab"
-import ResourceGrid from "./resources-grid"
-import Header from "@/src/components/ui/header"
-import { useAppSelector } from "@/src/store/hooks"
-import { useEffect, useState } from "react"
-import { getAllResources_Action } from "@/src/utils/graphql/resources/action"
+import AdminNav from "@/src/components/navigation/admin-nav";
+import SearchBar from "./search-filter";
+import CategoryTab from "./category-tab";
+import ResourceGrid from "./resources-grid";
+import Header from "@/src/components/ui/header";
+import { Button } from "@/src/components/ui/button";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "@/src/store/hooks";
+import { getAllResources_Action } from "@/src/utils/graphql/resources/action";
+import StudentNav from "../../navigation/student-nav";
 
-interface ResourcesProps {
-  total: number,
-  items: {
-    id:string,
-    attachment: {
-      file_type: string,
-      file_url: string
-    },
-    description: string,
-    resource_type: string,
-    title: string
-  }[]
-}
-
-const StudentResources = () => {
+const AdminResources = () => {
   const categories = [
     "All",
     "Essay Writing",
     "Test Prep",
     "Financial Aid",
-    "Admissions"
-  ]
+    "Admissions",
+  ];
 
   const user = useAppSelector((state) => state.auth.user);
   const userId = user?.id;
 
-  const resourcesInitialData: ResourcesProps = {
-    total: 0,
-    items: []
-  };
-
-  const [resources, setResources] = useState<ResourcesProps>(resourcesInitialData)
+  const [resources, setResources] = useState({ total: 0, items: [] });
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  useEffect(() => {
-    if (!userId) return;
+  const [pagination, setPagination] = useState({
+    limit: 10,
+    page: 1,
+    search: "",
+    resource_type: "",
+  });
 
-    const fetchAllResources = async () => {
-      const response = await getAllResources_Action({})
-      setResources(response?.GetAllResources || resourcesInitialData)
-    };
-
-    fetchAllResources();
-  }, [userId]);
+  const [allTabPagination, setAllTabPagination] = useState({
+    limit: 10,
+    page: 1,
+    search: ""
+  });
 
   const categoryMap: Record<string, string> = {
     "Essay Writing": "ESSAY_WRITING",
@@ -61,39 +47,95 @@ const StudentResources = () => {
     "Admissions": "ADMISSIONS",
   };
 
-  const filteredResources =
-    selectedCategory === "All"
-      ? resources.items
-      : resources.items.filter(
-        (item) => item.resource_type === categoryMap[selectedCategory]
-      );
+  const handleSearch = (value: string) => {
+    setPagination((prev) => ({
+      ...prev,
+      search: value,
+      page: 1,
+    }));
+  };
+
+  const handleCategorySelect = (category: string) => {
+    
+    setSelectedCategory(category);
+
+    setPagination((prev) => ({
+      ...prev,
+      page: 1,
+      resource_type: category === "All" ? "" : categoryMap[category],
+    }));
+  };
+
+  const handleLoadMore = () => {
+    if (selectedCategory === "All") {
+      setAllTabPagination((prev) => ({ ...prev, page: prev.page + 1 }));
+    } else {
+      setPagination((prev) => ({ ...prev, page: prev.page + 1, resource_type: categoryMap[selectedCategory] }));
+    }
+  };
+
+  useEffect(() => {
+    if (!userId) return;
+    if (selectedCategory == "Financial Aid" || "Essay Writing" || "Test_Prep" || "Admissions") {
+      const fetchAllResources = async () => {
+        const response = await getAllResources_Action({
+          variables: {
+            searchFilter: {
+              limit: pagination.limit, page: pagination.page, search: pagination.search, resource_type: pagination.resource_type
+            }
+          }
+        });
+        setResources(response?.GetAllResources || { total: 0, items: [] });
+      };
+
+      fetchAllResources();
+    }
+    if (selectedCategory == "All") {
+      const fetchAllResources = async () => {
+        const response = await getAllResources_Action({
+          variables: {
+            searchFilter: {
+              limit: allTabPagination.limit, page: allTabPagination.page, search: allTabPagination.search
+            }
+          }
+        });
+        setResources(response?.GetAllResources || { total: 0, items: [] });
+      };
+
+      fetchAllResources();
+    }
+  }, [userId, allTabPagination, pagination]);
+
 
   return (
     <div className="min-h-screen bg-background">
       <StudentNav />
-      <div className="container mx-auto px-4 py-8">
-        <div className="space-y-6">
+
+      <div className="container mx-auto px-4 py-8 space-y-6">
+        <div className="flex justify-between">
           <Header
             heading="Resource Library"
             description="Educational materials and guides to help your college journey"
           />
 
-          {/* Search and Filter */}
-          <SearchFilter />
-
-          {/* Category Tabs */}
-          <CategoryTab
-            categories={categories}
-            selected={selectedCategory}
-            onSelect={setSelectedCategory}
-          />
-
-          {/* Resources Grid */}
-          <ResourceGrid resources={filteredResources} />
+          <Link href="/admin/resources/create-resource">
+            <Button size="sm">Add Resource</Button>
+          </Link>
         </div>
+
+        <SearchBar handleSearch={handleSearch} />
+
+        <CategoryTab
+          categories={categories}
+          selected={selectedCategory}
+          handleSelect={handleCategorySelect}
+        />
+
+        <ResourceGrid resources={resources.items} />
+
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default StudentResources;
+export default AdminResources;

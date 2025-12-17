@@ -5,10 +5,10 @@ import { Button } from "@/src/components/ui/button";
 interface CategoryTabProps {
   categories: string[];
   selected: string;
-  onSelect: (category: string) => void;
+  handleSelect: (category: string) => void;
 }
 
-const CategoryTab = ({ categories, selected, onSelect }: CategoryTabProps) => {
+const CategoryTab = ({ categories, selected, handleSelect }: CategoryTabProps) => {
   return (
     <div>
       <div className="flex gap-2 overflow-x-auto pb-2">
@@ -17,15 +17,11 @@ const CategoryTab = ({ categories, selected, onSelect }: CategoryTabProps) => {
           key={category}
           size="sm"
           variant={selected === category ? "default" : "outline"}
-          onClick={() => onSelect(category)}
+          onClick={() => handleSelect(category)}
         >
           {category}
         </Button>
       ))}
-    </div>
-
-    <div>
-      <Button >Load More ...</Button>
     </div>
     </div>
   );

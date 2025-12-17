@@ -7,13 +7,16 @@ interface ConfirmationModalProps {
     open: boolean;
     setOpen: (open: boolean) => void;
     active_status: boolean;
-    handleStatusToggle: () => void;
+    id: string;
+    handleStatusToggle: (id: string, active_status: boolean) => Promise<void>;
+
 }
 
 const ConfirmationModal = ({
     open,
     setOpen,
     active_status,
+    id,
     handleStatusToggle
 }: ConfirmationModalProps) => {
 
@@ -28,16 +31,19 @@ const ConfirmationModal = ({
                         Are you sure you want to {active_status ? "deactivate" : "activate"} this user?
                     </DialogDescription>
                 </DialogHeader>
-                   
+
                 <DialogFooter>
-                    <button className="bg-lime-700 text-white hover:bg-lime-800"
-                        onClick={() => { debugger
+                    <Button className="bg-lime-700 text-white hover:bg-lime-800"
+                        onClick={() => {
                             console.log("Clicked");
-                            handleStatusToggle();
-                            setOpen(false); 
+                            handleStatusToggle(
+                                id
+                                , active_status).then(() => {
+                                    setOpen(false);
+                                });
                         }}>
                         {active_status ? "Deactivate" : "Activate"}
-                    </button>
+                    </Button>
                     <Button
                         variant="outline"
                         onClick={() => setOpen(false)}
@@ -47,7 +53,7 @@ const ConfirmationModal = ({
 
                 </DialogFooter>
             </DialogContent>
-        </Dialog>
+        </Dialog >
     );
 };
 

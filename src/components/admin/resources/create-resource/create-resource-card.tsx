@@ -56,7 +56,6 @@ const CreateResourceCard = () => {
 
         if (validator.current.allValid()) {
             try {
-                debugger
                 const result = await createResourceAction({
                     title: formData.title,
                     description: formData.description,
@@ -65,7 +64,6 @@ const CreateResourceCard = () => {
                     file_type: formData.fileType,
                     active_status: true,
                 });
-                debugger
 
                 if (result?.CreateResource) {
                     toast({
