@@ -11,6 +11,13 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "@/src/store/hooks";
 import { getAllResources_Action } from "@/src/utils/graphql/resources/action";
 
+interface PaginationProps {
+  limit: number;
+  page: number;
+  search: string;
+  resource_type: string | null;
+}
+
 const AdminResources = () => {
   const categories = [
     "All",
@@ -26,17 +33,11 @@ const AdminResources = () => {
   const [resources, setResources] = useState({ total: 0, items: [] });
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const [pagination, setPagination] = useState({
+  const [pagination, setPagination] = useState<PaginationProps>({
     limit: 10,
     page: 1,
     search: "",
-    resource_type: "",
-  });
-
-  const [allTabPagination, setAllTabPagination] = useState({
-    limit: 10,
-    page: 1,
-    search: ""
+    resource_type: null,
   });
 
   const categoryMap: Record<string, string> = {
@@ -55,28 +56,20 @@ const AdminResources = () => {
   };
 
   const handleCategorySelect = (category: string) => {
-    debugger
     setSelectedCategory(category);
 
     setPagination((prev) => ({
       ...prev,
       page: 1,
-      resource_type: category === "All" ? "" : categoryMap[category],
+      resource_type: category === "All" ? null : categoryMap[category],
     }));
   };
 
-  const handleLoadMore = () => {
-    if (selectedCategory === "All") {
-      setAllTabPagination((prev) => ({ ...prev, page: prev.page + 1 }));
-    } else {
-      setPagination((prev) => ({ ...prev, page: prev.page + 1, resource_type: categoryMap[selectedCategory] }));
-    }
-  };
+
 
   useEffect(() => {
     if (!userId) return;
-    if (selectedCategory == "Financial Aid" || "Essay Writing" || "Test_Prep" || "Admissions") {
-      debugger
+
       const fetchAllResources = async () => {
         const response = await getAllResources_Action({
           variables: {
@@ -85,33 +78,16 @@ const AdminResources = () => {
             }
           }
         });
-        debugger
+        
         setResources(response?.GetAllResources || { total: 0, items: [] });
       };
 
       fetchAllResources();
-    }
-    if (selectedCategory == "All") {
-      const fetchAllResources = async () => {
-        const response = await getAllResources_Action({
-          variables: {
-            searchFilter: {
-              limit: allTabPagination.limit, page: allTabPagination.page, search: allTabPagination.search
-            }
-          }
-        });
-        debugger
-        setResources(response?.GetAllResources || { total: 0, items: [] });
-      };
-
-      fetchAllResources();
-    }
-  }, [userId, allTabPagination, pagination]);
+  }, [userId, pagination]);
 
 
   return (
     <div className="min-h-screen bg-background">
-      <AdminNav />
 
       <div className="container mx-auto px-4 py-8 space-y-6">
         <div className="flex justify-between">

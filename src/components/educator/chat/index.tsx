@@ -16,7 +16,6 @@ const StudentChat = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <EducatorNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <Header heading="Messages" description="Chat with your Students"/>

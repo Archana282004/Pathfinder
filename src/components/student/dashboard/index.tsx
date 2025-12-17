@@ -24,7 +24,6 @@ const StudentDashboard = () => {
     
     return (
         <div className="min-h-screen bg-background">
-            <StudentNav />
             <div className="container mx-auto px-4 py-8">
                 <div className="space-y-8">
                     <Header heading="Welcome back, Emma!" description="Here's what's happening with your college journey" />

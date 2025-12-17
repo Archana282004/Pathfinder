@@ -32,7 +32,6 @@ const EducatorDashboard = () => {
     
     return (
         <div className="min-h-screen bg-background">
-            <EducatorNav />
             <div className="container mx-auto px-4 py-8">
                 <div className="space-y-8">
                     <Header heading={`Welcome back, ${username}`} description="Manage your sessions and help students succeed" />

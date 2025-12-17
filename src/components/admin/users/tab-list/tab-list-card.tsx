@@ -31,9 +31,11 @@ interface User {
 interface TablistCardProps {
   value: string;
   data: User[];
+  handleLoadMore: (type: "all" | "students" | "educators") => void;
+  activeTab: "all" | "students" | "educators";
 }
 
-const TablistCard = ({ value, data }: TablistCardProps) => {
+const TablistCard = ({ value, data, handleLoadMore, activeTab }: TablistCardProps) => {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
@@ -194,9 +196,21 @@ const TablistCard = ({ value, data }: TablistCardProps) => {
                   )}
                 </div>
               ))}
+              {data.length === 0 && (
+                <div className="flex justify-center items-center h-48">
+                  <h2 className="text-lg">No Users Found</h2>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
+        {data.length != 0 && (
+          <div className="flex justify-center">
+            <Button size="sm" onClick={() => handleLoadMore(activeTab)}>
+              Load More...
+            </Button>
+          </div>
+        )}
       </TabsContent>
     </div>
   );

@@ -38,6 +38,13 @@ export const authSlice = createSlice({
       state.token = action.payload.token
       
     },
+    updateUser: (state:any, action: PayloadAction<any>) => {
+      Cookies.set("user", JSON.stringify({ ...state.user, ...action.payload.user }))
+      state.user = { ...state.user, ...action.payload.user };
+    },
+    updateToken: (state:any, action: PayloadAction<any>) => {
+      state.token = action.payload
+    },
     logout: (state:any) => {
       Cookies.remove("access_token");
       Cookies.remove("refresh_token");
@@ -50,6 +57,6 @@ export const authSlice = createSlice({
     },
   }
 });
-export const { login, logout } = authSlice.actions;
+export const { login, logout, updateToken, updateUser } = authSlice.actions;
 
 export default authSlice.reducer;

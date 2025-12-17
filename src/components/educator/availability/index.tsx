@@ -30,7 +30,6 @@ const EducatorAvailability = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <EducatorNav />
       <div className="container mx-auto px-4 py-8 flex flex-col gap-9">
         <Header
           heading="Availability Management"

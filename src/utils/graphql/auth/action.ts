@@ -1,6 +1,6 @@
 "use server"
 import { fetchGraphQLMutation, fetchGraphQLQuery } from ".."
-import { CHANGEPASSWORD_MUTATION, GET_USER_QUERY, REFRESH_TOKEN_MUTATION, SIGNIN_MUTATION, SIGNUP_MUTATION, UPDATEUSER_MUTATION } from "./query";
+import { CHANGEPASSWORD_MUTATION, GET_USER_QUERY, GET_USER_TOKEN, REFRESH_TOKEN_MUTATION, SIGNIN_MUTATION, SIGNUP_MUTATION, UPDATEUSER_MUTATION } from "./query";
 
 
 export const signIn_Action = async ({
@@ -64,4 +64,15 @@ export const getUser_Action = async (variables:any ): Promise<any> => {
     variables
   );
   return res;
+};
+
+export const getUpdatedTokenAction = async () => {
+  try {
+    const res = await fetchGraphQLQuery<any>(
+      GET_USER_TOKEN
+    );
+    return (res as any)?.gettoken?.tokenBalance as number;
+  } catch (error) {
+    return false;
+  }
 };

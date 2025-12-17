@@ -1,3 +1,5 @@
+import { BarChart3, BookOpen, Calendar, Clock, FileText, Home, MessageSquare, Settings, Users, Wallet } from "lucide-react";
+
 export const PUBLIC_PATH = {
   LOGIN: "/login",
   SIGNUP: "/signup",
@@ -239,3 +241,26 @@ export const ERROR_MSG = {
   network: 'Network Error: Unable to connect to the server'
 }
 
+export const studentNavItems = [
+    { href: "/student/dashboard", label: "Dashboard", icon: Home },
+    { href: "/student/sessions", label: "Sessions", icon: Calendar },
+    { href: "/student/chat", label: "Chat", icon: MessageSquare },
+    { href: "/student/wallet", label: "Wallet", icon: Wallet },
+    { href: "/student/resources", label: "Resources", icon: BookOpen },
+    { href: "/student/faq", label: "FAQs", icon: FileText }, // Added FAQ for students
+]
+export const adminNavItems = [
+    { href: "/admin/dashboard", label: "Dashboard", icon: Home },
+    { href: "/admin/users", label: "Users", icon: Users },
+    // { href: "/admin/payments", label: "Payments", icon: DollarSign },
+    { href: "/admin/analytics", label: "Analytics", icon: BarChart3 }, // Added Analytics for admin
+    { href: "/admin/resources", label: "Resources", icon: BookOpen },
+    { href: "/admin/settings", label: "Settings", icon: Settings },
+]
+export const educatorNavItems = [
+    { href: "/educator/dashboard", label: "Dashboard", icon: Home },
+    { href: "/educator/sessions", label: "Sessions", icon: Calendar },
+    { href: "/educator/chat", label: "Chat", icon: MessageSquare },
+    { href: "/educator/availability", label: "Availability", icon: Clock },
+    { href: "/educator/faq", label: "FAQs", icon: FileText }, // Added FAQ for educators
+]

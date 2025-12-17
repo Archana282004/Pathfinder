@@ -53,7 +53,6 @@ const AdminAnalytics = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <AdminNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-8">
           <Header

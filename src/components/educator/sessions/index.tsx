@@ -90,7 +90,6 @@ export default function EducatorSessions() {
 
   return (
     <div className="min-h-screen bg-background">
-      <EducatorNav />
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           <Header heading="Session Management" description="Manage your counseling sessions and schedule" />

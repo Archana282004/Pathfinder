@@ -57,16 +57,11 @@ const AdminTabslist = ({
         <TabsTrigger value="students">Students ({users.totalStudents})</TabsTrigger>
         <TabsTrigger value="educators">Educators ({users.totalEducators})</TabsTrigger>
       </TabsList>
-
+      
       {Userslist.map((card) => (
-        <TablistCard key={card.value} value={card.value} data={card.data} />
-      ))}
+        <TablistCard key={card.value} value={card.value} data={card.data} handleLoadMore={handleLoadMore} activeTab={activeTab} />
 
-      <div className="flex justify-center">
-        <Button size="sm" onClick={() => handleLoadMore(activeTab)}>
-          Load More...
-        </Button>
-      </div>
+      ))}
     </Tabs>
   );
 };

@@ -83,4 +83,13 @@ query Query($userId: String!) {
         session_description
       }
   }
+}`;
+
+
+export const GET_USER_TOKEN: DocumentNode = gql`query Gettoken {
+  gettoken {
+    message
+    success
+    tokenBalance
+  }
 }`

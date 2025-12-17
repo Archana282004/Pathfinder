@@ -20,7 +20,6 @@ const StudentFAQComponent = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            <StudentNav />
             <div className="flex justify-center container mx-auto px-4 py-8">
                 <Card className="w-200">
                     <CardTitle className="flex justify-center text-3xl text-orange-400">

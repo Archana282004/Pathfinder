@@ -148,12 +148,13 @@ const EducatorProfileTab = ({ userData, setUserData }: ProfileTabProps) => {
             forceUpdate(s => !s);
         }
     };
+    const [link, setLink] = useState(userDetails.avatar_path)
 
     return (
         <div>
             <Card>
                 <CardContent className="flex flex-col gap-4">
-                    <ProfilePic link={userDetails.avatar_path} />
+                    <ProfilePic link={link} setLink={setLink} />
                     <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
                         <div className="flex flex-row gap-4">
                             <div className="flex flex-col gap-4 w-full">

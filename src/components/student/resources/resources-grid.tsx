@@ -44,55 +44,68 @@ const ResourceGrid = ({ resources }: ResourcesProps) => {
         }
     }
     return (
-        <div className="grid gap-6 md:grid-cols-2">
-            {resources?.map((resource, index) => (
-                <Card key={index}>
-                    <CardHeader>
-                        <div className="flex items-start justify-between">
-                            <div className="flex items-start gap-3 w-full">
-                                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                                    {resource?.attachment?.file_type === "Video" ? (
-                                        <Video className="w-6 h-6 text-primary" />
-                                    ) : (
-                                        <FileText className="w-6 h-6 text-primary" />
-                                    )}
-                                </div>
-                                <div className="flex items-center justify-between pt-2 w-full">
-                                    <div>
-                                        <CardTitle className="text-lg">{resource.title}</CardTitle>
-                                        <CardDescription className="mt-1">{resource.description}</CardDescription>
+       <div>
+            {resources.length != 0 ?
+                <div className="grid gap-6 md:grid-cols-2">
+                    {resources?.map((resource, index) => (
+                        <Card key={index}>
+                            <CardHeader>
+                                <div className="flex items-start justify-between">
+                                    <div className="flex items-start gap-3 w-full">
+                                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                                            {resource?.attachment?.file_type === "Video" ? (
+                                                <Video className="w-6 h-6 text-primary" />
+                                            ) : (
+                                                <FileText className="w-6 h-6 text-primary" />
+                                            )}
+                                        </div>
+                                        <div className="flex items-center justify-between pt-2 w-full">
+                                            <div>
+                                                <CardTitle className="text-lg">{resource.title}</CardTitle>
+                                                <CardDescription className="mt-1">{resource.description}</CardDescription>
+                                            </div>
+
+                                            <Button
+                                                size="sm"
+                                                variant="ghost"
+                                                className="p-1 red bg-none"
+                                                onClick={() => handleDelete(resource?.id)}
+                                            >
+                                                <Trash2 className="w-1 h-4 bg-none text-red-500" />
+                                            </Button>
+
+                                        </div>
                                     </div>
-
-                                    <Button
-                                        size="sm"
-                                        variant="ghost"
-                                        className="p-1 red bg-none"
-                                        onClick={() => handleDelete(resource?.id)}
-                                    >
-                                        <Trash2 className="w-1 h-4 bg-none text-red-500" />
-                                    </Button>
-
                                 </div>
-                            </div>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
+                            </CardHeader>
+                            <CardContent className="space-y-4">
 
-                        <div className="flex items-center justify-between pt-2 ">
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <Badge variant="secondary">{resource?.resource_type}</Badge>
-                                <span>•</span>
-                                <span>{resource?.attachment?.file_type}</span>
+                                <div className="flex items-center justify-between pt-2 ">
+                                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                        <Badge variant="secondary">{resource?.resource_type}</Badge>
+                                        <span>•</span>
+                                        <span>{resource?.attachment?.file_type}</span>
 
-                            </div>
-                            <Button size="sm" onClick={() => handleOpen(resource?.attachment?.file_url)}>
-                                <Download className="w-4 h-4 mr-2" />
-                                Download
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
-            ))}
+                                    </div>
+                                    <Button size="sm" onClick={() => handleOpen(resource?.attachment?.file_url)}>
+                                        <Download className="w-4 h-4 mr-2" />
+                                        Download
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+                :
+                <div>
+                    <Card>
+                        <CardContent className="flex flex-col items-center ">
+                            <h2 className="text-lg">No Resources Found</h2>
+                            <h5 className="text-sm text-muted-foreground">Try adjusting your filters</h5>
+                        </CardContent>
+                    </Card>
+                </div>
+            }
         </div>
     )
 }
