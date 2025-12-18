@@ -1,55 +1,17 @@
 "use client"
 
-import AdminNav from "@/src/components/navigation/admin-nav"
 import Header from "@/src/components/ui/header"
 import UserOverview from "./user-overview"
 import SessionOverview from "./session-overview"
-import { useEffect, useState } from "react"
-import { useAppSelector } from "@/src/store/hooks"
-import { analytics_Action } from "@/src/utils/graphql/analytics/action"
+import { sessionStatusType, userOverviewType } from "@/src/types/Admintypes"
 
-interface sessionStatus {
-  cancelled: number,
-  completed: number,
-  upcoming: number,
-  expired: number
-}
-interface userOverview {
-  educators: number,
-  students: number,
-  total: number
+
+interface AdminAnalytics {
+  userOverviewData: userOverviewType
+  sessionData: sessionStatusType
 }
 
-const AdminAnalytics = () => {
-  
-  const initialSessionoverviewData = {
-    cancelled: 0,
-    completed: 0,
-    upcoming: 0,
-    expired: 0
-  }
-  const [sessionData, setSessionData] = useState<sessionStatus>(initialSessionoverviewData)
-
-  const initialuseroverviewdata = {
-    educators: 0,
-    students: 0,
-    total: 0
-  }
-  const [userOverviewData, setUserOverviewData] = useState<userOverview>(initialuseroverviewdata)
-
-  const user = useAppSelector((state) => state.auth.user)
-  const userId = user?.id
- useEffect(() => {
-  if (!userId) return;
-
-  const fetchAdminAnalytics = async () => {
-    const response = await analytics_Action();
-    setSessionData(response?.getAnalytics?.sessionStatus);
-    setUserOverviewData(response?.getAnalytics?.userOverview);
-  };
-
-  fetchAdminAnalytics();
-}, [userId]);  
+const AdminAnalytics = ({userOverviewData, sessionData} : AdminAnalytics) => {
 
   return (
     <div className="min-h-screen bg-background">

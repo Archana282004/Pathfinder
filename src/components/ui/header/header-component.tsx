@@ -41,19 +41,19 @@ const HeaderComponent = () => {
   const pathname = usePathname();
   const [logOff, setLogOff] = useState(false)
   const dispatch = useAppDispatch();
-  const {toast} = useToast();
+  const { toast } = useToast();
 
   const handleLogout = () => {
     setLogOff(true);
   }
 
-  const handleConfirm = () =>{
+  const handleConfirm = () => {
     dispatch(logout())
-    toast({title:"LogOut Successfull "})
+    toast({ title: "LogOut Successfull " })
     router.push("/login")
   }
 
-  const navItems = role =="admin"? adminNavItems : (role =="educator" ? educatorNavItems : studentNavItems);
+  const navItems = role == "admin" ? adminNavItems : (role == "educator" ? educatorNavItems : studentNavItems);
 
   return (
     <nav className="border-b bg-card">
@@ -109,10 +109,10 @@ const HeaderComponent = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {logOff && <LogoutModal 
-          open={logOff}
-          setOpen={setLogOff}
-          onConfirm={handleConfirm}
+          {logOff && <LogoutModal
+            open={logOff}
+            setOpen={setLogOff}
+            onConfirm={handleConfirm}
           />}
 
         </div>

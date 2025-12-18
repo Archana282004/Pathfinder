@@ -3,10 +3,9 @@
 import { fetchGraphQLMutation, fetchGraphQLQuery } from "..";
 import { GET_ADMIN_SETTINGS_MUTATION, GET_ADMIN_SETTINGS_QUERY } from "./query";
 
-export const getAdminSettings_Action = async (variables:any ): Promise<any> => {
+export const getAdminSettings_Action = async ( ): Promise<any> => {
   const res = await fetchGraphQLQuery<any>(
-    GET_ADMIN_SETTINGS_QUERY,
-    variables
+    GET_ADMIN_SETTINGS_QUERY
   );
   return res;
 };
