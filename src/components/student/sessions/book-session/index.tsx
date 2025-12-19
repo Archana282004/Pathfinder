@@ -50,11 +50,11 @@ const BookNewSession = () => {
                                             <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
                                         </Avatar>
                                         <div className="flex flex-col gap-2">
-                                        <p className="text-sm font-bold text-white">{i.name}</p>
-                                        <Badge className="bg-lime-800">{i.specialty}</Badge>
+                                            <p className="text-sm font-bold text-white">{i.name}</p>
+                                            <Badge className="bg-lime-800">{i.specialty}</Badge>
+                                        </div>
                                     </div>
-                                    </div>
-                                    
+
 
                                     <p className="text-muted-foreground">{i.bio}</p>
 

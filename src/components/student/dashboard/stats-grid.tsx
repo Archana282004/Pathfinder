@@ -2,35 +2,18 @@
 
 import { mockChatConversations } from "@/src/lib/mock-data"
 import OverviewCards from "@/src/components/ui/overviewcards"
-import {  useAppSelector } from "@/src/store/hooks"
-import { getStudentDashboard_Action } from "@/src/utils/graphql/dashboard/action";
-import { useEffect, useState } from "react";
 import { Calendar, CheckCircle2, MessageSquare, Wallet } from "lucide-react";
+import { StudentDashboardDataType } from "@/src/types/Studenttypes";
 
-const StatsGrid = () => {
-  const user = useAppSelector((state) => state.auth.user);
-  const userId = user?.id;
-  const [dashboardData, setDashboardData] = useState({
-    completedSessions: 0,
-    tokenBalance: 0,
-    upcomingSessions: 0
-  });
-
-  useEffect(() => {
-    if (!userId) return;
-
-    const fetchDashboard = async () => {
-      const res = await getStudentDashboard_Action({ userId });
-      setDashboardData(res?.getStudentDashboard)
-    };
-
-    fetchDashboard();
-
-  }, [userId]);
+interface StatsGridProps {
+  dashboardData: StudentDashboardDataType;
+}
+const StatsGrid = ({ dashboardData }: StatsGridProps) => {
 
   const upcomingSessions = dashboardData?.upcomingSessions || 0;
   const tokenBalance = dashboardData?.tokenBalance || 0;
   const completedSessions = dashboardData?.completedSessions || 0;
+
   return (
     <div className="grid gap-4 md:grid-cols-4">
       <OverviewCards

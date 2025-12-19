@@ -35,7 +35,6 @@ const ConfirmationModal = ({
                 <DialogFooter>
                     <Button className="bg-lime-700 text-white hover:bg-lime-800"
                         onClick={() => {
-                            console.log("Clicked");
                             handleStatusToggle(
                                 id
                                 , active_status).then(() => {

@@ -6,47 +6,14 @@ import { getEducatorAvalability_Action } from "@/src/utils/graphql/availability/
 import Availability from "./availability";
 import { useAppSelector } from "@/src/store/hooks";
 import { getSessions_Action } from "@/src/utils/graphql/sessions/action";
+import { EducatorAvailabilityType, UpcomingSessionsType } from "@/src/types/Educatortypes";
 
-
-interface availabiltyProps {
-    dayOfWeek: string,
-    startTime: string,
-    endTime: string
+interface DashboardMainGridProps{
+    educatoravailability:EducatorAvailabilityType[];
+    upcomingSessions:UpcomingSessionsType[]
 }
-interface upcomingSessionsProps {
-            duration_min: number,
-            educator: {
-                first_name: string,
-                last_name: string
-            },
-            id:string,
-            scheduled_at_start_time: string,
-            title: string
-}
-const DashboardMainGrid = () => {
-    const user = useAppSelector((state) => state.auth.user);
-    const userId = user?.id;
-
-
-    const [educatoravailability, setAvailability] = useState<availabiltyProps[]>([]);
-    const [upcomingSessions, setUpcomingSessions] = useState<upcomingSessionsProps[]>([]);
-
-
-
-    useEffect(() => {
-        if (!userId) return;
-        const fetchEduAvailability = async () => {
-            const response = await getEducatorAvalability_Action();
-            setAvailability(response?.GetEducatorAvailability?.availabilityDays.slice(0,3) ?? []);
-        }
-        const fetchEduUpcomingSessions = async () => {
-            const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })
-            setUpcomingSessions(sessionsresponse?.getSessions?.sessions ?? [])
-        }
-        fetchEduAvailability();
-        fetchEduUpcomingSessions();
-    }, []);
-
+const DashboardMainGrid = ({educatoravailability, upcomingSessions}:DashboardMainGridProps) => {
+       
     return (
         <div className="grid gap-6 md:grid-cols-2">
             <UpcomingSessions upcomingSessions={upcomingSessions} />

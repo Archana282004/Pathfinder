@@ -1,35 +1,21 @@
 "use client"
 
-import EducatorNav  from "@/src/components/navigation/educator-nav"
-import { mockSessions } from "@/src/lib/mock-data"
 import EducatorStats from "./stats-grid"
 import EducatorQuickActions from "./quick-actions"
 import DashboardMainGrid from "./main-grid"
 import Header from "@/src/components/ui/header"
-import { useAppSelector } from "@/src/store/hooks"
+import { EducatorAvailabilityType, EducatorDashboardType, UpcomingSessionsType } from "@/src/types/Educatortypes"
 
-
-interface availabiltyProps {
-    dayOfWeek: string,
-    startTime: string,
-    endTime: string
+interface EducatorDashboardProps {
+    educatoravailability: EducatorAvailabilityType[];
+    upcomingSessions: UpcomingSessionsType[];
+    user: any;
+    dashboardData:EducatorDashboardType;
 }
-interface upcomingSessionsProps {
-            duration_min: number,
-            educator: {
-                first_name: string,
-                last_name: string
-            },
-            id:string,
-            scheduled_at_start_time: string,
-            title: string
-}
+const EducatorDashboard = ({ educatoravailability, upcomingSessions, user, dashboardData }: EducatorDashboardProps) => {
 
-const EducatorDashboard = () => {
-    const user = useAppSelector((state)=>state.auth.user);
-    const username = user?.first_name +" "+ user?.last_name;
-    
-    
+    const username = JSON.parse(user || "{}")?.first_name + " " + JSON.parse(user || "{}")?.last_name;
+
     return (
         <div className="min-h-screen bg-background">
             <div className="container mx-auto px-4 py-8">
@@ -37,10 +23,10 @@ const EducatorDashboard = () => {
                     <Header heading={`Welcome back, ${username}`} description="Manage your sessions and help students succeed" />
 
                     {/* Stats Grid */}
-                    <EducatorStats />
+                    <EducatorStats dashboardData={dashboardData}/>
 
                     {/* Main Content Grid */}
-                    <DashboardMainGrid/>
+                    <DashboardMainGrid educatoravailability={educatoravailability} upcomingSessions={upcomingSessions} />
 
                     {/* Quick Actions */}
                     <EducatorQuickActions />
