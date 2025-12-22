@@ -38,3 +38,34 @@ export type Settingstype = {
     },
     session_amount: string
 }
+
+
+export type Users = {
+  id: string;
+  active_status: boolean;
+  created_at: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  platform: string;
+  role: string;
+  avatar_path: string;
+  profile: {
+    specizilization: string;
+  };
+}
+
+export type AllUsers =  {
+  totalEducators: number;
+  totalStudents: number;
+  totalUsers: number;
+  items: Users[];
+}
+
+export type Paginationtype = {
+  page: number;
+  limit: number;
+  role?: string;
+  search:string;
+}

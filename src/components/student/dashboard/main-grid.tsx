@@ -26,26 +26,10 @@ interface Message {
 
 interface DashboardMainGridProps {
     recentMessages: Message[]
+    upcomingSessions: Session[]
 }
 
-const DashboardMainGrid = ({ recentMessages }: DashboardMainGridProps) => {
-    const user = useAppSelector((state) => state.auth.user);
-    const userId = user?.id;
-
-
-    const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
-
-
-
-    useEffect(() => {
-        if (!userId) return;
-        const fetchStudentUpcomingSessions = async () => {
-            const sessionsresponse = await getSessions_Action({ input: { filter: "UPCOMING" } })
-            setUpcomingSessions(sessionsresponse?.getSessions?.sessions ?? [])
-        }
-        fetchStudentUpcomingSessions();
-    }, []);
-
+const DashboardMainGrid = ({ recentMessages, upcomingSessions }: DashboardMainGridProps) => {
 
     return (
         <div className="grid gap-6 md:grid-cols-2">

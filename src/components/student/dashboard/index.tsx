@@ -7,11 +7,23 @@ import DashboardMainGrid from "./main-grid"
 import Header from "@/src/components/ui/header"
 import { StudentDashboardDataType } from "@/src/types/Studenttypes"
 
+interface Session {
+    duration_min: number,
+    educator: {
+        first_name: string,
+        last_name: string
+    },
+    id: string,
+    scheduled_at_start_time: string,
+    title: string
+}
+
 interface StudentDashboardProps{
     user:any;
     dashboardData: StudentDashboardDataType;
+    upcomingSessions:Session[]
 }
-const StudentDashboard = ({user, dashboardData}:StudentDashboardProps) => {
+const StudentDashboard = ({user, dashboardData, upcomingSessions}:StudentDashboardProps) => {
 
     const recentMessages = mockChatConversations.slice(0, 2).map((conv) => ({
         id: conv.id,
@@ -33,6 +45,7 @@ const StudentDashboard = ({user, dashboardData}:StudentDashboardProps) => {
                     {/* Main Content Grid */}
                     <DashboardMainGrid
                         recentMessages={recentMessages}
+                        upcomingSessions={upcomingSessions}
                     />
                     {/* Quick Actions */}
                     <StudentQuickActions

@@ -56,3 +56,29 @@ query GetSessions($input: GetEducatorSessionsInput) {
   }
 }
 `;
+
+export const GET_EDUCATORS_LIST_QUERY : DocumentNode = gql `
+query EducatorsList($filter: EducatorListFilterInput) {
+  educatorsList(filter: $filter) {
+    educators {
+      session_amount
+      id
+      profile {
+        session_topic
+        amount
+        bio
+        created_at
+        currency_type
+        duration
+        id
+        specialization
+        user_id
+        user {
+          avatar_path
+          first_name
+          last_name
+        }
+    }
+    }
+  }
+}`

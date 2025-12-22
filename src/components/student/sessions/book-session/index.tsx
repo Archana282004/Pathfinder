@@ -8,14 +8,80 @@ import Header from "@/src/components/ui/header"
 import { Input } from "@/src/components/ui/input";
 import { mockEducators } from "@/src/lib/mock-data";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
 import { useAuth } from "@/src/contexts/auth-context";
+import { getEducatorsListAction } from "@/src/utils/graphql/sessions/action";
 
+interface educatorcard {
+    session_amount: string
+    id: string
+    profile: {
+        session_topic: string
+        amount: number
+        bio: string
+        created_at: string
+        currency_type: string
+        duration: []
+        id: string
+        specialization: string
+        user_id: string
+        user: {
+            avatar_path: null
+            first_name: string
+            last_name: string
+        }
+    }
+};
+interface Educatorlisttype {
+    educators:educatorcard[]
+
+}
 const BookNewSession = () => {
 
     const [searchQuery, setSearchQuery] = useState("")
     const { user } = useAuth()
+    const initialData = {
+         session_amount: "",
+        id: "",
+        profile: {
+            session_topic: "",
+            amount: 0,
+            bio: "",
+            created_at: "",
+            currency_type: "",
+            duration: [],
+            id: "",
+            specialization: "",
+            user_id: "",
+            user: {
+                avatar_path: null,
+                first_name: "",
+                last_name: ""
+            }
+        }
+    }
+    debugger
+    const [educatorslist, setEducators] = useState<educatorcard[] | null>([])
+
+    useEffect(() => {
+    const fetchEducators = async () => {
+        debugger
+        const res = await getEducatorsListAction({
+            filter: {
+                limit: 10,
+                page: 1,
+                search: ""
+            }
+        })
+        debugger
+
+        setEducators(res?.educatorsList?.educators || [])
+    }
+
+    fetchEducators()
+}, [])
+
     return (
         <div className="min-h-screen bg-background">
             <div className="container mx-auto px-4 py-8">
@@ -41,22 +107,22 @@ const BookNewSession = () => {
                     {/* EducatorsList */}
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                        {mockEducators.map((i) => (
-                            <Card key={i.name} className="h-60 w-full">
+                        {educatorslist?.map((i) => (
+                            <Card key={i?.id} className="h-70 w-full">
                                 <CardContent className="flex flex-col gap-8">
                                     <div className="flex flex-row gap-2">
                                         <Avatar>
-                                            <AvatarImage src={user?.avatar || "/placeholder.svg"} alt={user?.name} />
+                                            <AvatarImage src={user?.avatar || "/educator-woman.jpg"} alt={user?.name} />
                                             <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
                                         </Avatar>
                                         <div className="flex flex-col gap-2">
-                                            <p className="text-sm font-bold text-white">{i.name}</p>
-                                            <Badge className="bg-lime-800">{i.specialty}</Badge>
+                                            <p className="text-sm font-bold text-white">{i?.profile?.user?.first_name + " " + i?.profile?.user?.last_name}</p>
+                                            <Badge className="bg-lime-800">{i?.profile?.specialization}</Badge>
                                         </div>
                                     </div>
 
 
-                                    <p className="text-muted-foreground">{i.bio}</p>
+                                    <p className="text-muted-foreground">{i?.profile?.bio}</p>
 
                                     <div className="flex justify-between items-start">
                                         <div className="flex flex-col gap-1">
