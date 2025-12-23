@@ -206,7 +206,7 @@ const TablistCard = ({ value, data, handleLoadMore, activeTab }: TablistCardProp
         </Card>
         {data.length != 0 && (
           <div className="flex justify-center">
-            <Button size="sm" onClick={() => handleLoadMore(activeTab)}>
+            <Button size="sm" variant="outline" onClick={() => handleLoadMore(activeTab)}>
               Load More...
             </Button>
           </div>

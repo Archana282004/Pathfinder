@@ -34,15 +34,14 @@ interface educatorcard {
     }
 };
 interface Educatorlisttype {
-    educators:educatorcard[]
+    educators: educatorcard[]
 
 }
 const BookNewSession = () => {
 
-    const [searchQuery, setSearchQuery] = useState("")
     const { user } = useAuth()
     const initialData = {
-         session_amount: "",
+        session_amount: "",
         id: "",
         profile: {
             session_topic: "",
@@ -61,26 +60,38 @@ const BookNewSession = () => {
             }
         }
     }
-    debugger
     const [educatorslist, setEducators] = useState<educatorcard[] | null>([])
+    const [pagination, setPagination] = useState({
+        limit: 10,
+        page: 1,
+        search: ""
+    })
 
     useEffect(() => {
-    const fetchEducators = async () => {
-        debugger
-        const res = await getEducatorsListAction({
-            filter: {
-                limit: 10,
-                page: 1,
-                search: ""
-            }
-        })
-        debugger
+        const fetchEducators = async () => {
+            const res = await getEducatorsListAction({
+                limit: pagination?.limit,
+                page: pagination?.page,
+                search: pagination?.search
+            })
 
-        setEducators(res?.educatorsList?.educators || [])
+            setEducators(res?.educatorsList?.educators || [])
+        }
+
+        fetchEducators()
+    }, [pagination]);
+
+    const handleLoadMore = () => {
+        setPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
     }
 
-    fetchEducators()
-}, [])
+    const handleSearch = (value: string) => {
+        setPagination((prev) => ({
+            ...prev,
+            search: value,
+            page: 1,
+        }));
+    };
 
     return (
         <div className="min-h-screen bg-background">
@@ -95,10 +106,9 @@ const BookNewSession = () => {
                             <div className="relative ">
                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                                 <Input
-                                    placeholder="Search by educator, topic, specazilation"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    placeholder="Search..."
                                     className="pl-10"
+                                    onChange={(e) => handleSearch(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -135,11 +145,15 @@ const BookNewSession = () => {
                             </Card>
                         ))}
                     </div>
+                    <div className="flex justify-center">
+                        <Button variant="outline" onClick={() => handleLoadMore()}>Load More</Button>
+                    </div>
 
                 </div>
             </div>
         </div>
     )
 }
+
 
 export default BookNewSession;

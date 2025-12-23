@@ -12,12 +12,10 @@ const ProfilePic = ({ link, setLink }: ProfilePicProps) => {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        debugger
         const file = e.target.files?.[0];
         if (file) {
             const imgURL = URL.createObjectURL(file);
             setImagePreview(imgURL);
-            debugger
             setLink(e.target.files?.[0] ? imgURL : "");
         }
     }

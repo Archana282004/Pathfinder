@@ -1,42 +1,42 @@
 
 export type sessionStatusType = {
-    cancelled: number;
-    completed: number;
-    upcoming: number;
-    expired: number;
+  cancelled: number;
+  completed: number;
+  upcoming: number;
+  expired: number;
 }
 export type userOverviewType = {
-    educators: number;
-    students: number;
-    total: number;
+  educators: number;
+  students: number;
+  total: number;
 }
 
 export type adminCardsType = {
-    growthRate: number;
-    activeSessions: number;
-    revenue: number;
-    totalusers: number;
+  growthRate: number;
+  activeSessions: number;
+  revenue: number;
+  totalusers: number;
 }
 
 export type adminRecentUsersType = {
-    id: string;
-    first_name: string;
-    last_name: string;
-    role: string;
-    created_at: string;
+  id: string;
+  first_name: string;
+  last_name: string;
+  role: string;
+  created_at: string;
 }
 
 export type Settingstype = {
   default_admin_token: number,
-    cancellation_time: {
-      hours: number,
-      minutes: number
-    },
-    reschedule_time: {
-      hours: number,
-      minutes: number
-    },
-    session_amount: string
+  cancellation_time: {
+    hours: number,
+    minutes: number
+  },
+  reschedule_time: {
+    hours: number,
+    minutes: number
+  },
+  session_amount: string
 }
 
 
@@ -56,7 +56,7 @@ export type Users = {
   };
 }
 
-export type AllUsers =  {
+export type AllUsers = {
   totalEducators: number;
   totalStudents: number;
   totalUsers: number;
@@ -67,5 +67,19 @@ export type Paginationtype = {
   page: number;
   limit: number;
   role?: string;
-  search:string;
+  search: string;
+}
+
+export type initialUserform = {
+  email: string,
+  password: string,
+  firstName: string,
+  lastName: string,
+  role: string,
+}
+
+export type AdminUsersInterface ={
+  initialAllUsers:AllUsers,
+  initialStudents: AllUsers,
+  initialEducators:AllUsers
 }
