@@ -26,7 +26,14 @@ interface SessionsProps {
   expiredCount: number
 }
 
-export default function EducatorSessions() {
+interface EducatorSessionsProps {
+  UpcomingSessions:SessionsProps;
+  CancelledSessions:SessionsProps;
+  ExpiredSessions:SessionsProps;
+  CompletedSessions:SessionsProps
+}
+
+export default function EducatorSessions({UpcomingSessions, CancelledSessions, ExpiredSessions, CompletedSessions}:EducatorSessionsProps) {
   const initialData = {
     sessions: [],
     completedCount: 0,
@@ -36,10 +43,10 @@ export default function EducatorSessions() {
   }
   const user = useAppSelector((state) => state.auth.user);
   const userId = user?.id;
-  const [upcoming, setUpcoming] = useState<SessionsProps | null>(initialData);
-  const [completed, setCompleted] = useState<SessionsProps | null>(initialData);
-  const [cancelled, setCancelled] = useState<SessionsProps | null>(initialData);
-  const [expired, setExpired] = useState<SessionsProps | null>(initialData);
+  const [upcoming, setUpcoming] = useState<SessionsProps | null>(UpcomingSessions);
+  const [completed, setCompleted] = useState<SessionsProps | null>(CompletedSessions);
+  const [cancelled, setCancelled] = useState<SessionsProps | null>(CancelledSessions);
+  const [expired, setExpired] = useState<SessionsProps | null>(ExpiredSessions);
 
   const [upcomingPagination, setUpcomingPagination] = useState({ page: 1, limit: 10, filter: "UPCOMING" });
   const [completedPagination, setCompletedPagination] = useState({ page: 1, limit: 10, filter: "COMPLETED" });
@@ -47,8 +54,7 @@ export default function EducatorSessions() {
   const [expiredPagination, setExpiredPagination] = useState({ page: 1, limit: 10, filter: "EXPIRED" });
 
 
-  useEffect(() => {
-    if (!userId) return;
+
     const fetchUpcomingSessions = async () => {
       const sessionsresponse = await getSessions_Action({ input: { ...upcomingPagination } })
       setUpcoming(sessionsresponse?.getSessions ?? null)
@@ -69,21 +75,21 @@ export default function EducatorSessions() {
       setExpired(sessionsresponse?.getSessions ?? null)
     }
 
-    fetchUpcomingSessions();
-    fetchCompletedSessions();
-    fetchCancelledSessions();
-    fetchExpiredSessions();
-  }, [upcomingPagination, completedPagination, cancelledPagination, expiredPagination]);
+   
 
   const handleLoadMore = (activeTab: string) => {
     if (activeTab === "upcoming") {
       setUpcomingPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+      fetchUpcomingSessions();
     } else if (activeTab === "completed") {
       setCompletedPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+      fetchCompletedSessions();
     } else if (activeTab === "cancelled") {
       setCancelledPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+      fetchCancelledSessions();
     } else if (activeTab === "expired") {
       setExpiredPagination((prev) => ({ ...prev, limit: prev.limit + 10 }));
+      fetchExpiredSessions();
     }
   }
 

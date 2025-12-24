@@ -49,17 +49,20 @@ const AdminTabslist = ({
     { value: "students", data: students.items },
     { value: "educators", data: educators.items },
   ];
+  const totalUsers = users?.totalUsers;
+  const totalEducators = users?.totalEducators;
+  const totalStudents = users?.totalStudents;
 
   return (
     <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
       <TabsList>
-        <TabsTrigger value="all">All Users ({users.totalUsers})</TabsTrigger>
-        <TabsTrigger value="students">Students ({students.totalStudents})</TabsTrigger>
-        <TabsTrigger value="educators">Educators ({educators.totalEducators})</TabsTrigger>
+        <TabsTrigger value="all">All Users ({totalUsers})</TabsTrigger>
+        <TabsTrigger value="students">Students ({totalStudents})</TabsTrigger>
+        <TabsTrigger value="educators">Educators ({totalEducators})</TabsTrigger>
       </TabsList>
       
       {Userslist.map((card) => (
-        <TablistCard key={card.value} value={card.value} data={card.data} handleLoadMore={handleLoadMore} activeTab={activeTab} />
+        <TablistCard key={card.value} value={card.value} data={card.data || []} handleLoadMore={handleLoadMore} activeTab={activeTab} />
 
       ))}
     </Tabs>

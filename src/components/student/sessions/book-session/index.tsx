@@ -1,12 +1,10 @@
 "use client"
 
-import StudentNav from "@/src/components/navigation/student-nav";
 import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent } from "@/src/components/ui/card";
 import Header from "@/src/components/ui/header"
 import { Input } from "@/src/components/ui/input";
-import { mockEducators } from "@/src/lib/mock-data";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"

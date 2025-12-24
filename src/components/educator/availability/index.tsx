@@ -62,17 +62,15 @@ const initialFormData: FormData = {
   unavailabilityDays: [],
 };
 
-/* ===================== FIXED TIME HELPERS ===================== */
 const parseTime = (time?: string) => {
   if (!time) return { hour: "00", minute: "00" };
-  const cleaned = time.replace(".", ":"); // 10.00:00 → 10:00:00
+  const cleaned = time.replace(".", ":"); 
   const [hour = "00", minute = "00"] = cleaned.split(":");
   return { hour: hour.padStart(2, "0"), minute: minute.padStart(2, "0") };
 };
 
 const toHHMM = (h: string, m: string) =>
   `${h.padStart(2, "0")}:${m.padStart(2, "0")}`;
-/* =============================================================== */
 
 const EducatorAvailability = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);

@@ -18,7 +18,13 @@ interface PaginationProps {
   resource_type: string | null;
 }
 
-const AdminResources = () => {
+interface AdminResourcesProps{
+  AllResources:{
+    total:number;
+  items:[]
+  }
+}
+const AdminResources = ({AllResources}:AdminResourcesProps) => {
   const categories = [
     "All",
     "Essay Writing",
@@ -27,10 +33,7 @@ const AdminResources = () => {
     "Admissions",
   ];
 
-  const user = useAppSelector((state) => state.auth.user);
-  const userId = user?.id;
-
-  const [resources, setResources] = useState({ total: 0, items: [] });
+  const [resources, setResources] = useState({items:AllResources?.items, total:AllResources?.total });
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [pagination, setPagination] = useState<PaginationProps>({
@@ -53,6 +56,7 @@ const AdminResources = () => {
       search: value,
       page: 1,
     }));
+    fetchAllResources();
   };
 
   const handleCategorySelect = (category: string) => {
@@ -63,27 +67,22 @@ const AdminResources = () => {
       page: 1,
       resource_type: category === "All" ? null : categoryMap[category],
     }));
+    fetchAllResources();
+  };
+
+  const fetchAllResources = async () => {
+    const response = await getAllResources_Action({
+      variables: {
+        searchFilter: {
+          limit: pagination.limit, page: pagination.page, search: pagination.search, resource_type: pagination.resource_type
+        }
+      }
+    });
+
+    setResources(response?.GetAllResources || { total: 0, items: [] });
   };
 
 
-
-  useEffect(() => {
-    if (!userId) return;
-
-      const fetchAllResources = async () => {
-        const response = await getAllResources_Action({
-          variables: {
-            searchFilter: {
-              limit: pagination.limit, page: pagination.page, search: pagination.search, resource_type: pagination.resource_type
-            }
-          }
-        });
-        
-        setResources(response?.GetAllResources || { total: 0, items: [] });
-      };
-
-      fetchAllResources();
-  }, [userId, pagination]);
 
 
   return (

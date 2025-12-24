@@ -45,7 +45,13 @@ interface PaginationProps {
   search:string;
 }
 
-const AdminUsers = () => {
+interface AdminUsersProps {
+  AllUser:AllUsers
+  AllStudents:AllUsers
+  AllEducators:AllUsers
+}
+
+const AdminUsers = ({AllUser, AllStudents, AllEducators}:AdminUsersProps) => {
   const user = useAppSelector((state) => state.auth.user);
   const UserId = user?.id;
   const { toast } = useToast();
@@ -60,9 +66,9 @@ const AdminUsers = () => {
     items: [],
   };
 
-  const [users, setUsers] = useState<AllUsers>(initialUsers);
-  const [students, setStudents] = useState<AllUsers>(initialUsers);
-  const [educators, setEducators] = useState<AllUsers>(initialUsers);
+  const [users, setUsers] = useState<AllUsers>(AllUser);
+  const [students, setStudents] = useState<AllUsers>(AllStudents);
+  const [educators, setEducators] = useState<AllUsers>(AllEducators);
 
   const [allUsersPagination, setAllUsersPagination] = useState<PaginationProps>({
     page: DEFAULT_PAGINATION.PAGE,
@@ -105,35 +111,30 @@ const AdminUsers = () => {
     }));
   };
 
-  useEffect(() => {
-    fetchUsers(allUsersPagination, setUsers);
-  }, [allUsersPagination, UserId]);
-
-  useEffect(() => {
-    fetchUsers(studentsPagination, setStudents);
-  }, [studentsPagination, UserId]);
-
-  useEffect(() => {
-    fetchUsers(educatorsPagination, setEducators);
-  }, [educatorsPagination, UserId]);
 
   const handleLoadMore = (type: "all" | "students" | "educators") => {
     if (type === "all") {
       setAllUsersPagination((prev) => ({ ...prev, page: prev.page + 1 }));
+       fetchUsers(allUsersPagination, setUsers);
     } else if (type === "students") {
       setStudentsPagination((prev) => ({ ...prev, page: prev.page + 1 }));
+      fetchUsers(studentsPagination, setStudents);
     } else {
       setEducatorsPagination((prev) => ({ ...prev, page: prev.page + 1 }));
+       fetchUsers(educatorsPagination, setEducators);
     }
   };
 
   const handleSearch = (type: "all" | "students" | "educators", search: string) => {
     if (type === "all") {
       setAllUsersPagination({ ...allUsersPagination, page: 1, search: search });
+       fetchUsers(allUsersPagination, setUsers);
     } else if (type === "students") {
       setStudentsPagination({ ...studentsPagination, page: 1, search: search });
+      fetchUsers(studentsPagination, setStudents);
     } else {
       setEducatorsPagination({ ...educatorsPagination, page: 1, search: search });
+       fetchUsers(educatorsPagination, setEducators);
     }
   }
 
